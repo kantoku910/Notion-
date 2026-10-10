@@ -94,8 +94,8 @@ const zones=[
 {name:'紅蓮の火山',range:'21–25',color:'#95624f',tile:'#7f5041',enemies:[['溶岩ゴーレム',21,'golem','#dc9561'],['炎の魔導士',22,'mage','#e6a05f'],['ヘルスコーピオン',24,'scorpion','#c47879'],['レッドドラゴン',25,'dragon','#e68d70']]},
 {name:'魔王の領域',range:'26–30',color:'#64627e',tile:'#514e67',enemies:[['闇の騎士',26,'knight','#ada1d0'],['シャドウメイジ',27,'mage','#b493d6'],['ボーンデーモン',29,'skeleton','#d3b9c9'],['黒竜',30,'dragon','#a4a0c8']]}
 ];
-const weapons=[['木のつるぎ',5,60],['銅のつるぎ',12,180],['鉄のつるぎ',23,480],['鋼のつるぎ',36,1000],['聖なるつるぎ',54,2000],['星砕きのつるぎ',75,3400]];
-const armors=[['旅人の服',4,50],['革のよろい',10,160],['鉄のよろい',20,440],['鋼のよろい',32,900],['聖なるよろい',47,1800],['星守りのよろい',65,3000]];
+const weapons=[['木のつるぎ',12,60],['銅のつるぎ',24,220],['鉄のつるぎ',40,700],['鋼のつるぎ',58,1800],['聖なるつるぎ',81,4200],['星砕きのつるぎ',107,8500]];
+const armors=[['旅人の服',9,50],['革のよろい',19,200],['鉄のよろい',33,600],['鋼のよろい',49,1500],['聖なるよろい',68,3600],['星守りのよろい',90,7500]];
 const learnedSkills=()=>skills.filter(s=>p.level>=s.level),bestHeal=()=>learnedSkills().filter(s=>s.kind==='heal').slice(-1)[0];
 const skills=[
 {id:'spark',name:'火の玉',level:3,cost:4,kind:'magic',el:'fire',base:8,scale:3,description:'小さな火球で、守備力を無視して攻撃。'},
@@ -118,9 +118,9 @@ const skills=[
 const EL={fire:{n:'火',i:'🔥'},ice:{n:'氷',i:'❄️'},thunder:{n:'雷',i:'⚡'}};
 const ST={poison:{n:'どく'},sleep:{n:'ねむり'},paralyze:{n:'まひ'},burn:{n:'やけど'}};
 const ALLY={
-gald:{name:'ガルド',job:'戦士',color:'#d08a52',hair:'#5a3b26',hp:l=>40+l*10,mp:l=>0,atk:l=>10+l*3.2,def:l=>5+l*2.2},
-mina:{name:'ミナ',job:'魔法使い',color:'#8f7be0',hair:'#e9b0d0',hp:l=>26+l*6,mp:l=>14+l*4,atk:l=>4+l*1.8,def:l=>3+l*1.5},
-sora:{name:'ソラ',job:'僧侶',color:'#e9e4cf',hair:'#e8d37a',hp:l=>34+l*7,mp:l=>16+l*4,atk:l=>5+l*2,def:l=>4+l*1.8}
+gald:{name:'ガルド',job:'戦士',color:'#d08a52',hair:'#5a3b26',hp:l=>40+l*10,mp:l=>0,atk:l=>10+l*1.8,def:l=>5+l*.95},
+mina:{name:'ミナ',job:'魔法使い',color:'#8f7be0',hair:'#e9b0d0',hp:l=>26+l*6,mp:l=>14+l*4,atk:l=>4+l*1.0,def:l=>3+l*.5},
+sora:{name:'ソラ',job:'僧侶',color:'#e9e4cf',hair:'#e8d37a',hp:l=>34+l*7,mp:l=>16+l*4,atk:l=>5+l*1.1,def:l=>4+l*.6}
 };
 const ALLY_IDS=['gald','mina','sora'];
 const MINA=[{n:'ファイア',el:'fire',lv:1,cost:3,base:5,sc:3.4},{n:'ブリザド',el:'ice',lv:8,cost:4,base:8,sc:3.4},{n:'サンダー',el:'thunder',lv:14,cost:5,base:10,sc:3.5},{n:'ファイアストーム',el:'fire',lv:18,cost:8,base:12,sc:2.6,all:true},{n:'ブリザドストーム',el:'ice',lv:24,cost:10,base:16,sc:3,all:true},{n:'サンダーストーム',el:'thunder',lv:32,cost:14,base:24,sc:3.8,all:true},{n:'メテオレイン',el:'fire',lv:42,cost:20,base:34,sc:4.6,all:true}];
@@ -183,8 +183,8 @@ const allyList=()=>ALLY_IDS.filter(id=>p.mem[id]);
 const partyIds=()=>['hero',...allyList()];
 const mHP=id=>id==='hero'?maxHP():Math.round(ALLY[id].hp(p.level));
 const mMP=id=>id==='hero'?maxMP():Math.round(ALLY[id].mp(p.level));
-const mDef=id=>id==='hero'?def():Math.round(ALLY[id].def(p.level));
-const mAtk=id=>id==='hero'?atk():Math.round(ALLY[id].atk(p.level));
+const mDef=id=>id==='hero'?def():Math.round(ALLY[id].def(p.level)+gearD()*.5);
+const mAtk=id=>id==='hero'?atk():Math.round(ALLY[id].atk(p.level)+gearA()*.5);
 const mName=id=>id==='hero'?'勇者':ALLY[id].name;
 const getHP=id=>id==='hero'?p.hp:p.mem[id].hp,getMP=id=>id==='hero'?p.mp:p.mem[id].mp;
 const setHP=(id,v)=>{v=Math.max(0,Math.min(mHP(id),Math.round(v)));if(id==='hero')p.hp=v;else p.mem[id].hp=v};
@@ -255,13 +255,13 @@ let enemies=[],tgt=0;
 const aliveEn=()=>enemies.filter(e=>e.hp>0);
 const en=e=>e.label||e.name;
 function curTarget(){let e=enemies[tgt];if(!e||e.hp<=0){e=aliveEn()[0];tgt=enemies.indexOf(e)}return e}
-const MAXLV=50,XB=()=>p.clear?10:0;
-function mkEnemy(d,hpMul){let lv=d[1]+XB(),fx=FX[d[0]]||{};return{name:d[0],lv,type:d[2],color:d[3],hp:Math.round((14+lv*9)*hpMul),atk:4+lv*3,def:lv*1.3,xp:10+lv*8,gold:8+lv*9,flee:1,weak:fx.weak||[],resist:fx.resist||[],stk:fx.st,ao:fx.ao}}
+const MAXLV=50,XB=()=>p.clear?12:0;
+function mkEnemy(d,hpMul){let lv=d[1]+XB(),fx=FX[d[0]]||{};return{name:d[0],lv,type:d[2],color:d[3],hp:Math.round((14+lv*9)*hpMul*(1+.01*lv)),atk:Math.round((4+lv*3)*(1+.008*lv)),def:lv*1.3,xp:10+lv*8,gold:Math.round(3+lv*3.5),flee:1,weak:fx.weak||[],resist:fx.resist||[],stk:fx.st,ao:fx.ao}}
 function buildEnemies(o){let n=allyList().length,list;
- if(o==='ex')list=[{name:'終焉の竜',lv:50,type:'dragon',color:'#e8e2a0',ex:true,big:true,hp:Math.round(3000*(1+.7*n)),atk:220,def:130,xp:3000,gold:3000,flee:.8,sp:{name:'終焉の光',pow:.9,aoe:true,st:['paralyze',.3]},stk:['burn',.2],weak:[],resist:[]}];
- else if(o===true)list=[{name:'夜の魔王',lv:30,type:'dragon',color:'#d19bc4',final:true,big:true,hp:Math.round(1600*(1+.7*n)),atk:160,def:95,xp:250,gold:278,flee:.8,sp:{name:'闇の炎',pow:.85,aoe:true,st:['burn',.3]},stk:['sleep',.15],weak:[],resist:[]}];
- else if(o&&o.guard){let g=o.guard,lv=g.lv,b=14+lv*9;list=[{name:g.name,lv,type:g.type,color:g.color,guard:g,big:true,hp:Math.round(b*(3.5+g.gate*1.2)*(1+.7*n)),atk:Math.round((4+lv*3)*(1.2+g.gate*.05)),def:lv*1.3*1.1,xp:(10+lv*8)*3,gold:(8+lv*9)*5,flee:.6,sp:g.sp,stk:g.st,weak:g.weak,resist:g.resist}]}
- else if(o&&o.mimic){let c=o.mimic,T=zones[zoneAt(c.x,c.y)].enemies,lv=T[T.length-1][1]+1,b=14+lv*9;list=[{name:'ミミック',lv,type:'mimic',color:'#a8703d',chest:c,hp:Math.round(b*1.4*(1+.7*n)),atk:Math.round((4+lv*3)*1.15),def:lv*1.3,xp:(10+lv*8)*2,gold:lv*14,flee:1,weak:['fire'],resist:[],stk:['paralyze',.3]}]}
+ if(o==='ex')list=[{name:'終焉の竜',lv:50,type:'dragon',color:'#e8e2a0',ex:true,big:true,hp:Math.round(2500*(1+.7*n)),atk:220,def:130,xp:3000,gold:2500,flee:.8,sp:{name:'終焉の光',pow:.9,aoe:true,st:['paralyze',.3]},stk:['burn',.2],weak:[],resist:[]}];
+ else if(o===true)list=[{name:'夜の魔王',lv:30,type:'dragon',color:'#d19bc4',final:true,big:true,hp:Math.round(1600*(1+.7*n)),atk:160,def:95,xp:250,gold:600,flee:.8,sp:{name:'闇の炎',pow:.85,aoe:true,st:['burn',.3]},stk:['sleep',.15],weak:[],resist:[]}];
+ else if(o&&o.guard){let g=o.guard,lv=g.lv,b=14+lv*9;list=[{name:g.name,lv,type:g.type,color:g.color,guard:g,big:true,hp:Math.round(b*(3.5+g.gate*1.2)*(1+.7*n)),atk:Math.round((4+lv*3)*(1.2+g.gate*.05)),def:lv*1.3*1.1,xp:(10+lv*8)*3,gold:(8+lv*4)*4,flee:.6,sp:g.sp,stk:g.st,weak:g.weak,resist:g.resist}]}
+ else if(o&&o.mimic){let c=o.mimic,T=zones[zoneAt(c.x,c.y)].enemies,lv=T[T.length-1][1]+1,b=14+lv*9;list=[{name:'ミミック',lv,type:'mimic',color:'#a8703d',chest:c,hp:Math.round(b*1.4*(1+.7*n)),atk:Math.round((4+lv*3)*1.15),def:lv*1.3,xp:(10+lv*8)*2,gold:lv*8,flee:1,weak:['fire'],resist:[],stk:['paralyze',.3]}]}
  else{let T=zones[zoneAt()].enemies,i=Math.floor(Math.random()*T.length),size=partyIds().length,cnt=size<=1?1:(Math.random()<.5?size:rand(1,size));cnt=Math.min(cnt,4);list=[];
   for(let k=0;k<cnt;k++)list.push(mkEnemy(T[k===0?i:Math.max(0,i-(Math.random()<.5?1:0))],1+.35*n))}
  let cnts={};list.forEach(e=>cnts[e.name]=(cnts[e.name]||0)+1);let used={};list.forEach(e=>{if(cnts[e.name]>1){used[e.name]=(used[e.name]||0)+1;e.label=e.name+'ABCD'[used[e.name]-1]}});
@@ -356,7 +356,7 @@ function openSkills(inBattle=false){if(busy||dialogOpen)return;
  $$('[data-skill]').forEach(b=>b.onclick=()=>{if(!enemy||busy)return;let id=b.dataset.skill;closeModal();command('skill:'+id)});
  $$('[data-field]').forEach(b=>b.onclick=()=>{let s=skills.find(s=>s.id===b.dataset.field),id=neediest();if(!s||!id||p.mp<s.cost)return;p.mp-=s.cost;let amt=Math.min(mHP(id)-getHP(id),Math.round(mHP(id)*s.ratio));setHP(id,getHP(id)+amt);save();update();sfx('heal');openSkills(false);toast(mName(id)+'のHPが '+amt+' 回復')})}
 function endBattle(won=false,full=false){if(enemy){allyList().forEach(id=>{if(full){setHP(id,mHP(id));setMP(id,mMP(id))}else if(getHP(id)<=0)setHP(id,Math.max(1,Math.round(mHP(id)*.15)));else if(won){setHP(id,getHP(id)+Math.round(mHP(id)*.1));setMP(id,getMP(id)+Math.round(mMP(id)*.15))}});if(full){p.hp=maxHP();p.mp=maxMP()}}bst={};enemy=null;enemies=[];busy=false;$('#battle').classList.add('hidden');update();$('#huntBtn').focus()}
-function win(){let main=enemies[0],all=enemies.slice(),oldLevel=p.level,pages=[],xp=all.reduce((a,e)=>a+e.xp,0),gold=all.reduce((a,e)=>a+e.gold,0);p.kills+=all.length;p.gold+=gold;if(p.level<MAXLV)p.xp+=xp;let levels=0;while(p.level<MAXLV&&p.xp>=need()){p.xp-=need();p.level++;levels++}if(p.level===MAXLV)p.xp=0;
+function win(){let main=enemies[0],all=enemies.slice(),oldLevel=p.level,pages=[],xp=all.reduce((a,e)=>{e.xp=Math.max(1,Math.round(e.xp*Math.max(.1,1-.07*Math.max(0,p.level-e.lv))));return a+e.xp},0),gold=all.reduce((a,e)=>a+e.gold,0);p.kills+=all.length;p.gold+=gold;if(p.level<MAXLV)p.xp+=xp;let levels=0;while(p.level<MAXLV&&p.xp>=need()){p.xp-=need();p.level++;levels++}if(p.level===MAXLV)p.xp=0;
  if(Math.random()<.15*all.length)p.herbs++;if(main.final)p.clear=true;if(main.ex)p.clear2=true;
  if(main.guard){let g=main.guard;p.gates[g.gate]=true;p.herbs+=2;g.post.forEach(x=>pages.push(x));if(g.join&&!p.mem[g.join]){joinAlly(g.join);pages.push(['仲間が加わった！',ALLY[g.join].job+'の'+ALLY[g.join].name+'が仲間になった！'])}let n=p.gates.filter(Boolean).length;pages.push(['太陽のかけらを手に入れた！','かけら ✦'+n+' / 5'+(n===5?'\n魔王の城への道が開かれた。北東の城へ向かおう。':'')])}
  if(main.chest){p.chests.push(main.chest.id);pages.push(['ミミックを倒した！',giveChest(main.chest).join('\n')||'宝箱は空っぽだった。'])}
@@ -372,7 +372,7 @@ function bag(){if(enemy)return;
  $$('[data-herb]').forEach(b=>b.onclick=()=>{let id=b.dataset.herb;if(!p.herbs||getHP(id)>=mHP(id))return;p.herbs--;setHP(id,getHP(id)+Math.round(mHP(id)*.55));save();update();bag();toast(mName(id)+'のHPが回復した')});
  $('#useWater').onclick=()=>{if(!p.waters)return;p.waters--;partyIds().forEach(id=>setMP(id,mMP(id)));save();update();bag();toast('全員のMPが全回復した')}}
 function bossPrompt(){if(p.clear2){log('終焉の竜も倒された。王国に、本当の平和が訪れた。');return}if(p.clear){openModal('<h2 id="modalTitle">終焉の竜 · Lv.50</h2><p>魔王の死で解き放たれた、世界の終わりを告げる竜が城に降り立っている。</p><p class="note">真の最終決戦。レベル上限(50)近くまで鍛えてから挑もう。</p><p>現在 Lv.'+p.level+' ／ 仲間 '+allyList().length+' 人 ／ HP '+p.hp+' / '+maxHP()+'。</p><div class="tabs"><button id="bossStart" class="primary">終焉の竜に挑む</button><button data-close>まだ準備する</button></div>');$('#bossStart').onclick=()=>{closeModal();encounter('ex')};return}openModal('<h2 id="modalTitle">夜の魔王 · Lv.30</h2><p>北東の城に、魔王が姿を現している。</p><p class="note">5つのかけらと仲間の力で、決戦に挑もう。</p><p>現在 Lv.'+p.level+' ／ 仲間 '+allyList().length+' 人 ／ HP '+p.hp+' / '+maxHP()+'。薬草も持っていこう。戦いから逃げることもできます。</p><div class="tabs"><button id="bossStart" class="primary">魔王に挑む</button><button data-close>まだ準備する</button></div>');$('#bossStart').onclick=()=>{closeModal();encounter(true)}}
-function guide(){openModal('<div class="modalheader"><h2 id="modalTitle">冒険のしおり</h2><button data-close aria-label="閉じる">×</button></div><p>① リナの話を聞く → ② 各地の門を守る5人の番人を倒し、太陽のかけらを集める → ③ 魔王を倒して村に光を取り戻す。レベル上限は50。魔王を倒したあとは魔物が強くなり、城には裏ボスが現れます。</p><p>移動は十字キー（長押しで連続移動）/ 矢印 / WASD。地図をタップすると道に沿って歩きます。看板・村人・お店・宿屋・宝箱・泉・商人の隣で向きを合わせて「調べる」。番人や宝箱には、ぶつかるように進んでも反応します。</p><p><b>仲間：</b>ガルド（戦士）はリナから、ミナ（魔法使い）とソラ（僧侶）は番人を倒すと加わります。仲間は戦闘で自動で行動します。最大4人パーティ。</p><p><b>複数の敵：</b>仲間が増えると敵の最大数も増えます（最大4体）。1体目はそのエリアの敵、2体目以降は1つ弱い種類です。敵をタップすると攻撃の対象を選べます。【全体】の技・魔法は敵全員に当たります。敵にも全体攻撃を使うものがいるので注意。</p><p><b>属性：</b>🔥火 ❄️氷 ⚡雷。敵の「弱点」を突くと1.5倍、「耐性」には半分のダメージ。弱点は戦闘画面に表示されます。</p><p><b>状態異常：</b>どく（毎ターン減る）・ねむり（行動不能）・まひ（動けないことがある）・やけど（攻撃力ダウン＋減る）。薬草は毒とやけどを、キュアはすべてを治します。</p><p><b>探索：</b>宝箱（中にはミミックも…）、HP・MPが回復する泉、旅の商人（道具を売ってくれる）が各地にあります。</p><p>村の青い屋根が宿屋で、パーティ全員が無料で全回復します。「町へ帰還」は戦闘外ならいつでも無料。敗北すると所持金の10%だけ失い、町の宿で全回復します。</p><p>保存はブラウザ内のみ。移動・戦闘終了・購入時に自動保存。戦闘途中は保存されません。'+(!saveOK?'この環境では保存が制限される可能性があります。':'')+'</p><div class="tabs"><button data-close class="primary">冒険に戻る</button><button id="resetBtn">冒険をリセット</button></div>');$('#resetBtn').onclick=()=>{openModal('<h2 id="modalTitle">はじめから遊びますか？</h2><p>レベル・装備・お金・仲間・クリア状態をすべて初期化します。</p><div class="tabs"><button id="resetConfirm">初期化する</button><button data-close class="primary">やめる</button></div>');$('#resetConfirm').onclick=()=>{enemy=null;busy=false;dialogOpen=false;sceneQ=[];sceneEnd=null;trail=[];bst={};$('#dialogue').classList.add('hidden');$('#battle').classList.add('hidden');p=fresh();logs=[];save();closeModal();log('まずは目の前のリナに話しかけよう。スペースでアクション。')}}}
+function guide(){openModal('<div class="modalheader"><h2 id="modalTitle">冒険のしおり</h2><button data-close aria-label="閉じる">×</button></div><p>① リナの話を聞く → ② 各地の門を守る5人の番人を倒し、太陽のかけらを集める → ③ 魔王を倒して村に光を取り戻す。レベル上限は50。自分より弱い敵からは経験値が減り、武器・防具は仲間の強さにも効きます。魔王を倒したあとは魔物が強くなり、城には裏ボスが現れます。</p><p>移動は十字キー（長押しで連続移動）/ 矢印 / WASD。地図をタップすると道に沿って歩きます。看板・村人・お店・宿屋・宝箱・泉・商人の隣で向きを合わせて「調べる」。番人や宝箱には、ぶつかるように進んでも反応します。</p><p><b>仲間：</b>ガルド（戦士）はリナから、ミナ（魔法使い）とソラ（僧侶）は番人を倒すと加わります。仲間は戦闘で自動で行動します。最大4人パーティ。</p><p><b>複数の敵：</b>仲間が増えると敵の最大数も増えます（最大4体）。1体目はそのエリアの敵、2体目以降は1つ弱い種類です。敵をタップすると攻撃の対象を選べます。【全体】の技・魔法は敵全員に当たります。敵にも全体攻撃を使うものがいるので注意。</p><p><b>属性：</b>🔥火 ❄️氷 ⚡雷。敵の「弱点」を突くと1.5倍、「耐性」には半分のダメージ。弱点は戦闘画面に表示されます。</p><p><b>状態異常：</b>どく（毎ターン減る）・ねむり（行動不能）・まひ（動けないことがある）・やけど（攻撃力ダウン＋減る）。薬草は毒とやけどを、キュアはすべてを治します。</p><p><b>探索：</b>宝箱（中にはミミックも…）、HP・MPが回復する泉、旅の商人（道具を売ってくれる）が各地にあります。</p><p>村の青い屋根が宿屋で、パーティ全員が無料で全回復します。「町へ帰還」は戦闘外ならいつでも無料。敗北すると所持金の10%だけ失い、町の宿で全回復します。</p><p>保存はブラウザ内のみ。移動・戦闘終了・購入時に自動保存。戦闘途中は保存されません。'+(!saveOK?'この環境では保存が制限される可能性があります。':'')+'</p><div class="tabs"><button data-close class="primary">冒険に戻る</button><button id="resetBtn">冒険をリセット</button></div>');$('#resetBtn').onclick=()=>{openModal('<h2 id="modalTitle">はじめから遊びますか？</h2><p>レベル・装備・お金・仲間・クリア状態をすべて初期化します。</p><div class="tabs"><button id="resetConfirm">初期化する</button><button data-close class="primary">やめる</button></div>');$('#resetConfirm').onclick=()=>{enemy=null;busy=false;dialogOpen=false;sceneQ=[];sceneEnd=null;trail=[];bst={};$('#dialogue').classList.add('hidden');$('#battle').classList.add('hidden');p=fresh();logs=[];save();closeModal();log('まずは目の前のリナに話しかけよう。スペースでアクション。')}}}
 $('#soundBtn').onclick=()=>{soundOn=!soundOn;try{localStorage.setItem('ofk-sound',soundOn?'1':'0')}catch(e){}$('#soundBtn').textContent=soundOn?'♪ON':'♪OFF';if(soundOn)sfx('heal')};$('#soundBtn').textContent=soundOn?'♪ON':'♪OFF';
 const areaOrder=[[1,2,5],[0,3,4]];
 const signs=[{x:5,y:10},{x:5,y:4},{x:12,y:4},{x:12,y:11},{x:20,y:11},{x:19,y:4}];
@@ -382,7 +382,7 @@ const townObjects=[{x:1,y:12,kind:'inn',name:'宿屋'},{x:4,y:12,kind:'weapon',n
 const gates=[[3,7,3,8],[7,3,8,3],[11,7,11,8],[15,12,16,12],[20,7,20,8]];
 let dialogOpen=false;
 let p=fresh(),enemy=null,turn=1,busy=false,walkSteps=0,logs=[],routeTimer=null,shopTab='weapon',toastTimer,modalReturn=null,saveOK=true;
-const maxHP=()=>30+p.level*9,maxMP=()=>10+p.level*3,atk=()=>8+p.level*3+(p.weapon<0?0:weapons[p.weapon][1]),def=()=>4+p.level*2+(p.armor<0?0:armors[p.armor][1]),need=()=>20+p.level*12;
+const maxHP=()=>30+p.level*9,maxMP=()=>10+p.level*3,gearA=()=>p.weapon<0?0:weapons[p.weapon][1],gearD=()=>p.armor<0?0:armors[p.armor][1],atk=()=>6+p.level*2+gearA(),def=()=>3+Math.round(p.level*1.2)+gearD(),need=()=>25+5*p.level*p.level;
 const zoneAt=(x=p.x,y=p.y)=>areaOrder[y<8?0:1][Math.floor(x/8)],inTown=()=>p.x<=5&&p.y>=11;
 function validSave(s){return s&&Number.isInteger(s.level)&&s.level>=1&&s.level<=30&&Number.isInteger(s.x)&&s.x>=0&&s.x<W&&Number.isInteger(s.y)&&s.y>=0&&s.y<H&&['weapon','armor'].every(k=>Number.isInteger(s[k])&&s[k]>=-1&&s[k]<6)&&['xp','hp','mp','gold','herbs','waters','kills'].every(k=>Number.isFinite(s[k])&&s[k]>=0&&s[k]<1e8)&&typeof s.clear==='boolean'}
 try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(validSave(s)){p=s;p.hp=Math.min(p.hp,maxHP());p.mp=Math.min(p.mp,maxMP())}}catch(e){saveOK=false}
