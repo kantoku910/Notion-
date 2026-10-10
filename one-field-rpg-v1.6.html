@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ひとつの王国"><title>ひとつの王国 v1.6</title><style>
+:root{color-scheme:dark;--bg:#101923;--panel:#182533;--line:#344758;--text:#eef3ec;--muted:#a8bac5;--gold:#efcb76;--green:#9cd2a2}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,'Noto Sans JP',sans-serif}button{font:inherit;color:inherit;cursor:pointer;background:#233749;border:1px solid #486275;border-radius:5px;min-height:44px;padding:8px 12px;transition:background .15s}button:hover:not(:disabled){background:#345269}button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}button:disabled{opacity:.4;cursor:not-allowed}.primary{background:#e6c478;color:#1b2630;border-color:#e6c478;font-weight:700}.primary:hover:not(:disabled){background:#ffe09a}.small{font-size:14px}.wrap{max-width:960px;margin:auto;padding:20px 24px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:16px}.eyebrow{font-size:12px;letter-spacing:.22em;color:var(--gold)}h1{font-size:25px;letter-spacing:.06em;margin:2px 0}header p{margin:0;color:var(--muted);font-size:14px}.headbuttons{display:flex;gap:8px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:16px}.world{position:relative;border:1px solid #577067;background:#22332d;border-radius:8px;overflow:hidden}.maphead{display:flex;justify-content:space-between;gap:8px;padding:10px 14px;background:#182b2b;font-size:14px}.maphead b{color:#d4e8b2}canvas{display:block;width:100%;image-rendering:pixelated;aspect-ratio:3/2;touch-action:none;cursor:crosshair}.mapfoot{padding:8px 14px;background:#17272b;display:flex;justify-content:space-between;font-size:13px;color:#b9ceba}.panel{align-self:start;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}.statushead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.statushead strong{font-size:18px}.level{color:var(--gold);font-weight:700}.barlabel{display:flex;justify-content:space-between;font-size:14px;margin:9px 0 5px}.bar{height:7px;background:#0b1620;border-radius:2px;overflow:hidden}.bar i{display:block;height:100%;background:#86c68e}.bar.mp i{background:#81b5de}.bar.exp i{background:var(--gold)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.stat{background:#101e2b;padding:8px 10px;border-radius:4px;font-size:14px}.stat span{color:var(--muted);display:block;font-size:12px}.stat.gold{color:var(--gold)}.equip{font-size:14px;color:var(--muted);line-height:1.9;border-top:1px solid var(--line);padding-top:10px}.equip b{color:var(--text);font-weight:500}.sideactions{display:grid;gap:8px;margin-top:12px}.below{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}.dpad{display:grid;grid-template-columns:44px 44px 44px;grid-template-rows:44px 44px;gap:4px}.dpad button{padding:0}.dpad .up{grid-column:2}.dpad .left{grid-column:1;grid-row:2}.dpad .down{grid-column:2;grid-row:2}.dpad .right{grid-column:3;grid-row:2}.actions{display:flex;flex-wrap:wrap;gap:8px}.log{margin-top:12px;padding:12px 16px;border-left:3px solid var(--gold);background:#16222e;min-height:60px;font-size:14px}.log p{margin:2px 0}.log p:first-child{color:#ecdfba}.log p:not(:first-child){color:var(--muted)}.hint{font-size:12px;color:var(--muted);margin-top:10px}.battle{position:absolute;inset:41px 0 34px;background:linear-gradient(#152438ee,#17291bf5);display:flex;flex-direction:column;padding:16px;z-index:3}.hidden{display:none!important}.btitle{display:flex;justify-content:space-between;align-items:center;font-size:16px}.btitle span{color:var(--gold);font-size:14px}.enemyarea{flex:1;min-height:70px;display:flex;align-items:center;justify-content:center;position:relative}.enemyarea canvas{width:150px;height:150px;aspect-ratio:1;cursor:default;filter:drop-shadow(0 8px 0 #0004)}.enemyinfo{max-width:340px;width:100%;margin:0 auto 10px;text-align:center;font-size:14px}.enemyinfo .bar{margin-top:6px}.enemyinfo i{background:#df8471}.battlelog{padding:10px 12px;background:#0b1424;border:1px solid #537085;border-radius:4px;min-height:65px;font-size:14px;margin-bottom:10px}.commands{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.commands button{font-size:14px;padding:6px}.shade{position:fixed;inset:0;background:#020b13b8;z-index:10;display:flex;align-items:center;justify-content:center;padding:16px}.modal{max-width:660px;width:100%;max-height:88vh;overflow:auto;background:#192a39;border:1px solid #6c8395;border-radius:8px;padding:24px;box-shadow:0 20px 80px #0008}.modal h2{font-size:22px;margin:0 0 8px}.modal p{color:var(--muted);font-size:14px}.modalheader{display:flex;align-items:center;justify-content:space-between;gap:8px}.tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}.tabs .active{border-color:var(--gold);color:var(--gold)}.shoprow{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}.shoprow small{display:block;color:var(--muted);font-size:13px}.shoprow button{min-width:110px}.success{color:var(--green)!important}.zones{display:grid;grid-template-columns:1fr 1fr;gap:12px}.zonecard{border-left:3px solid var(--green);padding:8px 12px;background:#102130;font-size:14px}.zonecard small{display:block;color:var(--muted);line-height:1.8}.note{color:var(--gold)!important}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#e7ca89;color:#172431;padding:10px 20px;border-radius:6px;z-index:20;pointer-events:none;max-width:90%;text-align:center}@media(max-width:820px){.layout{grid-template-columns:minmax(0,1fr) 220px}.wrap{padding:16px}.panel{padding:12px}.enemyarea canvas{width:115px;height:115px}.battle{padding:10px}.commands button{font-size:13px}}@media(max-width:640px){#map{aspect-ratio:6/5}.wrap{padding:12px}header{align-items:flex-start}h1{font-size:21px}header p{font-size:12px}.headbuttons{gap:4px}.headbuttons button{padding:6px 9px;font-size:13px}.layout{grid-template-columns:1fr;gap:12px}.panel{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}.statushead{grid-column:1/-1;margin-bottom:0}.meters{grid-column:1}.stats{grid-column:2;grid-row:2;margin:8px 0;gap:5px}.equip{grid-column:1/-1}.sideactions{grid-column:1/-1;grid-template-columns:1fr 1fr}.battle{inset:41px 0 34px;padding:8px;overflow:auto}.enemyarea{min-height:55px}.enemyarea canvas{width:85px;height:85px}.btitle{font-size:14px}.enemyinfo{margin-bottom:5px;font-size:12px}.battlelog{min-height:44px;font-size:12px;margin-bottom:6px;padding:5px 8px}.commands{gap:4px}.commands button{font-size:12px;min-height:40px;padding:3px}.mapfoot{font-size:11px;padding:8px}.below{align-items:center}.actions{justify-content:flex-end}.actions button{font-size:13px;padding:6px 10px}.modal{padding:16px}.zones{grid-template-columns:1fr}.shoprow button{min-width:95px;font-size:13px}.hint{font-size:12px}}
+.worldDialog{position:absolute;left:12px;right:12px;bottom:44px;z-index:5;background:#101f30f5;border:2px solid #c4cfcc;border-radius:5px;padding:14px 16px;box-shadow:0 5px 20px #0005}.worldDialog h2{font-size:16px;color:var(--gold);margin:0 0 6px}.worldDialog p{font-size:15px;margin:0;white-space:pre-line;line-height:1.7}.dialogfooter{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:10px}.dialogfooter span{font-size:12px;color:var(--muted)}.dialogfooter button{min-height:44px}.skillrow{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}.skillrow small{display:block;color:var(--muted);font-size:13px}.skillrow button{min-width:110px}.learned{color:var(--green)}.locked{opacity:.6}.sideactions #skillsBookBtn{grid-column:1/-1}.growth{color:#b8d3c1;font-size:12px;margin-top:6px}@media(max-width:640px){.worldDialog{left:8px;right:8px;bottom:40px;padding:12px}.worldDialog p{font-size:14px}.dialogfooter span{max-width:170px}.skillrow button{min-width:94px;font-size:13px}}
+</style><style>
+html{touch-action:manipulation;-webkit-text-size-adjust:100%}
+body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
+button,.world,.dpad,.actions,.panel,header,.log{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
+.dpad button{touch-action:none}
+.modal{max-height:88vh;max-height:88dvh}
+.toast{bottom:calc(20px + env(safe-area-inset-bottom))}
+@media(max-width:640px){
+.wrap{padding:max(4px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left))}
+header{margin-bottom:4px;align-items:center}
+.eyebrow,header p{display:none}
+h1{font-size:18px;margin:0}
+.headbuttons button{min-height:32px;padding:2px 12px;font-size:13px}
+.layout,.layout>section,.panel{display:contents}
+.layout{display:flex;flex-direction:column;gap:4px}
+.statushead{order:1;margin:0;padding:3px 10px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.statushead strong{font-size:15px}
+.meters{order:2;display:grid;grid-auto-flow:column;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;column-gap:10px;padding:0 10px 6px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+.barlabel{margin:4px 0 3px;font-size:12px}
+.stats{order:3;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:0}
+.stat{padding:2px 4px;font-size:13px;text-align:center;line-height:1.3}
+.stat span{font-size:10px;line-height:1.2}
+.world{order:4}
+.maphead{padding:6px 10px;font-size:13px}
+.mapfoot{display:none}
+#map{aspect-ratio:3/2}
+.battle{inset:31px 0 0}
+.worldDialog{bottom:8px}
+.below{order:5;margin:0}
+.dpad{grid-template-columns:repeat(3,50px);grid-template-rows:repeat(2,50px);gap:4px}
+.dpad button{min-height:50px;font-size:20px}
+.actions{flex:1;flex-direction:column;flex-wrap:nowrap;gap:4px}
+.actions button{min-height:50px;width:100%}
+.sideactions{order:6;margin:0;grid-template-columns:repeat(3,1fr);gap:6px}
+.sideactions button,.sideactions #skillsBookBtn{min-height:36px;font-size:13px;padding:2px;grid-column:auto}
+#log{order:7;margin:0;min-height:0;padding:4px 10px;font-size:13px;line-height:1.4;overflow:hidden;max-height:2.9em}
+.enemyarea{min-height:60px}.enemyarea canvas{width:72px;height:72px}.battle{padding:6px}.btitle{font-size:13px}.enemyinfo{margin-bottom:3px;font-size:12px}.battlelog{min-height:34px;font-size:12px;padding:4px 8px;margin-bottom:4px}.commands button{min-height:34px;font-size:12px}
+.log p:not(:first-child){display:none}
+.equip,.hint{display:none}
+}
+</style>
+<style>
+*{touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.dpad button,#map,#enemyCanvas{touch-action:none}
+.partyhud{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:6px}
+.pchip{background:#0b1424;border:1px solid #3b5468;border-radius:4px;padding:3px 6px;font-size:11px;line-height:1.3;min-width:0}
+.pchip b{display:flex;justify-content:space-between;gap:4px;font-size:12px;font-weight:600;white-space:nowrap}
+.pchip b span:first-child{overflow:hidden;text-overflow:ellipsis}
+.pchip em{font-style:normal;color:var(--muted);font-size:11px;font-weight:400}
+.pchip .stt{color:#f1d27b;font-size:10px}
+.pchip .bar{height:5px;margin:2px 0}
+.pchip small{color:var(--muted);font-size:10px;display:block;white-space:nowrap;overflow:hidden}
+.pchip.dead{opacity:.45}
+.partyrow{display:flex;gap:6px;margin-bottom:12px}.partyrow .pchip{flex:1}
+.enemyarea{gap:4px}
+.eslot{display:flex;flex-direction:column;align-items:center;flex:0 1 auto;border:2px solid transparent;border-radius:6px;padding:2px;cursor:pointer;min-width:0}
+.eslot.sel{border-color:var(--gold);background:#ffffff10}
+.eslot.dead{opacity:.15;pointer-events:none}
+.enemyarea .eslot canvas{width:var(--es,120px);height:var(--es,120px)}
+.ename{font-size:11px;white-space:nowrap}
+.eslot .bar{width:var(--es);height:5px}
+.est{font-size:10px;color:var(--gold);min-height:12px}
+.eslot.huge{background:radial-gradient(ellipse at 50% 60%,var(--glow,#fff)33,transparent 70%)}.eslot[style*="--glow"] canvas{animation:glowp 2.2s ease-in-out infinite}@keyframes glowp{0%,100%{filter:drop-shadow(0 0 4px var(--glow,#fff))}50%{filter:drop-shadow(0 0 14px var(--glow,#fff))}}
+.eqh{margin:14px 0 0;font-size:15px;color:var(--gold)}
+.enemyfx{font-size:12px;color:var(--muted);margin-top:5px;min-height:16px}
+.battlelog{white-space:pre-line;line-height:1.5}
+.battle{overflow:auto}
+@keyframes hitshake{0%{transform:translateX(0)}20%{transform:translateX(-7px)}45%{transform:translateX(7px)}70%{transform:translateX(-4px)}100%{transform:translateX(0)}}
+.hitfx{animation:hitshake .28s}
+@media(max-width:640px){
+.partyrow{order:3;margin:0;gap:4px}.partyrow .pchip small{display:none}.partyrow .pchip{padding:2px 6px}.partyrow .pchip b{font-size:11px}
+.battle{position:fixed;inset:0;z-index:8;padding:max(10px,env(safe-area-inset-top)) 12px max(10px,env(safe-area-inset-bottom));background:linear-gradient(#0f1c2e,#14241a)}
+.enemyarea{min-height:110px}.enemyarea canvas{width:130px;height:130px}
+.btitle{font-size:15px}.enemyinfo{font-size:13px;margin-bottom:8px}
+.partyhud{margin-bottom:8px}.pchip{padding:4px 6px}.pchip small{font-size:10px}
+.battlelog{min-height:112px;font-size:13px;padding:8px 10px;margin-bottom:8px}
+.commands{gap:6px}.commands button{min-height:48px;font-size:14px}
+.headbuttons button{padding:2px 9px}
+}
+</style>
+</head><body><div class="wrap"><header><div><div class="eyebrow">ONE FIELD · RETRO RPG</div><h1>ひとつの王国<span class="ver" style="font-size:11px;font-weight:700;color:#fff;background:#344758;border-radius:4px;padding:2px 6px;letter-spacing:.04em;margin-left:8px;vertical-align:middle">v1.6</span></h1><p>小さな旅路。大きな決戦。</p></div><div class="headbuttons"><button id="guideBtn">遊び方</button><button id="saveBtn">保存</button><button id="soundBtn">♪ON</button></div></header><main class="layout"><section><div class="world"><div class="maphead"><b id="zoneLabel">はじまりの草原</b><span id="zoneLevel">看板を調べて旅を進める</span></div><canvas id="map" width="768" height="512" aria-label="6つの危険度ゾーンと町、北東のボスがあるフィールド。矢印キーまたは移動ボタンで移動。"></canvas><div class="mapfoot"><span>⌂ 南西：町 ／ ♜ 北東：魔王の城</span><span id="coords">安全地帯</span></div><div id="dialogue" class="worldDialog hidden" role="dialog" aria-modal="false" aria-labelledby="dialogTitle"><h2 id="dialogTitle"></h2><p id="dialogText" aria-live="polite"></p><div class="dialogfooter"><span>スペースで閉じる ／ 移動は会話後</span><button id="dialogClose">つづける ▾</button></div></div><div id="battle" class="battle hidden"><div class="btitle"><b id="battleTitle"></b><span id="turnLabel"></span></div><div class="enemyarea" id="enemyRow"></div><div id="enemyFx" class="enemyfx"></div><div id="partyHud" class="partyhud"></div><div class="battlelog" id="battleLog" aria-live="polite"></div><div class="commands"><button data-cmd="attack">⚔ たたかう</button><button data-cmd="skills">✦ 技・魔法</button><button data-cmd="heal" id="healCmd">＋ 回復</button><button data-cmd="herb" id="herbCmd">薬草</button><button data-cmd="guard">◇ ぼうぎょ</button><button data-cmd="flee">↩ にげる</button></div></div></div><div class="below"><div class="dpad" aria-label="移動"><button class="up" data-dir="0,-1" aria-label="北へ">▲</button><button class="left" data-dir="-1,0" aria-label="西へ">◀</button><button class="down" data-dir="0,1" aria-label="南へ">▼</button><button class="right" data-dir="1,0" aria-label="東へ">▶</button></div><div class="actions"><button id="huntBtn" class="primary">この地で敵を探す</button><button id="interactBtn">調べる / Space</button></div></div><div id="log" class="log" aria-live="polite"></div><div class="hint">移動：矢印 / WASD / 地図をタップ　・　アクション：Space / Enter　・　町はランダム遭遇なし</div></section><aside class="panel"><div class="statushead"><strong>旅の勇者</strong><span id="level" class="level">Lv.1</span></div><div class="meters"><div class="barlabel"><span>HP</span><b id="hpText"></b></div><div class="bar"><i id="hpBar"></i></div><div class="barlabel"><span>MP</span><b id="mpText"></b></div><div class="bar mp"><i id="mpBar"></i></div><div class="barlabel"><span>次のレベル</span><b id="xpText"></b></div><div class="bar exp"><i id="xpBar"></i></div></div><div class="stats"><div class="stat gold"><span>ゴールド</span><b id="gold"></b> G</div><div class="stat"><span>戦闘勝利</span><b id="kills"></b></div><div class="stat"><span>攻撃力</span><b id="atk"></b></div><div class="stat"><span>守備力</span><b id="def"></b></div></div><div id="partyRow" class="partyrow hidden"></div><div class="equip">武器　<b id="weapon"></b><br>防具　<b id="armor"></b><br>薬草　<b id="herbs"></b> ／ 魔法の水　<b id="waters"></b></div><div class="sideactions"><button id="bagBtn">道具・装備</button><button id="returnBtn">町へ帰還</button><button id="skillsBookBtn">覚えた技・魔法</button></div></aside></main></div><div id="shade" class="shade hidden"><section id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"></section></div><div class="toast hidden" id="toast" role="status"></div>
+<script>window.addEventListener('error',function(e){var d=document.createElement('pre');d.style.cssText='position:fixed;left:0;right:0;top:0;z-index:99;background:#b00;color:#fff;font:12px/1.4 monospace;padding:8px;white-space:pre-wrap;margin:0';d.textContent='ERROR: '+e.message+' @'+e.lineno+':'+e.colno;document.body.appendChild(d)})</script>
+<script>
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const W=24,H=16,T=32,KEY='one-field-kingdom-v1';
+const zones=[
+{name:'はじまりの草原',range:'1–5',color:'#587956',tile:'#496b49',enemies:[['スライム',1,'slime','#79c5df'],['おおコウモリ',2,'bat','#bd8eba'],['スケルトン',4,'skeleton','#ded8b9'],['森のオオカミ',5,'wolf','#b3b5ae']]},
+{name:'琥珀の荒野',range:'6–10',color:'#9d8750',tile:'#8c7946',enemies:[['毒スライム',6,'slime','#ab82c3'],['砂サソリ',7,'scorpion','#e2a866'],['オーク',9,'orc','#abc476'],['荒野の騎士',10,'knight','#b0b9c9']]},
+{name:'石巨人の森',range:'11–15',color:'#477765',tile:'#3b6655',enemies:[['森のトロル',11,'orc','#89b08d'],['呪いの樹',12,'tree','#b69a64'],['魔導士',14,'mage','#9b99da'],['ゴーレム',15,'golem','#c6a984']]},
+{name:'凍てつく高原',range:'16–20',color:'#789795',tile:'#678682',enemies:[['氷スライム',16,'slime','#c2e4e4'],['雪原の牙獣',17,'wolf','#e4e7dd'],['氷の巨人',19,'golem','#a6d3dd'],['白銀の騎士',20,'knight','#e1e4e8']]},
+{name:'紅蓮の火山',range:'21–25',color:'#95624f',tile:'#7f5041',enemies:[['溶岩ゴーレム',21,'golem','#dc9561'],['炎の魔導士',22,'mage','#e6a05f'],['ヘルスコーピオン',24,'scorpion','#c47879'],['レッドドラゴン',25,'dragon','#e68d70']]},
+{name:'魔王の領域',range:'26–30',color:'#64627e',tile:'#514e67',enemies:[['闇の騎士',26,'knight','#ada1d0'],['シャドウメイジ',27,'mage','#b493d6'],['ボーンデーモン',29,'skeleton','#d3b9c9'],['黒竜',30,'dragon','#a4a0c8']]}
+];
+const weapons=[['木のつるぎ',12,60],['銅のつるぎ',24,220],['鉄のつるぎ',40,700],['鋼のつるぎ',58,1800],['聖なるつるぎ',81,4200],['星砕きのつるぎ',107,8500]];
+const armors=[['旅人の服',9,50],['革のよろい',19,200],['鉄のよろい',33,600],['鋼のよろい',49,1500],['聖なるよろい',68,3600],['星守りのよろい',90,7500],['魔除けのよろい',46,1600,1]];
+const learnedSkills=()=>skills.filter(s=>p.level>=s.level),bestHeal=()=>learnedSkills().filter(s=>s.kind==='heal').slice(-1)[0];
+const skills=[
+{id:'spark',name:'火の玉',level:3,cost:4,kind:'magic',el:'fire',base:8,scale:3,description:'小さな火球で、守備力を無視して攻撃。'},
+{id:'mend',name:'癒しの光',level:5,cost:6,kind:'heal',ratio:.4,description:'いちばん弱っている仲間のHPを最大の40%回復。'},
+{id:'cure',name:'キュア',level:6,cost:4,kind:'cure',description:'パーティ全員の状態異常を治す。'},
+{id:'sleep',name:'スリープ',level:7,cost:5,kind:'status',st:'sleep',description:'敵を眠らせる。ボスには効きにくい。'},
+{id:'sweep',name:'なぎ払い',level:9,cost:6,kind:'strike',all:true,power:.75,description:'【全体】敵全員を剣で薙ぎ払う。攻撃力0.75倍。'},
+{id:'flame',name:'かえん斬り',level:8,cost:5,kind:'strike',el:'fire',power:1.4,description:'攻撃力1.4倍の炎の斬撃。やけどさせることも。'},
+{id:'frost',name:'氷の刃',level:10,cost:7,kind:'magic',el:'ice',base:16,scale:3.5,description:'守備力を無視する氷の魔法。まひさせることも。'},
+{id:'storm',name:'炎の嵐',level:12,cost:11,kind:'magic',el:'fire',all:true,base:16,scale:3.4,description:'【全体】敵全員を焼き払う炎の魔法。'},
+{id:'restore',name:'大いなる癒し',level:16,cost:10,kind:'heal',ratio:.7,description:'いちばん弱っている仲間のHPを最大の70%回復。'},
+{id:'bolt',name:'ライトニング',level:18,cost:12,kind:'magic',el:'thunder',base:34,scale:5.5,description:'守備力を無視する雷の魔法。'},
+{id:'thunder',name:'雷鳴斬り',level:22,cost:12,kind:'strike',el:'thunder',power:1.9,description:'攻撃力1.9倍の雷の斬撃。敵の守備力も少し貫く。'},
+{id:'blizzard',name:'ブリザード',level:25,cost:16,kind:'magic',el:'ice',all:true,base:40,scale:5.5,description:'【全体】吹雪で敵全員を凍らせる氷魔法。'},
+{id:'star',name:'星の裁き',level:28,cost:18,kind:'magic',base:70,scale:8,description:'最強の光魔法。守備力を無視して攻撃。'},
+{id:'revive',name:'リザレクション',level:30,cost:40,kind:'revive',description:'倒れた仲間1人を最大HPで復活させる（戦闘中のみ）。'},
+{id:'tenku',name:'天翔剣',level:34,cost:18,kind:'strike',power:2.7,description:'攻撃力2.7倍の大剣技。'},
+{id:'meteor',name:'メテオ',level:39,cost:26,kind:'magic',el:'fire',all:true,base:100,scale:9,description:'【全体】隕石を降らせる極大の炎魔法。'},
+{id:'nova',name:'ホーリーノヴァ',level:45,cost:34,kind:'magic',all:true,base:150,scale:11,description:'【全体】光の奔流で敵全員を焼き払う最強魔法。'}
+];
+const EL={fire:{n:'火',i:'🔥'},ice:{n:'氷',i:'❄️'},thunder:{n:'雷',i:'⚡'}};
+const ST={poison:{n:'どく'},sleep:{n:'ねむり'},paralyze:{n:'まひ'},burn:{n:'やけど'}};
+const ALLY={
+gald:{name:'ガルド',job:'戦士',color:'#d08a52',hair:'#5a3b26',hp:l=>40+l*10,mp:l=>0,atk:l=>10+l*1.8,def:l=>5+l*.95},
+mina:{name:'ミナ',job:'魔法使い',color:'#8f7be0',hair:'#e9b0d0',hp:l=>26+l*6,mp:l=>14+l*4,atk:l=>4+l*1.0,def:l=>3+l*.5},
+sora:{name:'ソラ',job:'僧侶',color:'#e9e4cf',hair:'#e8d37a',hp:l=>34+l*7,mp:l=>16+l*4,atk:l=>5+l*1.1,def:l=>4+l*.6}
+};
+const ALLY_IDS=['gald','mina','sora'];
+const MINA=[{n:'ファイア',el:'fire',lv:1,cost:3,base:5,sc:3.4},{n:'ブリザド',el:'ice',lv:8,cost:4,base:8,sc:3.4},{n:'サンダー',el:'thunder',lv:14,cost:5,base:10,sc:3.5},{n:'ファイアストーム',el:'fire',lv:18,cost:8,base:12,sc:2.6,all:true},{n:'ブリザドストーム',el:'ice',lv:24,cost:10,base:16,sc:3,all:true},{n:'サンダーストーム',el:'thunder',lv:32,cost:14,base:24,sc:3.8,all:true},{n:'メテオレイン',el:'fire',lv:42,cost:20,base:34,sc:4.6,all:true}];
+const FX={
+'スライム':{weak:['fire']},'おおコウモリ':{weak:['thunder'],st:['sleep',.25]},'スケルトン':{weak:['fire'],resist:['ice']},'森のオオカミ':{weak:['thunder']},
+'毒スライム':{weak:['ice'],resist:['fire'],st:['poison',.4]},'砂サソリ':{weak:['ice'],st:['poison',.3]},'オーク':{weak:['thunder']},'荒野の騎士':{weak:['thunder'],resist:['fire']},
+'森のトロル':{weak:['fire']},'呪いの樹':{weak:['fire'],resist:['ice'],st:['sleep',.3]},'魔導士':{weak:['ice'],st:['sleep',.25],ao:['ひろがる魔法',.45,.25]},'ゴーレム':{weak:['ice'],resist:['thunder']},
+'氷スライム':{weak:['fire'],resist:['ice'],st:['paralyze',.3]},'雪原の牙獣':{weak:['fire'],resist:['ice']},'氷の巨人':{weak:['fire'],resist:['ice'],st:['paralyze',.3],ao:['ふぶき',.5,.3]},'白銀の騎士':{weak:['thunder'],resist:['ice']},
+'溶岩ゴーレム':{weak:['ice'],resist:['fire'],st:['burn',.3]},'炎の魔導士':{weak:['ice'],resist:['fire'],st:['burn',.35],ao:['ファイアストーム',.5,.3]},'ヘルスコーピオン':{weak:['ice'],resist:['fire'],st:['poison',.4]},'レッドドラゴン':{weak:['ice'],resist:['fire'],st:['burn',.35],ao:['ファイアブレス',.6,.35,'burn']},
+'闇の騎士':{weak:['thunder'],st:['sleep',.25]},'シャドウメイジ':{weak:['fire'],resist:['thunder'],st:['sleep',.3],ao:['やみのうず',.5,.3]},'ボーンデーモン':{weak:['fire'],st:['poison',.3]},'黒竜':{weak:['ice'],resist:['fire'],st:['paralyze',.2],ao:['ダークブレス',.6,.35]},
+'キノコン':{weak:['fire'],st:['poison',.3]},'ゴースト':{weak:['fire'],resist:['ice'],st:['sleep',.25]},'サンドバイパー':{weak:['ice'],st:['poison',.35]},'マタンゴ':{weak:['fire'],st:['poison',.35]},
+'フォレストバイパー':{weak:['fire'],st:['poison',.35]},'ウィスプ':{weak:['ice'],resist:['fire'],st:['burn',.25]},'フロストマタンゴ':{weak:['fire'],resist:['ice'],st:['paralyze',.3]},
+'ブリザードゴースト':{weak:['fire'],resist:['ice'],st:['paralyze',.3],ao:['こごえる息',.5,.35,'paralyze']},'マグマサーペント':{weak:['ice'],resist:['fire'],st:['burn',.3]},
+'ヘルフレイム':{weak:['ice'],resist:['fire'],st:['burn',.4],ao:['業火',.55,.35,'burn']},'ダークサーペント':{weak:['fire'],resist:['thunder'],st:['poison',.35]},'ナイトメア':{weak:['thunder'],resist:['ice'],st:['sleep',.35],ao:['悪夢のうた',.45,.3,'sleep']}
+};
+const GUARDS=[
+{gate:0,x:3,y:8,name:'鉄牙のオルグ',lv:6,type:'orc',color:'#a0705a',weak:['thunder'],resist:[],st:['paralyze',.25],sp:{name:'大ぶりの一撃',pow:.9,aoe:true},
+ pre:[['鉄牙のオルグ','「ここは魔王さまの峠。通りたければ、俺を倒してからにしろ！」']],
+ post:[['鉄牙のオルグ','「ぐおお…！ 持っていけ、太陽のかけらだ…」'],['魔法使いミナ','「ありがとう！ 峠の洞穴に閉じ込められていたの。私はミナ。一緒に行かせて！」']],join:'mina'},
+{gate:1,x:7,y:3,name:'呪樹の主ウッドロア',lv:11,type:'tree',color:'#6f9a52',weak:['fire'],resist:['ice'],st:['sleep',.35],sp:{name:'ねむりの花粉',pow:.5,aoe:true,st:['sleep',.6]},
+ pre:[['呪樹の主ウッドロア','「ザワ…ザワ…。眠りの花粉で、永遠に眠るがいい…」']],
+ post:[['呪樹の主ウッドロア','「かけらは…枝の中だ…。魔王さまは…北東の城に…」']]},
+{gate:2,x:11,y:7,name:'氷結の魔導士フロスト',lv:16,type:'mage',color:'#9fd8e8',weak:['fire'],resist:['ice'],st:['paralyze',.35],sp:{name:'アイスストーム',pow:.7,aoe:true,st:['paralyze',.35]},
+ pre:[['氷結の魔導士フロスト','「この氷の橋は私のもの。凍える旅人は、みな氷像になるのよ。」']],
+ post:[['氷結の魔導士フロスト','「かけらは渡すわ…。氷の中の僧侶も、もう自由よ…」'],['僧侶ソラ','「…ここは？ 助けてくださったのですね。ソラと申します。傷も心も、私が癒しましょう。」']],join:'sora'},
+{gate:3,x:15,y:12,name:'炎竜ヴォルカ',lv:21,type:'dragon',color:'#e0704a',weak:['ice'],resist:['fire'],st:['burn',.4],sp:{name:'ファイアブレス',pow:.7,aoe:true,st:['burn',.5]},
+ pre:[['炎竜ヴォルカ','「グオオオ！ ここから先は火山の領域だ。灰になる覚悟はあるか！」']],
+ post:[['炎竜ヴォルカ','「見事だ…。かけらを持って、魔王に挑むがいい…」']]},
+{gate:4,x:20,y:8,name:'闇騎士長ゼクス',lv:26,type:'knight',color:'#8a7fc0',weak:['thunder'],resist:[],st:['sleep',.3],sp:{name:'かげのやいば',pow:1.4,aoe:false},
+ pre:[['闇騎士長ゼクス','「よくぞここまで来た。魔王さまの領域には、一歩も入れさせん。」']],
+ post:[['闇騎士長ゼクス','「無念…。5つのかけらは、お前たちのものだ…」']]}
+];
+const CHESTS=[
+{id:'c1',x:6,y:9,gold:50},{id:'c2',x:1,y:9,herbs:2},{id:'c3',x:7,y:14,water:1,gold:30},
+{id:'c4',x:1,y:1,gold:120},{id:'c5',x:6,y:6,herbs:3},
+{id:'c6',x:14,y:1,gold:220},{id:'c7',x:9,y:6,weapon:2},
+{id:'c8',x:9,y:14,mimic:true,gold:900,herbs:3,water:1},{id:'c9',x:14,y:9,armor:3},
+{id:'c10',x:22,y:14,gold:600},{id:'c11',x:17,y:9,water:2,herbs:3},
+{id:'c12',x:17,y:1,gold:900},{id:'c13',x:23,y:6,armor:4,gold:500}
+];
+const SPRINGS=[{x:5,y:6},{x:9,y:11},{x:22,y:9}];
+const NPCS=[
+{x:10,y:5,kind:'merchant',name:'旅の商人トト',color:'#d6a14a',hair:'#3b2b20',pack:'#8a5a32'},
+{x:13,y:13,kind:'merchant',name:'旅の商人トト',color:'#d6a14a',hair:'#3b2b20',pack:'#8a5a32'},
+{x:18,y:10,kind:'merchant',name:'旅の商人トト',color:'#d6a14a',hair:'#3b2b20',pack:'#8a5a32'},
+{x:5,y:2,kind:'sage',name:'老賢者ヨーム',color:'#9aa6d8',hair:'#e8e8e8'}
+];
+const fresh=()=>({level:1,xp:0,hp:39,mp:13,gold:80,weapon:-1,armor:-1,herbs:3,waters:1,x:3,y:13,kills:0,clear:false,questAccepted:false,facing:[0,-1],mem:{},chests:[],gates:[false,false,false,false,false]});
+let shopRemote=false,trail=[],bst={},bl=[],sceneQ=[],sceneEnd=null,down={},AC=null,soundOn=true;
+try{soundOn=localStorage.getItem('ofk-sound')!=='0'}catch(e){}
+
+zones[0].enemies=[['スライム',1,'slime','#79c5df'],['おおコウモリ',2,'bat','#bd8eba'],['キノコン',3,'mushroom','#d9855f'],['スケルトン',4,'skeleton','#ded8b9'],['ゴースト',4,'ghost','#cfe3f0'],['森のオオカミ',5,'wolf','#b3b5ae']];
+zones[1].enemies=[['毒スライム',6,'slime','#ab82c3'],['砂サソリ',7,'scorpion','#e2a866'],['サンドバイパー',7,'snake','#d6b25e'],['マタンゴ',8,'mushroom','#a58bc9'],['オーク',9,'orc','#abc476'],['荒野の騎士',10,'knight','#b0b9c9']];
+zones[2].enemies=[['森のトロル',11,'orc','#89b08d'],['呪いの樹',12,'tree','#b69a64'],['フォレストバイパー',12,'snake','#6fae6a'],['ウィスプ',13,'ghost','#f0d98a'],['魔導士',14,'mage','#9b99da'],['ゴーレム',15,'golem','#c6a984']];
+zones[3].enemies=[['氷スライム',16,'slime','#c2e4e4'],['雪原の牙獣',17,'wolf','#e4e7dd'],['フロストマタンゴ',17,'mushroom','#b5e0ee'],['ブリザードゴースト',18,'ghost','#d5ecf5'],['フロストガメ',18,'turtle','#7fc4d4'],['氷の巨人',19,'golem','#a6d3dd'],['白銀の騎士',20,'knight','#e1e4e8']];
+zones[4].enemies=[['溶岩ゴーレム',21,'golem','#dc9561'],['炎の魔導士',22,'mage','#e6a05f'],['マグマサーペント',23,'snake','#e0704a'],['ヘルフレイム',23,'ghost','#ff9a5a'],['ヘルスコーピオン',24,'scorpion','#c47879'],['レッドドラゴン',25,'dragon','#e68d70']];
+zones[5].enemies=[['闇の騎士',26,'knight','#ada1d0'],['シャドウメイジ',27,'mage','#b493d6'],['ダークサーペント',28,'snake','#7d6fb5'],['ナイトメア',28,'ghost','#9a86c8'],['冥府ガメ',28,'turtle','#7a6aa8'],['ボーンデーモン',29,'skeleton','#d3b9c9'],['魔王軍の将軍',30,'knight','#c0607a']];
+FX['フロストガメ']={weak:['thunder'],resist:['ice'],hpm:2.2,defm:3.6,atkm:.85,xpm:1.7,goldm:1.5,st:['paralyze',.2]};
+FX['冥府ガメ']={weak:['ice'],resist:['fire'],hpm:2.4,defm:3.6,atkm:.9,xpm:1.7,goldm:1.5,st:['poison',.3]};
+FX['魔王軍の将軍']={weak:['ice'],resist:['thunder'],st:['paralyze',.25],ao:['なぎはらい',.5,.25]};
+const POST={0:[["ブラッドウルフ", 46, "wolf", "#b8374a"], ["ヴァンパイアバット", 47, "bat", "#7b4aa6"], ["アイアンゴーレム", 48, "golem", "#8e9bb0"], ["ジェネラルオーク", 49, "orc", "#5f8a3a"], ["デスナイト", 50, "knight", "#34344f"], ["ワイバーン", 51, "dragon", "#58a07a"], ["アークリッチ", 52, "mage", "#8a5fb0"]],1:[["スライム", 32, "slime", "#79c5df"], ["毒スライム", 33, "slime", "#ab82c3"], ["氷スライム", 34, "slime", "#c2e4e4"], ["溶岩スライム", 35, "slime", "#e0623a"], ["雷スライム", 36, "slime", "#e8d84a"]]},XBZ={2:17,3:14,4:5,5:12};
+Object.assign(FX,{'ブラッドウルフ':{weak:['ice'],st:['poison',.35]},'ヴァンパイアバット':{weak:['thunder'],st:['sleep',.3]},'アイアンゴーレム':{weak:['thunder'],resist:['fire','ice'],defm:1.3},'ジェネラルオーク':{weak:['ice'],st:['paralyze',.2]},'デスナイト':{weak:['fire'],resist:['thunder'],st:['paralyze',.25]},'ワイバーン':{weak:['ice'],resist:['thunder'],st:['poison',.3],ao:['ポイズンブレス',.6,.3,'poison']},'アークリッチ':{weak:['fire'],resist:['ice'],st:['sleep',.3],ao:['ダークネス',.55,.3,'burn']},'溶岩スライム':{weak:['ice'],resist:['fire'],st:['burn',.35]},'雷スライム':{weak:['ice'],resist:['thunder'],st:['paralyze',.35]}});
+const PMZ={0:[1.8,1.2],1:[1.5,1.15],2:[1.25,1.08],3:[1.3,1.1],4:[1.2,1.08],5:[1.8,1.2]};
+function zoneRoster(zi){if(!p.clear)return{T:zones[zi].enemies,xb:0,pm:[1,1]};let pm=PMZ[zi]||[1,1];if(POST[zi])return{T:POST[zi],xb:0,pm};return{T:zones[zi].enemies,xb:XBZ[zi]||0,pm}}
+function mkMetal(kind,n){let g=kind==='gold',lv=36;return{name:g?'ゴールドスライム':'メタルスライム',lv,type:'metalslime',color:g?'#f5c542':'#b9c3d3',glow:g?'#ffe27a':'#cfe6ff',hp:4,atk:Math.round((4+lv*3)*.7),def:9999,xp:Math.round((10+lv*8)*(g?4:10)),gold:Math.round((3+lv*3.5)*(g?25:3)),flee:.6,weak:[],resist:[],rare:kind}}
+function mkDeka(n){let lv=38,one=Math.round((14+lv*9)*(1+.35*n)*(1+.01*lv));return{name:'デカスライム',lv,type:'slime',color:'#4fa8d8',huge:true,sc:15,big:true,glow:'#79c5df',hp:one*4,atk:Math.round((4+lv*3)*(1+.008*lv)*1.25),def:lv*1.3*1.1,xp:Math.round((10+lv*8)*4.5),gold:Math.round((3+lv*3.5)*4.5),flee:.7,weak:['fire'],resist:['ice'],stk:['paralyze',.2],multi:[2,2]}}
+// ===== 仲間・状態 =====
+const allyList=()=>ALLY_IDS.filter(id=>p.mem[id]);
+const partyIds=()=>['hero',...allyList()];
+const mHP=id=>id==='hero'?maxHP():Math.round(ALLY[id].hp(p.level));
+const mMP=id=>id==='hero'?maxMP():Math.round(ALLY[id].mp(p.level));
+const mDef=id=>id==='hero'?def():Math.round(ALLY[id].def(p.level)+gearD()*.5);
+const mAtk=id=>id==='hero'?atk():Math.round(ALLY[id].atk(p.level)+gearA()*.5);
+const mName=id=>id==='hero'?'勇者':ALLY[id].name;
+const getHP=id=>id==='hero'?p.hp:p.mem[id].hp,getMP=id=>id==='hero'?p.mp:p.mem[id].mp;
+const setHP=(id,v)=>{v=Math.max(0,Math.min(mHP(id),Math.round(v)));if(id==='hero')p.hp=v;else p.mem[id].hp=v};
+const setMP=(id,v)=>{v=Math.max(0,Math.min(mMP(id),Math.round(v)));if(id==='hero')p.mp=v;else p.mem[id].mp=v};
+const aliveIds=()=>partyIds().filter(id=>getHP(id)>0);
+function neediest(){let best=null,br=1;aliveIds().forEach(id=>{let r=getHP(id)/mHP(id);if(r<1&&r<br){best=id;br=r}});return best}
+const hasStatus=()=>partyIds().some(id=>bst[id]);
+const needsCare=()=>!!neediest()||partyIds().some(id=>bst[id]&&(bst[id].k==='poison'||bst[id].k==='burn'));
+function joinAlly(id){p.mem[id]={hp:mHP(id),mp:mMP(id)}}
+function restAll(){partyIds().forEach(id=>{setHP(id,mHP(id));setMP(id,mMP(id))});bst={}}
+function migrate(){
+ if(!Array.isArray(p.ownW))p.ownW=p.weapon>=0?[p.weapon]:[];if(!Array.isArray(p.ownA))p.ownA=p.armor>=0?[p.armor]:[];if(p.weapon>=0)gearOwn('weapon',p.weapon);if(p.armor>=0)gearOwn('armor',p.armor);
+ if(!p.mem||typeof p.mem!=='object'||Array.isArray(p.mem))p.mem={};
+ if(!Array.isArray(p.chests))p.chests=[];
+ if(!Array.isArray(p.gates)||p.gates.length!==5){let z=zoneAt();p.gates=[0,1,2,3,4].map(i=>!!p.clear||i<z)}
+ if(p.questAccepted&&!p.mem.gald)p.mem.gald={hp:1e6,mp:1e6};
+ if(p.gates[0]&&!p.mem.mina)p.mem.mina={hp:1e6,mp:1e6};
+ if(p.gates[2]&&!p.mem.sora)p.mem.sora={hp:1e6,mp:1e6};
+ ALLY_IDS.forEach(id=>{let m=p.mem[id];if(m){if(!Number.isFinite(m.hp)||m.hp<=0||m.hp>mHP(id))m.hp=mHP(id);if(!Number.isFinite(m.mp)||m.mp<0||m.mp>mMP(id))m.mp=mMP(id)}})}
+function chipHTML(id){let hp=getHP(id),mx=mHP(id),s=enemy&&bst[id]?ST[bst[id].k].n:'';return '<div class="pchip'+(hp<=0?' dead':'')+'"><b><span>'+mName(id)+'</span>'+(s?'<span class="stt">'+s+'</span>':'<em>'+hp+'</em>')+'</b><div class="bar"><i style="width:'+Math.max(0,100*hp/mx)+'%"></i></div><small>'+hp+'/'+mx+(mMP(id)?' MP'+getMP(id):'')+'</small></div>'}
+function renderParty(){let a=allyList(),el=$('#partyRow');el.classList.toggle('hidden',!a.length);el.innerHTML=a.map(chipHTML).join('')}
+// ===== 効果音 =====
+function sfx(n){if(!soundOn)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();const S={hit:[[220,.06,'square'],[140,.08,'square']],crit:[[440,.05,'square'],[660,.07,'square'],[220,.1,'sawtooth']],magic:[[500,.05,'triangle'],[750,.05,'triangle'],[1000,.1,'triangle']],heal:[[523,.08,'sine'],[659,.08,'sine'],[784,.14,'sine']],hurt:[[160,.08,'sawtooth'],[100,.12,'sawtooth']],win:[[523,.1,'square'],[659,.1,'square'],[784,.1,'square'],[1047,.25,'square']],level:[[523,.08,'square'],[659,.08,'square'],[784,.08,'square'],[1047,.08,'square'],[784,.08,'square'],[1047,.25,'square']],lose:[[330,.15,'triangle'],[247,.15,'triangle'],[165,.3,'triangle']],chest:[[660,.07,'square'],[880,.07,'square'],[1320,.15,'square']],enc:[[330,.06,'square'],[330,.06,'square'],[440,.12,'square']],status:[[300,.08,'sawtooth'],[250,.1,'sawtooth']]}[n]||[];let t=AC.currentTime;S.forEach(([f,d,w])=>{const o=AC.createOscillator(),g=AC.createGain();o.type=w;o.frequency.value=f;g.gain.setValueAtTime(.06,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d+.02);t+=d})}catch(e){}}
+// ===== マップ描画の追加 =====
+function person(x,y,body,hair,pack){let X=x*T,Y=y*T;ctx.fillStyle='#12232366';ctx.fillRect(X+8,Y+26,17,4);ctx.fillStyle='#e4c59b';ctx.fillRect(X+12,Y+6,10,9);ctx.fillStyle=hair;ctx.fillRect(X+11,Y+3,12,5);ctx.fillStyle=body;ctx.fillRect(X+10,Y+15,13,11);if(pack){ctx.fillStyle=pack;ctx.fillRect(X+6,Y+13,6,12)}ctx.fillStyle='#283746';ctx.fillRect(X+11,Y+26,4,4);ctx.fillRect(X+19,Y+26,4,4)}
+function drawChest(c){let X=c.x*T,Y=c.y*T,open=p.chests.includes(c.id);ctx.fillStyle='#12232377';ctx.fillRect(X+5,Y+26,23,4);ctx.fillStyle=open?'#5a4630':'#8a5a32';ctx.fillRect(X+5,Y+13,22,13);ctx.fillStyle=open?'#2a2016':'#a8703d';ctx.fillRect(X+5,open?Y+7:Y+9,22,open?5:5);ctx.fillStyle='#e6c25a';ctx.fillRect(X+5,Y+16,22,2);if(!open)ctx.fillRect(X+14,Y+14,4,6)}
+function drawSpring(s){let X=s.x*T,Y=s.y*T;ctx.fillStyle='#12232366';ctx.fillRect(X+3,Y+25,26,4);ctx.fillStyle='#8a9aa3';ctx.fillRect(X+3,Y+11,26,15);ctx.fillStyle='#5db7e8';ctx.fillRect(X+6,Y+14,20,9);ctx.fillStyle='#bfe8ff';ctx.fillRect(X+9,Y+16,6,2);ctx.fillRect(X+18,Y+19,5,2);ctx.fillStyle='#f7edcc';ctx.fillRect(X+14,Y+3,4,9)}
+function drawAlly(x,y,a){let X=x*T,Y=y*T;ctx.fillStyle='#12232366';ctx.fillRect(X+8,Y+26,17,4);ctx.fillStyle='#e9c379';ctx.fillRect(X+12,Y+6,10,9);ctx.fillStyle=a.hair;ctx.fillRect(X+11,Y+3,12,5);ctx.fillStyle=a.color;ctx.fillRect(X+10,Y+15,13,11);ctx.fillStyle='#252b39';ctx.fillRect(X+11,Y+26,4,4);ctx.fillRect(X+19,Y+26,4,4)}
+function drawWorld(){
+ CHESTS.forEach(drawChest);SPRINGS.forEach(drawSpring);
+ NPCS.forEach(n=>person(n.x,n.y,n.color,n.hair,n.pack));
+ GUARDS.forEach(g=>{if(!p.gates[g.gate]){let X=g.x*T,Y=g.y*T;ctx.fillStyle='#c0392b40';ctx.fillRect(X,Y,T,T);ctx.fillStyle='#12232388';ctx.fillRect(X+3,Y+26,26,5);sprite(ctx,g.type,g.color,X+16,Y+15,2)}});
+ allyList().forEach((id,i)=>{let t=trail[i];if(t&&!(t[0]===p.x&&t[1]===p.y))drawAlly(t[0],t[1],ALLY[id])})}
+// ===== 場面（会話の連続表示） =====
+function showDialogue(title,text){stopRoute();dialogOpen=true;$('#dialogTitle').textContent=title;$('#dialogText').textContent=text;$('#dialogue').classList.remove('hidden');update();$('#dialogClose').focus()}
+function showScene(pages,end){sceneQ=pages.slice();sceneEnd=end||null;let pg=sceneQ.shift();showDialogue(pg[0],pg[1])}
+function closeDialogue(){if(sceneQ.length){let pg=sceneQ.shift();showDialogue(pg[0],pg[1]);return}dialogOpen=false;$('#dialogue').classList.add('hidden');let f=sceneEnd;sceneEnd=null;update();$('#interactBtn').focus();if(f)f()}
+// ===== 移動・調べる =====
+const guardAt=(x,y)=>GUARDS.find(g=>g.x===x&&g.y===y&&!p.gates[g.gate]);
+const nearGuard=()=>GUARDS.find(g=>!p.gates[g.gate]&&Math.abs(p.x-g.x)+Math.abs(p.y-g.y)===1);
+function blockedTile(x,y){return signs.some(s=>s.x===x&&s.y===y)||townObjects.some(o=>o.x===x&&o.y===y)||NPCS.some(n=>n.x===x&&n.y===y)||SPRINGS.some(s=>s.x===x&&s.y===y)||CHESTS.some(c=>c.x===x&&c.y===y)||!!guardAt(x,y)||(x>=20&&y<=1)}
+function bump(x,y){let g=guardAt(x,y);if(g){startGuard(g);return}let c=CHESTS.find(c=>c.x===x&&c.y===y&&!p.chests.includes(c.id));if(c)openChest(c)}
+function move(dx,dy){if(enemy||dialogOpen||!$('#shade').classList.contains('hidden'))return;let x=p.x+dx,y=p.y+dy;p.facing=[dx,dy];if(!canStep(p.x,p.y,x,y)){stopRoute();update();bump(x,y);return}trail.unshift([p.x,p.y]);trail.length=Math.min(trail.length,3);p.x=x;p.y=y;walkSteps++;update();let g=nearGuard();if(nearBoss()&&!p.clear){stopRoute();log('魔王が待ち構えている。準備ができたらスペースで挑もう。')}else if(g){stopRoute();log('門を守る「'+g.name+'」が立ちふさがっている。向かって進むと挑戦できる。')}else if(!inTown()&&walkSteps>3&&Math.random()<.15){stopRoute();encounter()}else if(inTown()){walkSteps=0}save()}
+function startGuard(g){showScene(g.pre,()=>encounter({guard:g}))}
+function giveChest(c){let t=[];if(c.gold){p.gold+=c.gold;t.push(c.gold+' G を手に入れた！')}if(c.herbs){p.herbs+=c.herbs;t.push('薬草 ×'+c.herbs)}if(c.water){p.waters+=c.water;t.push('魔法の水 ×'+c.water)}
+ if(c.weapon!=null){let had=ownList('weapon').includes(c.weapon);gearOwn('weapon',c.weapon);if(had)t.push('すでに持っている武器だった…');else{t.push(weapons[c.weapon][0]+' を手に入れた！');if(p.weapon<0||weapons[p.weapon][1]<weapons[c.weapon][1]){p.weapon=c.weapon;t.push('（装備した）')}else t.push('（道具袋から装備できます）')}}
+ if(c.armor!=null){let had=ownList('armor').includes(c.armor);gearOwn('armor',c.armor);if(had)t.push('すでに持っている防具だった…');else{t.push(armors[c.armor][0]+' を手に入れた！');if(p.armor<0||(armors[p.armor][1]<armors[c.armor][1]&&!wardOn())){p.armor=c.armor;t.push('（装備した）')}else t.push('（道具袋から装備できます）')}}
+ return t}
+function openChest(c){if(c.mimic){showScene([['宝箱','宝箱を開けようとした、その瞬間——！']],()=>encounter({mimic:c}));return}p.chests.push(c.id);let got=giveChest(c);sfx('chest');save();update();showDialogue('宝箱を開けた！',got.join('\n'))}
+function useSpring(){restAll();sfx('heal');save();update();showDialogue('癒しの泉','澄んだ水を飲むと、パーティ全員のHPとMPが回復した！')}
+function interactAt(x,y){
+ let zi=signs.findIndex(s=>s.x===x&&s.y===y);if(zi>=0){showDialogue('旅の看板 — '+zones[zi].name,difficulty[zi]+'。\n'+areaTips[zi]);return true}
+ let o=townObjects.find(o=>o.x===x&&o.y===y);if(o){shopRemote=false;
+  if(o.kind==='npc'){
+   if(p.clear)showDialogue('村人リナ','「魔王を倒してくれたんだね！ おかげで村に光が戻った。\n本当にありがとう、勇者さん！」');
+   else if(!p.questAccepted){p.questAccepted=true;joinAlly('gald');save();showScene([['村人リナ','「北東の魔王が太陽のかけらを奪い、村は長い夜に包まれています。」'],['村人リナ','「かけらは5人の番人が分けて持っています。各地の門を守る番人を倒して、取り戻してください！」'],['戦士ガルド','「話は聞いた。村の用心棒、ガルドだ。俺も一緒に行かせてくれ！」'],['仲間が加わった！','戦士ガルドが仲間になった。戦闘では自動で戦ってくれる。']])}
+   else{let n=p.gates.filter(Boolean).length;showDialogue('村人リナ','「太陽のかけらは5つ。いま取り戻せたのは '+n+' つです。各地の門には番人がいます。看板を確かめながら、道に沿って進んでね。宿屋はいつでも無料です。」')}
+   return true}
+  if(o.kind==='inn'){restAll();save();update();showDialogue('宿屋 — 朝までひと休み','「おかえり、みなさん。ゆっくり休んでね。」\nパーティ全員のHP・MPが全回復した！ 宿泊は無料。');return true}
+  shopTab=o.kind;shop();return true}
+ let n=NPCS.find(n=>n.x===x&&n.y===y);if(n){if(n.kind==='merchant'){shopRemote=true;shopTab='item';shop()}else if(p.clear)showScene([['老賢者ヨーム','「ふむ…このあたりも、すっかりスライムだらけになったのう。」'],['老賢者ヨーム','「聞いた話では、みな始まりの草原から逃げてきたんじゃと。何かに追われるように、のう…」']]);else showScene([['老賢者ヨーム','「魔物には属性の弱点がある。戦闘画面の「弱点」「耐性」を見て、火・氷・雷を使い分けるのじゃ。」'],['老賢者ヨーム','「弱点なら1.5倍、耐性なら半分じゃ。毒・眠り・まひ・やけどにも注意せよ。薬草は毒とやけどを、キュアはすべてを治すぞ。」']]);return true}
+ if(SPRINGS.some(s=>s.x===x&&s.y===y)){useSpring();return true}
+ let c=CHESTS.find(c=>c.x===x&&c.y===y);if(c){if(p.chests.includes(c.id))log('宝箱は空っぽだ。');else openChest(c);return true}
+ let g=guardAt(x,y);if(g){startGuard(g);return true}
+ return false}
+function action(){if(enemy||busy||!$('#shade').classList.contains('hidden'))return;if(dialogOpen){closeDialogue();return}let [dx,dy]=p.facing,x=p.x+dx,y=p.y+dy;if(interactAt(x,y))return;if(nearBoss()){bossPrompt();return}log('目の前には何もない。看板・村人・宝箱・泉・番人に向かってスペース。')}
+// ===== 戦闘（複数の敵） =====
+let enemies=[],tgt=0;
+const aliveEn=()=>enemies.filter(e=>e.hp>0);
+const en=e=>e.label||e.name;
+function curTarget(){let e=enemies[tgt];if(!e||e.hp<=0){e=aliveEn()[0];tgt=enemies.indexOf(e)}return e}
+const MAXLV=50,XB=()=>p.clear?12:0;
+function mkEnemy(d,hpMul,xb,pm){pm=pm||[1,1];let lv=d[1]+(xb||0),fx=FX[d[0]]||{};return{name:d[0],lv,type:d[2],color:d[3],hp:Math.round((14+lv*9)*hpMul*(1+.01*lv)*(fx.hpm||1)*pm[0]),atk:Math.round((4+lv*3)*(1+.008*lv)*(fx.atkm||1)*pm[1]),def:lv*1.3*(fx.defm||1),xp:Math.round((10+lv*8)*(fx.xpm||1)),gold:Math.round((3+lv*3.5)*(fx.goldm||1)),flee:1,weak:fx.weak||[],resist:fx.resist||[],stk:fx.st,ao:fx.ao}}
+function mkKoku(n){let lv=30+XB(),one=Math.round((14+lv*9)*(1+.35*n)*(1+.01*lv));return{name:'黒龍',lv,type:'kokuryu',color:'#4f4880',koku:true,big:true,huge:true,glow:'#7a5cff',hp:one*4,atk:Math.round((4+lv*3)*(1+.008*lv)*1.15),def:lv*1.3*1.15,xp:(10+lv*8)*5,gold:Math.round((3+lv*3.5)*7),flee:.7,weak:['ice'],resist:['fire'],stk:['paralyze',.2],ao:['ダークブレス',.7,.35,'burn'],multi:[1,2]}}
+function buildEnemies(o){let n=allyList().length,list;
+ if(o==='ex')list=[{name:'終焉の龍',lv:50,type:'endragon',color:'#d9d3a2',ex:true,big:true,huge:true,glow:'#ffd35a',hp:Math.round(2500*(1+.7*n)),atk:220,def:130,xp:3000,gold:2500,flee:.8,sp:{name:'終焉の光',pow:.9,aoe:true,st:['paralyze',.3]},stk:['burn',.2],weak:[],resist:[]}];
+ else if(o===true)list=[{name:'夜の魔王',lv:30,type:'dragon',color:'#d19bc4',final:true,big:true,death:{one:[.12,.4,'デス']},hp:Math.round(1600*(1+.7*n)),atk:160,def:95,xp:250,gold:600,flee:.8,sp:{name:'闇の炎',pow:.85,aoe:true,st:['burn',.3]},stk:['sleep',.15],weak:[],resist:[]}];
+ else if(o&&o.guard){let g=o.guard,lv=g.lv,b=14+lv*9;list=[{name:g.name,lv,type:g.type,color:g.color,guard:g,big:true,hp:Math.round(b*(3.5+g.gate*1.2)*(1+.7*n)),atk:Math.round((4+lv*3)*(1.2+g.gate*.05)),def:lv*1.3*1.1,xp:(10+lv*8)*3,gold:(8+lv*4)*4,flee:.6,sp:g.sp,stk:g.st,weak:g.weak,resist:g.resist}]}
+ else if(o&&o.koku||(!o&&zoneAt()===5&&Math.random()<.12))list=[mkKoku(n)];
+ else if(o&&o.mimic){let c=o.mimic,T=zones[zoneAt(c.x,c.y)].enemies,lv=T[T.length-1][1]+1,b=14+lv*9;list=[{name:'ミミック',lv,type:'mimic',color:'#a8703d',chest:c,hp:Math.round(b*2.6*(1+.6*n)),atk:Math.round((4+lv*3)*1.55),def:lv*1.5,xp:(10+lv*8)*7,gold:lv*45,flee:1,weak:['fire'],resist:[],stk:['paralyze',.35],sp:{name:'かみくだき',pow:1.5,st:['paralyze',.5]},multi:[1,2],glow:'#e0a040',death:{one:[.2,.35,'デス'],all:[.12,.22,'デスミスト']}}]}
+ else{let zi=zoneAt(),R=zoneRoster(zi),T=R.T,i=o&&o.tier!=null?o.tier:Math.floor(Math.random()*T.length),size=partyIds().length,cnt=size<=1?1:(Math.random()<.5?size:rand(1,size));cnt=Math.min(cnt,4);list=[];
+  let rare=o&&o.rare?o.rare:(p.clear&&zi===1&&!(o&&o.tier!=null)?(()=>{let r=Math.random();return r<.07?'metal':r<.11?'gold':r<.19?'deka':null})():null);
+  if(rare==='deka')list=[mkDeka(n)];
+  else if(rare==='metal'||rare==='gold'){let c=rand(1,Math.min(size,rare==='gold'?2:3));for(let k=0;k<c;k++)list.push(mkMetal(rare,n))}
+  else for(let k=0;k<cnt;k++)list.push(mkEnemy(T[k===0?i:Math.max(0,i-(Math.random()<.5?1:0))],1+.35*n,R.xb,R.pm))}
+ let cnts={};list.forEach(e=>cnts[e.name]=(cnts[e.name]||0)+1);let used={};list.forEach(e=>{if(cnts[e.name]>1){used[e.name]=(used[e.name]||0)+1;e.label=e.name+'ABCD'[used[e.name]-1]}});
+ list.forEach(e=>{e.max=e.hp;e.st=null});return list}
+function buildSlots(){let row=$('#enemyRow'),n=enemies.length;row.innerHTML='';row.style.setProperty('--es',({1:150,2:120,3:100,4:80})[n]+'px');
+ enemies.forEach((e,i)=>{let d=document.createElement('div');d.className='eslot';let S=e.huge?(e.type==='endragon'?260:230):160;if(e.huge){d.classList.add('huge');d.style.setProperty('--es',(n===1?S:Math.round(S*.7))+'px');d.style.setProperty('--glow',e.glow||'#fff')}else if(e.glow){d.style.setProperty('--glow',e.glow)}d.innerHTML='<canvas width="'+S+'" height="'+(e.huge?200:160)+'"></canvas><div class="ename"></div><div class="bar"><i></i></div><div class="est"></div>';d.onclick=()=>{if(e.hp>0){tgt=i;battleRender()}};row.appendChild(d);let ec=d.querySelector('canvas').getContext('2d');sprite(ec,e.type,e.color,S/2,e.huge?100:84,e.sc||(e.huge?(e.type==='endragon'?7:8):(e.big?8:7)));e.el=d})}
+function encounter(o=false){if(dialogOpen||enemy)return;stopRoute();walkSteps=0;enemies=buildEnemies(o);enemy=enemies[0];tgt=0;turn=1;busy=false;bst={};down={};
+ bl=[enemies.length>1?'モンスターが '+enemies.length+'体 あらわれた！':enemy.name+'が あらわれた！'];sfx('enc');buildSlots();$('#battle').classList.remove('hidden');battleRender();update();$('#battle [data-cmd="attack"]').focus()}
+function say(s){bl.push(s.replace(/(^|[^\d])0 ダメージ/g,'$1ミス'))}
+function battleRender(){if(!enemy)return;let t=curTarget();
+ $('#battleTitle').textContent=enemies.length>1?'モンスターの群れ ×'+enemies.length:enemy.name+' · Lv.'+enemy.lv;$('#turnLabel').textContent='TURN '+turn;
+ enemies.forEach((e,i)=>{let d=e.el;d.classList.toggle('dead',e.hp<=0);d.classList.toggle('sel',e===t&&enemies.length>1);d.querySelector('.ename').textContent=en(e)+(enemies.length>1||e.big?'':'');d.querySelector('.bar i').style.width=Math.max(0,100*e.hp/e.max)+'%';d.querySelector('.est').textContent=e.hp>0?(e.st?ST[e.st.k].n:'')+(enemies.length===1?' '+e.hp+'/'+e.max:''):''});
+ let fx=[];if(enemies.length>1)fx.push(en(t)+' Lv.'+t.lv);if(t.weak.length)fx.push('弱点 '+t.weak.map(k=>EL[k].i+EL[k].n).join(' '));if(t.resist.length)fx.push('耐性 '+t.resist.map(k=>EL[k].i+EL[k].n).join(' '));$('#enemyFx').textContent=fx.join(' ／ ')||'弱点なし';
+ $('#battleLog').textContent=bl.slice(-7).join('\n');$('#partyHud').innerHTML=partyIds().map(chipHTML).join('');
+ let heal=bestHeal();$('#herbCmd').textContent='薬草 ×'+p.herbs;$('#healCmd').textContent=heal?'＋ '+heal.name+' / '+heal.cost:'回復 / 未習得';
+ $$('[data-cmd]').forEach(b=>{let c=b.dataset.cmd;b.disabled=busy||(c==='skills'&&!learnedSkills().length)||(c==='heal'&&(!heal||p.mp<heal.cost||!neediest()))||(c==='herb'&&(!p.herbs||!needsCare()))})}
+const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+function damage(a,d){if(d>=9000)return Math.random()<.45?0:1;return Math.max(1,Math.round((a-d*.65)*(rand(88,112)/100)))}
+const elMul=(e,el)=>!el?1:e.weak.includes(el)?1.5:e.resist.includes(el)?.5:1;
+const elTag=(e,el)=>!el?'':e.weak.includes(el)?'弱点！ ':e.resist.includes(el)?'いまひとつ… ':'';
+const elMark=(e,el)=>!el?'':e.weak.includes(el)?'↑':e.resist.includes(el)?'↓':'';
+function dealToEnemy(t,hit,el){t.hp=Math.max(0,t.hp-hit);shake(t);
+ if(t.hp<=0){t.st=null;say(en(t)+'を倒した！');return}
+ if(t.st&&t.st.k==='sleep'&&Math.random()<.5){t.st=null;say(en(t)+'は目を覚ました！')}
+ if(el&&!t.st&&!t.resist.includes(el)&&Math.random()<(t.big?.07:.2)){let k=el==='fire'?'burn':'paralyze';t.st={k,t:k==='burn'?4:3};say(en(t)+'は'+ST[k].n+'になった！')}}
+function shake(t){let c=t&&t.el&&t.el.querySelector('canvas');if(!c)return;c.classList.remove('hitfx');void c.offsetWidth;c.classList.add('hitfx')}
+function pick(){let ids=aliveIds(),w=ids.map(id=>id==='hero'?2:1),r=Math.random()*w.reduce((a,b)=>a+b,0);for(let i=0;i<ids.length;i++){r-=w[i];if(r<=0)return ids[i]}return ids[0]}
+function hurt(id,hit,guarded){if(guarded)hit=Math.max(1,Math.round(hit*.35));setHP(id,getHP(id)-hit);if(bst[id]&&bst[id].k==='sleep'&&Math.random()<.5)delete bst[id];return hit}
+function koCheck(){partyIds().forEach(id=>{if(getHP(id)<=0&&!down[id]){down[id]=1;delete bst[id];if(id!=='hero')say(mName(id)+'は倒れた！')}})}
+function statusTry(id,spec,guarded){if(!spec||getHP(id)<=0||bst[id])return;if(Math.random()<spec[1]*(guarded?.5:1)){let k=spec[0];bst[id]={k,t:k==='poison'?99:k==='burn'?4:3};say(mName(id)+'は'+ST[k].n+'になった！');sfx('status')}}
+function command(c){if(!enemy||busy)return;if(c==='skills'){openSkills(true);return}
+ bl=[];let guard=false,multi=enemies.length>1;
+ if(c==='attack'){let t=curTarget(),hit=damage(atk(),t.def),crit=Math.random()<.08;if(crit)hit=Math.round(hit*1.7);if(bst.hero&&bst.hero.k==='burn')hit=Math.round(hit*.8);say((crit?'会心の一撃！ ':'')+'勇者の攻撃！ '+(multi?en(t)+'に ':'')+hit+' ダメージ！');dealToEnemy(t,hit);sfx(crit?'crit':'hit')}
+ else if(c==='heal'||c.startsWith('skill:')){let s=c==='heal'?bestHeal():skills.find(s=>s.id===c.slice(6));if(!s||s.level>p.level||p.mp<s.cost)return;if(s.kind==='heal'&&!neediest())return;if(s.kind==='cure'&&!hasStatus())return;if(s.kind==='revive'&&!deadAlly())return;p.mp-=s.cost;
+  if(s.kind==='heal'){let id=neediest(),amount=Math.min(mHP(id)-getHP(id),Math.round(mHP(id)*s.ratio));setHP(id,getHP(id)+amount);say(s.name+'！ '+mName(id)+'のHPが '+amount+' 回復。');sfx('heal')}
+  else if(s.kind==='cure'){partyIds().forEach(id=>delete bst[id]);say(s.name+'！ 状態異常が治った。');sfx('heal')}
+  else if(s.kind==='revive'){let id=deadAlly();delete down[id];delete bst[id];setHP(id,mHP(id));say(s.name+'！ '+mName(id)+'が最大HPで復活した！');sfx('heal')}
+  else if(s.kind==='status'){let t=curTarget();if(!t.st&&Math.random()<(t.big?.3:.75)){t.st={k:s.st,t:3};say(s.name+'！ '+en(t)+'は眠りについた。')}else say(s.name+'！ …しかし効かなかった。');sfx('status')}
+  else{let el=s.el||null,targets=s.all?aliveEn():[curTarget()],parts=[];
+   let calc=t=>{let h=s.kind==='magic'?Math.round((s.base+p.level*s.scale)*rand(90,110)/100):damage(atk()*s.power,t.def*(s.id==='thunder'?.7:1));return Math.max(1,Math.round(h*elMul(t,el)))};
+   if(s.all){let hits=targets.map(t=>[t,calc(t)]);say(s.name+'！ 全体攻撃！ '+hits.map(([t,h])=>(multi?en(t)+' ':'')+h+elMark(t,el)).join(' ／ ')+' ダメージ！');hits.forEach(([t,h])=>dealToEnemy(t,h,el))}
+   else{let t=targets[0],h=calc(t);say(s.name+'！ '+elTag(t,el)+(multi?en(t)+'に ':'')+h+' ダメージ！');dealToEnemy(t,h,el)}
+   sfx('magic')}}
+ else if(c==='herb'){if(!p.herbs||!needsCare())return;p.herbs--;let id=neediest()||partyIds().find(i=>bst[i]),amount=Math.min(mHP(id)-getHP(id),Math.round(mHP(id)*.55)),cured=bst[id]&&(bst[id].k==='poison'||bst[id].k==='burn');setHP(id,getHP(id)+amount);if(cured)delete bst[id];say('薬草を使った。'+mName(id)+'のHPが '+amount+' 回復'+(cured?'、状態異常も治った':'')+'。');sfx('heal')}
+ else if(c==='guard'){guard=true;say('勇者は身を守っている。')}
+ else if(c==='flee'){if(Math.random()<enemy.flee){endBattle();log('戦いから逃げ出した。');save();return}say('しかし、逃げられなかった！')}
+ else return;
+ if(!aliveEn().length){win();return}
+ busy=true;update();battleRender();runPhase(guard)}
+function runPhase(guard){let cur=enemy,steps=[];allyList().forEach(id=>steps.push(()=>allyAct(id)));enemies.forEach(e=>{let k=e.multi?rand(e.multi[0],e.multi[1]):1;for(let q=0;q<k;q++)steps.push(()=>enemyAct(e,guard))});steps.push(()=>endTurn());let i=0;
+ const next=()=>{if(enemy!==cur)return;if(i>=steps.length){turn++;beginTurn();return}let r=steps[i++]();koCheck();if(!aliveEn().length){win();return}if(p.hp<=0){lose();return}battleRender();setTimeout(next,r?380:0)};
+ setTimeout(next,400)}
+function beginTurn(){if(!enemy)return;let s=bst.hero;
+ if(s&&s.k==='sleep'){say('勇者はぐっすり眠っている…');busy=true;battleRender();runPhase(false);return}
+ if(s&&s.k==='paralyze'&&Math.random()<.45){say('勇者は体がしびれて動けない！');busy=true;battleRender();runPhase(false);return}
+ busy=false;update();battleRender()}
+function allyAct(id){if(getHP(id)<=0)return false;let s=bst[id],nm=mName(id);
+ if(s&&s.k==='sleep'){say(nm+'は眠っている…');return true}
+ if(s&&s.k==='paralyze'&&Math.random()<.45){say(nm+'は しびれて動けない！');return true}
+ let lv=p.level,burn=s&&s.k==='burn'?.8:1,al=aliveEn(),multi=enemies.length>1,t=al[Math.floor(Math.random()*al.length)];
+ if(id==='gald'){
+  if(lv>=10&&al.length>=3&&Math.random()<.4){let hits=al.map(x=>[x,Math.max(1,Math.round(damage(mAtk(id)*.7,x.def)*burn))]);say(nm+'のなぎ払い！ 全体攻撃！ '+hits.map(([x,h])=>en(x)+' '+h).join(' ／ ')+' ダメージ！');hits.forEach(([x,h])=>dealToEnemy(x,h));sfx('hit')}
+  else{let power=Math.random()<.28,crit=Math.random()<.08,hit=Math.round(damage(mAtk(id)*(power?1.6:1),t.def)*burn*(crit?1.6:1));say(nm+(power?'の強打！ ':'の攻撃！ ')+(crit?'会心！ ':'')+(multi?en(t)+'に ':'')+hit+' ダメージ。');dealToEnemy(t,hit);sfx('hit')}}
+ else if(id==='mina'){let mp=getMP(id),av=MINA.filter(m=>m.lv<=lv&&m.cost<=mp);
+  if(!av.length){let hit=Math.max(1,Math.round(damage(mAtk(id),t.def)));say(nm+'は杖で殴った。'+(multi?en(t)+'に ':'')+hit+' ダメージ。');dealToEnemy(t,hit)}
+  else{let allSp=av.filter(m=>m.all&&al.length>=2).sort((a,b)=>b.lv-a.lv)[0];
+   if(allSp&&!(al.every(x=>x.resist.includes(allSp.el)))){setMP(id,mp-allSp.cost);let hits=al.map(x=>[x,Math.max(1,Math.round((allSp.base+lv*allSp.sc)*rand(90,110)/100*elMul(x,allSp.el)))]);say(nm+'の'+allSp.n+'！ 全体攻撃！ '+hits.map(([x,h])=>(multi?en(x)+' ':'')+h+elMark(x,allSp.el)).join(' ／ ')+' ダメージ！');hits.forEach(([x,h])=>dealToEnemy(x,h,allSp.el));sfx('magic')}
+   else{let sg=av.filter(m=>!m.all),pair=null;for(const x of al){const m=sg.find(m=>x.weak.includes(m.el));if(m){pair=[x,m];break}}
+    if(!pair){const m=sg.filter(m=>!t.resist.includes(m.el))[0]||sg[0];pair=m?[t,m]:null}
+    if(!pair){let hit=Math.max(1,Math.round(damage(mAtk(id),t.def)));say(nm+'は杖で殴った。'+(multi?en(t)+'に ':'')+hit+' ダメージ。');dealToEnemy(t,hit)}
+    else{let [x,m]=pair;setMP(id,mp-m.cost);let hit=Math.max(1,Math.round((m.base+lv*m.sc)*rand(90,110)/100*elMul(x,m.el)));say(nm+'の'+m.n+'！ '+elTag(x,m.el)+(multi?en(x)+'に ':'')+hit+' ダメージ。');dealToEnemy(x,hit,m.el);sfx('magic')}}}}
+ else if(id==='sora'){let ids=aliveIds(),mp=getMP(id),low=ids.filter(i=>getHP(i)/mHP(i)<.5).sort((a,b)=>getHP(a)/mHP(a)-getHP(b)/mHP(b))[0],sick=ids.find(i=>bst[i]&&bst[i].k!=='sleep');
+  if(low&&mp>=5){setMP(id,mp-5);let amt=Math.min(mHP(low)-getHP(low),Math.round(mHP(low)*.35+10+lv));setHP(low,getHP(low)+amt);say(nm+'のヒール！ '+mName(low)+'のHPが '+amt+' 回復。');sfx('heal')}
+  else if(sick&&mp>=3){setMP(id,mp-3);delete bst[sick];say(nm+'のキュア！ '+mName(sick)+'の状態異常が治った。');sfx('heal')}
+  else{let hit=Math.max(1,Math.round(damage(mAtk(id)*1.2,t.def)*burn));say(nm+'の杖の一撃！ '+(multi?en(t)+'に ':'')+hit+' ダメージ。');dealToEnemy(t,hit)}}
+ return true}
+function deathCast(e,all){let sp=all?e.death.all:e.death.one,nm=en(e);say(nm+'の'+sp[2]+'！'+(all?' 全体即死魔法！':''));let ids=all?aliveIds():[pick()],parts=[];ids.forEach(id=>{if(id==='hero'&&wardOn())parts.push('勇者は魔除けの力で無効');else if(Math.random()<sp[1]){setHP(id,0);delete bst[id];parts.push(mName(id)+'は魂を奪われた…！')}else parts.push(mName(id)+'は耐えた')});say(parts.join(' ／ '));sfx('hurt');return true}
+function enemyAct(e,guard){if(e.hp<=0)return false;let s=e.st,nm=en(e);
+ if(s&&s.k==='sleep'){say(nm+'は眠っている…');return true}
+ if(s&&s.k==='paralyze'&&Math.random()<.5){say(nm+'は しびれて動けない！');return true}
+ if(e.death){let r=Math.random(),o=e.death.one?e.death.one[0]:0,al=e.death.all?e.death.all[0]:0;if(r<o)return deathCast(e,false);if(r<o+al)return deathCast(e,true)}
+ let am=s&&s.k==='burn'?.8:1,sp=e.sp&&turn%3===0?e.sp:(e.ao&&Math.random()<e.ao[2]?{name:e.ao[0],pow:e.ao[1],aoe:true,st:e.ao[3]?[e.ao[3],.4]:null}:null);
+ if(sp){say(nm+'の'+sp.name+'！'+(sp.aoe?' 全体攻撃！':''));let ids=sp.aoe?aliveIds():[pick()],parts=[];ids.forEach(id=>{let g=guard&&id==='hero',hit=hurt(id,damage(e.atk*sp.pow*am,mDef(id)),g);parts.push(mName(id)+' '+hit);statusTry(id,sp.st,g)});say(parts.join(' ／ ')+' ダメージ！')}
+ else{let id=pick(),g=guard&&id==='hero',hit=hurt(id,damage(e.atk*am,mDef(id)),g);say(nm+'の攻撃！ '+mName(id)+'に '+hit+' ダメージ。');statusTry(id,e.stk,g)}
+ sfx('hurt');return true}
+function endTurn(){let any=false;
+ partyIds().forEach(id=>{let s=bst[id];if(getHP(id)<=0||!s)return;
+  if(s.k==='poison'||s.k==='burn'){let before=getHP(id);setHP(id,Math.max(1,before-Math.max(1,Math.round(mHP(id)*(s.k==='poison'?.06:.05)))));say(mName(id)+'は'+ST[s.k].n+'で '+(before-getHP(id))+' ダメージ！');any=true}
+  if(s.k!=='poison'){s.t--;if(s.t<=0){delete bst[id];say(mName(id)+(s.k==='sleep'?'は目を覚ました！':'の'+ST[s.k].n+'が治った。'));any=true}}});
+ enemies.forEach(e=>{let s=e.st;if(e.hp<=0||!s)return;if(s.k==='burn'){let d=Math.max(1,Math.round(e.max*(e.big?.02:.06)));e.hp=Math.max(0,e.hp-d);say(en(e)+'は やけどで '+d+' ダメージ！');any=true;if(e.hp<=0){e.st=null;say(en(e)+'を倒した！');return}}s.t--;if(s.t<=0){e.st=null;say(en(e)+(s.k==='sleep'?'は目を覚ました！':'の'+ST[s.k].n+'が治った。'));any=true}});
+ return any}
+function openSkills(inBattle=false){if(busy||dialogOpen)return;
+ openModal('<div class="modalheader"><h2 id="modalTitle">技・魔法の書</h2><button data-close aria-label="閉じる">×</button></div><p>現在 Lv.'+p.level+' ／ MP '+p.mp+' / '+maxMP()+'</p><p class="growth">レベルが1上がるごとに 最大HP +9 ／ 最大MP +3。レベルアップ時は全員全回復。弱点属性なら1.5倍、耐性なら半分。【全体】の技は敵全員に当たる。</p>'+skills.map(s=>{let learned=p.level>=s.level,usable=learned&&p.mp>=s.cost&&(s.kind==='heal'?!!neediest():s.kind==='cure'?hasStatus():s.kind==='revive'?!!deadAlly():true),field=!inBattle&&s.kind==='heal',el=(s.el?' 【'+EL[s.el].i+EL[s.el].n+'】':'')+(s.all?' 【全体】':'');
+  return '<div class="skillrow '+(learned?'':'locked')+'"><div><b class="'+(learned?'learned':'')+'">'+s.name+'</b>'+el+'<small>Lv.'+s.level+'で習得 ／ MP '+s.cost+'<br>'+s.description+'</small></div>'+(inBattle?'<button data-skill="'+s.id+'" '+(!usable?'disabled':'')+'>'+(learned?'使う':'未習得')+'</button>':field&&learned?'<button data-field="'+s.id+'" '+(!usable?'disabled':'')+'>使う</button>':'<span class="small">'+(learned?'習得済み':'未習得')+'</span>')+'</div>'}).join(''));
+ $$('[data-skill]').forEach(b=>b.onclick=()=>{if(!enemy||busy)return;let id=b.dataset.skill;closeModal();command('skill:'+id)});
+ $$('[data-field]').forEach(b=>b.onclick=()=>{let s=skills.find(s=>s.id===b.dataset.field),id=neediest();if(!s||!id||p.mp<s.cost)return;p.mp-=s.cost;let amt=Math.min(mHP(id)-getHP(id),Math.round(mHP(id)*s.ratio));setHP(id,getHP(id)+amt);save();update();sfx('heal');openSkills(false);toast(mName(id)+'のHPが '+amt+' 回復')})}
+function endBattle(won=false,full=false){if(enemy){allyList().forEach(id=>{if(full){setHP(id,mHP(id));setMP(id,mMP(id))}else if(getHP(id)<=0)setHP(id,Math.max(1,Math.round(mHP(id)*.15)));else if(won){setHP(id,getHP(id)+Math.round(mHP(id)*.1));setMP(id,getMP(id)+Math.round(mMP(id)*.15))}});if(full){p.hp=maxHP();p.mp=maxMP()}}bst={};enemy=null;enemies=[];busy=false;$('#battle').classList.add('hidden');update();$('#huntBtn').focus()}
+function win(){let main=enemies[0],all=enemies.slice(),oldLevel=p.level,pages=[],xp=all.reduce((a,e)=>{e.xp=Math.max(1,Math.round(e.xp*Math.max(.1,1-.07*Math.max(0,p.level-e.lv))));return a+e.xp},0),gold=all.reduce((a,e)=>a+e.gold,0);p.kills+=all.length;p.gold+=gold;if(p.level<MAXLV)p.xp+=xp;let levels=0;while(p.level<MAXLV&&p.xp>=need()){p.xp-=need();p.level++;levels++}if(p.level===MAXLV)p.xp=0;
+ if(Math.random()<.15*all.length)p.herbs++;if(main.final)p.clear=true;if(main.ex)p.clear2=true;if(main.koku&&!p.kflee){p.kflee=true;pages.push(['黒龍','「ぐ…おおお…！ この我が、人間ごときに…！」\n傷ついた黒龍は翼を広げ、よろめきながら暗い空へ飛び去った。'],['黒龍','「忘れぬぞ、勇者…！ この屈辱、必ずや晴らす…！ たとえ闇に堕ちようとも、貴様だけは…！」\n遠くで、不気味な咆哮がいつまでも響いていた。'])}
+ if(main.guard){let g=main.guard;p.gates[g.gate]=true;p.herbs+=2;g.post.forEach(x=>pages.push(x));if(g.join&&!p.mem[g.join]){joinAlly(g.join);pages.push(['仲間が加わった！',ALLY[g.join].job+'の'+ALLY[g.join].name+'が仲間になった！'])}let n=p.gates.filter(Boolean).length;pages.push(['太陽のかけらを手に入れた！','かけら ✦'+n+' / 5'+(n===5?'\n魔王の城への道が開かれた。北東の城へ向かおう。':'')])}
+ if(main.chest){p.chests.push(main.chest.id);pages.push(['ミミックを倒した！',giveChest(main.chest).join('\n')||'宝箱は空っぽだった。'])}
+ sfx(levels?'level':'win');endBattle(true,levels>0);
+ log((all.length>1?'モンスターたち':main.name)+'を倒した！ '+xp+' EXP / '+gold+' G'+(levels?' ／ Lv.'+p.level+'に！ 全員回復。':''));save();
+ if(levels&&!main.final){let ns=skills.filter(s=>s.level>oldLevel&&s.level<=p.level);pages.push(['レベルアップ！ Lv.'+p.level,'最大HP '+maxHP()+'（+'+levels*9+'） ／ 最大MP '+maxMP()+'（+'+levels*3+'）\n全員のHP・MPが全回復した！'+(ns.length?'\n新しい技を覚えた：'+ns.map(s=>s.name).join('、'):'\n力と守備力も上がった。')])}
+ if(pages.length)showScene(pages);
+ if(main.ex)openModal('<h2 id="modalTitle">真の平和</h2><p class="note">終焉の龍を倒した！ 真のクリア</p><p>'+(p.kflee?'復讐に燃えた黒龍のなれの果ては、光の中へ静かに崩れ落ちた。':'')+'世界を覆っていた最後の闇が消えた。あなたと仲間たちの旅は、王国の伝説になるだろう。</p><div class="stats"><div class="stat">到達 Lv.'+p.level+'</div><div class="stat">勝利 '+p.kills+' 回</div><div class="stat gold">'+p.gold+' G</div><div class="stat">攻撃力 '+atk()+'</div></div><button class="primary" data-close>王国へ戻る</button>');
+ if(main.final)openModal('<h2 id="modalTitle">王国に、朝が来た。</h2><p class="note">魔王を倒した！ 冒険クリア</p><p>5つの太陽のかけらが魔王の闇を晴らし、村に光が戻った。'+allyList().map(id=>ALLY[id].name).join('・')+'と共に、リナも村のみんなも、あなたの帰りを待っている。</p><div class="stats"><div class="stat">到達 Lv.'+p.level+'</div><div class="stat">勝利 '+p.kills+' 回</div><div class="stat gold">'+p.gold+' G</div><div class="stat">攻撃力 '+atk()+'</div></div><p>このあとも探索できます。魔王の死とともに各地の魔物が強くなり、北東の城には新たな強敵の気配が…（レベル上限は50）。もう一度遊ぶには「遊び方」から冒険をリセット。</p><button class="primary" data-close>王国を歩く</button>')}
+function lose(){let lost=Math.floor(p.gold*.1);p.gold-=lost;p.x=3;p.y=13;p.facing=[0,-1];trail=[];restAll();sfx('lose');endBattle();log('倒れてしまった…町の宿で目覚めた。'+lost+' G を落とした（経験値・装備はそのまま）。');save();toast('宿で全回復しました')}
+function bag(){if(enemy)return;
+ openModal('<div class="modalheader"><h2 id="modalTitle">道具・装備</h2><button data-close>×</button></div>'+partyIds().map(id=>'<div class="shoprow"><div>'+mName(id)+'<small>HP '+getHP(id)+' / '+mHP(id)+(mMP(id)?' ／ MP '+getMP(id)+' / '+mMP(id):'')+'</small></div><button data-herb="'+id+'" '+(!p.herbs||getHP(id)>=mHP(id)?'disabled':'')+'>薬草 ×'+p.herbs+'</button></div>').join('')+'<div class="shoprow"><div>魔法の水 ×'+p.waters+'<small>全員のMPを全回復（戦闘外のみ）</small></div><button id="useWater" '+(!p.waters||partyIds().every(id=>getMP(id)>=mMP(id))?'disabled':'')+'>使う</button></div><h3 class="eqh">装備</h3>'+equipHTML());bindEquip(bag);
+ $$('[data-herb]').forEach(b=>b.onclick=()=>{let id=b.dataset.herb;if(!p.herbs||getHP(id)>=mHP(id))return;p.herbs--;setHP(id,getHP(id)+Math.round(mHP(id)*.55));save();update();bag();toast(mName(id)+'のHPが回復した')});
+ $('#useWater').onclick=()=>{if(!p.waters)return;p.waters--;partyIds().forEach(id=>setMP(id,mMP(id)));save();update();bag();toast('全員のMPが全回復した')}}
+function bossPrompt(){if(p.clear2){log('終焉の龍も倒された。王国に、本当の平和が訪れた。');return}if(p.clear){openModal('<h2 id="modalTitle">終焉の龍 · Lv.50</h2><p>'+(p.kflee?'あの日、傷つき逃げた黒龍。その怨念が魔王の死で解き放たれ、世界の終わりを告げる龍となって城に降り立った。':'魔王の死で解き放たれた、世界の終わりを告げる龍が城に降り立っている。')+'</p><p class="note">真の最終決戦。レベル上限(50)近くまで鍛えてから挑もう。</p><p>現在 Lv.'+p.level+' ／ 仲間 '+allyList().length+' 人 ／ HP '+p.hp+' / '+maxHP()+'。</p><div class="tabs"><button id="bossStart" class="primary">終焉の龍に挑む</button><button data-close>まだ準備する</button></div>');$('#bossStart').onclick=()=>{closeModal();if(p.kflee)showScene([['終焉の龍','「…久しいな、勇者よ。」\n歪んだ翼の影から、あの日の黒龍の声が響く。'],['終焉の龍','「貴様に敗れたあの日から、我は闇に身を捧げた。この姿こそ、復讐の成れの果て！」\n「今度こそ、すべてを終わらせてやる…！」']],()=>encounter('ex'));else encounter('ex')};return}openModal('<h2 id="modalTitle">夜の魔王 · Lv.30</h2><p>北東の城に、魔王が姿を現している。</p><p class="note">5つのかけらと仲間の力で、決戦に挑もう。</p><p>現在 Lv.'+p.level+' ／ 仲間 '+allyList().length+' 人 ／ HP '+p.hp+' / '+maxHP()+'。薬草も持っていこう。戦いから逃げることもできます。</p><div class="tabs"><button id="bossStart" class="primary">魔王に挑む</button><button data-close>まだ準備する</button></div>');$('#bossStart').onclick=()=>{closeModal();encounter(true)}}
+function guide(){openModal('<div class="modalheader"><h2 id="modalTitle">冒険のしおり</h2><button data-close aria-label="閉じる">×</button></div><p>① リナの話を聞く → ② 各地の門を守る5人の番人を倒し、太陽のかけらを集める → ③ 魔王を倒して村に光を取り戻す。レベル上限は50。自分より弱い敵からは経験値が減り、武器・防具は仲間の強さにも効きます。魔王を倒したあとは魔物が強くなり、城には裏ボスが現れます。</p><p>移動は十字キー（長押しで連続移動）/ 矢印 / WASD。地図をタップすると道に沿って歩きます。看板・村人・お店・宿屋・宝箱・泉・商人の隣で向きを合わせて「調べる」。番人や宝箱には、ぶつかるように進んでも反応します。</p><p><b>仲間：</b>ガルド（戦士）はリナから、ミナ（魔法使い）とソラ（僧侶）は番人を倒すと加わります。仲間は戦闘で自動で行動します。最大4人パーティ。</p><p><b>複数の敵：</b>仲間が増えると敵の最大数も増えます（最大4体）。1体目はそのエリアの敵、2体目以降は1つ弱い種類です。敵をタップすると攻撃の対象を選べます。【全体】の技・魔法は敵全員に当たります。敵にも全体攻撃を使うものがいるので注意。</p><p><b>装備：</b>買った武器・防具は持ち物に残り、道具・装備からいつでも付け替えできます。「魔除けのよろい」を着ていると勇者に即死魔法は効きません（仲間には効くので、勇者のリザレクション(Lv30)で復活）。ミミックと魔王は即死魔法を使います。</p><p><b>魔王のあと：</b>各地の魔物の分布や強さが変わります。スライムばかりの場所では、守備力が極端に高く、魔法でないとほとんど傷つかない珍しいスライムもいます。</p><p><b>特別な敵：</b>ミミックは強敵ですが、倒すと豪華な報酬。亀のような敵は体力・防御が高く、守備力を無視する魔法が効きます。魔王の領域には、ごくまれに巨大な黒龍が現れます…。</p><p><b>属性：</b>🔥火 ❄️氷 ⚡雷。敵の「弱点」を突くと1.5倍、「耐性」には半分のダメージ。弱点は戦闘画面に表示されます。</p><p><b>状態異常：</b>どく（毎ターン減る）・ねむり（行動不能）・まひ（動けないことがある）・やけど（攻撃力ダウン＋減る）。薬草は毒とやけどを、キュアはすべてを治します。</p><p><b>探索：</b>宝箱（中にはミミックも…）、HP・MPが回復する泉、旅の商人（道具を売ってくれる）が各地にあります。</p><p>村の青い屋根が宿屋で、パーティ全員が無料で全回復します。「町へ帰還」は戦闘外ならいつでも無料。敗北すると所持金の10%だけ失い、町の宿で全回復します。</p><p>保存はブラウザ内のみ。移動・戦闘終了・購入時に自動保存。戦闘途中は保存されません。'+(!saveOK?'この環境では保存が制限される可能性があります。':'')+'</p><div class="tabs"><button data-close class="primary">冒険に戻る</button><button id="resetBtn">冒険をリセット</button></div>');$('#resetBtn').onclick=()=>{openModal('<h2 id="modalTitle">はじめから遊びますか？</h2><p>レベル・装備・お金・仲間・クリア状態をすべて初期化します。</p><div class="tabs"><button id="resetConfirm">初期化する</button><button data-close class="primary">やめる</button></div>');$('#resetConfirm').onclick=()=>{enemy=null;busy=false;dialogOpen=false;sceneQ=[];sceneEnd=null;trail=[];bst={};$('#dialogue').classList.add('hidden');$('#battle').classList.add('hidden');p=fresh();logs=[];save();closeModal();log('まずは目の前のリナに話しかけよう。スペースでアクション。')}}}
+$('#soundBtn').onclick=()=>{soundOn=!soundOn;try{localStorage.setItem('ofk-sound',soundOn?'1':'0')}catch(e){}$('#soundBtn').textContent=soundOn?'♪ON':'♪OFF';if(soundOn)sfx('heal')};$('#soundBtn').textContent=soundOn?'♪ON':'♪OFF';
+const areaOrder=[[1,2,5],[0,3,4]];
+const signs=[{x:5,y:10},{x:5,y:4},{x:12,y:4},{x:12,y:11},{x:20,y:11},{x:19,y:4}];
+const difficulty=['超弱いエリア','弱いエリア','少し強いエリア','強いエリア','かなり強いエリア','超強いエリア'];
+const areaTips=['まずはこの草原で腕を磨こう。北の峠を越えると荒野に続く。','草原より手ごわい魔物がいる。東の門を抜けると石巨人の森。','大きな魔物が潜んでいる。南の橋の先は凍てつく高原。','油断すれば凍てつく牙に倒される。東に進むと紅蓮の火山。','竜の吐く炎に気をつけよ。北の峠を越えると魔王の領域。','ここは魔王の領域。最高の装備と、覚えた技で決戦に備えよう。'];
+const townObjects=[{x:1,y:12,kind:'inn',name:'宿屋'},{x:4,y:12,kind:'weapon',name:'武器屋'},{x:1,y:14,kind:'item',name:'道具屋'},{x:4,y:14,kind:'armor',name:'防具屋'},{x:3,y:12,kind:'npc',name:'村人リナ'}];
+const gates=[[3,7,3,8],[7,3,8,3],[11,7,11,8],[15,12,16,12],[20,7,20,8]];
+let dialogOpen=false;
+let p=fresh(),enemy=null,turn=1,busy=false,walkSteps=0,logs=[],routeTimer=null,shopTab='weapon',toastTimer,modalReturn=null,saveOK=true;
+const maxHP=()=>30+p.level*9,maxMP=()=>10+p.level*3,gearA=()=>p.weapon<0?0:weapons[p.weapon][1],gearD=()=>p.armor<0?0:armors[p.armor][1],atk=()=>6+p.level*2+gearA(),def=()=>3+Math.round(p.level*1.2)+gearD(),need=()=>25+5*p.level*p.level;
+const zoneAt=(x=p.x,y=p.y)=>areaOrder[y<8?0:1][Math.floor(x/8)],inTown=()=>p.x<=5&&p.y>=11;
+function validSave(s){return s&&Number.isInteger(s.level)&&s.level>=1&&s.level<=30&&Number.isInteger(s.x)&&s.x>=0&&s.x<W&&Number.isInteger(s.y)&&s.y>=0&&s.y<H&&['weapon','armor'].every(k=>Number.isInteger(s[k])&&s[k]>=-1&&s[k]<6)&&['xp','hp','mp','gold','herbs','waters','kills'].every(k=>Number.isFinite(s[k])&&s[k]>=0&&s[k]<1e8)&&typeof s.clear==='boolean'}
+try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(validSave(s)){p=s;p.hp=Math.min(p.hp,maxHP());p.mp=Math.min(p.mp,maxMP())}}catch(e){saveOK=false}
+if(!Array.isArray(p.facing)||p.facing.length!==2)p.facing=[0,-1];migrate();if(typeof p.questAccepted!=='boolean')p.questAccepted=false;
+function save(manual=false){try{localStorage.setItem(KEY,JSON.stringify(p));if(manual)toast('冒険を保存しました');return true}catch(e){saveOK=false;if(manual)toast('この環境では保存できません。HTMLをブラウザで開くと保存できます');return false}}
+function toast(text){$('#toast').textContent=text;$('#toast').classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.add('hidden'),3000)}
+function log(text){logs.unshift(text);logs=logs.slice(0,3);$('#log').replaceChildren(...logs.map(t=>{let e=document.createElement('p');e.textContent=t;return e}))}
+function wardOn(){return p.armor>=0&&!!armors[p.armor][3]}
+function ownList(k){let key=k==='weapon'?'ownW':'ownA';if(!Array.isArray(p[key]))p[key]=[];return p[key]}
+function gearOwn(k,i){let a=ownList(k);if(!a.includes(i))a.push(i)}
+function deadAlly(){return allyList().find(id=>getHP(id)<=0)}
+function equipHTML(){return [['weapon','武器',weapons],['armor','防具',armors]].map(([k,lab,list])=>{let own=ownList(k).slice().sort((a,b)=>list[b][1]-list[a][1]);return '<div class="shoprow"><div><b>'+lab+'</b><small>'+(own.length?'持っている装備から選べます':'まだ持っていません')+'</small></div></div>'+own.map(i=>'<div class="shoprow"><div>'+list[i][0]+'<small>'+(k==='weapon'?'攻撃':'守備')+' +'+list[i][1]+(list[i][3]?' ／ 🛡即死無効':'')+'</small></div><button data-eq="'+k+':'+i+'" '+(p[k]===i?'disabled':'')+'>'+(p[k]===i?'装備中':'装備する')+'</button></div>').join('')}).join('')}
+function bindEquip(re){$$('[data-eq]').forEach(b=>b.onclick=()=>{let [k,i]=b.dataset.eq.split(':');p[k]=+i;save();update();re();toast((k==='weapon'?weapons:armors)[+i][0]+'を装備しました')})}
+function update(){let z=zones[zoneAt()];$('#zoneLabel').textContent=inTown()?'旅立ちの町':(p.clear&&zoneAt()===1?'スライムの荒野':z.name);$('#zoneLevel').textContent=inTown()?'安全地帯 / 無料の宿':'太陽のかけら ✦'+p.gates.filter(Boolean).length+' / 5';$('#coords').textContent=p.clear2?'真のクリア':p.clear?'魔王討伐済み・魔物が強化':inTown()?'宿・お店・村人':'現在地 '+(p.x+1)+', '+(p.y+1);$('#level').textContent='Lv.'+p.level+(p.level>=MAXLV?' MAX':'');$('#hpText').textContent=p.hp+' / '+maxHP();$('#mpText').textContent=p.mp+' / '+maxMP();$('#hpBar').style.width=100*p.hp/maxHP()+'%';$('#mpBar').style.width=100*p.mp/maxMP()+'%';$('#xpText').textContent=p.level===30?'MAX':need()-p.xp+' EXP';$('#xpBar').style.width=p.level===30?'100%':100*p.xp/need()+'%';for(let id of ['gold','kills','herbs','waters'])$('#'+id).textContent=p[id].toLocaleString();$('#atk').textContent=atk();$('#def').textContent=def();$('#weapon').textContent=p.weapon<0?'素手':weapons[p.weapon][0];$('#armor').textContent=p.armor<0?'布の服':armors[p.armor][0]+(wardOn()?' 🛡':'');$('#huntBtn').disabled=!!enemy||inTown();$('#interactBtn').disabled=!!enemy;$('#interactBtn').textContent=dialogOpen?'会話を閉じる / Space':nearBoss()&&!p.clear?'魔王に挑む':'調べる / Space';$('#returnBtn').disabled=!!enemy;$('#bagBtn').disabled=!!enemy;$('#skillsBookBtn').disabled=busy;renderParty();drawMap()}
+// オリジナルのピクセルスプライト。外部画像・フォント・通信は不要。
+const patterns={
+slime:['......aa......','.....aaaa.....','....aaaaaa....','...aaaaaaaa...','..aaaaaaaaaa..','.aaaaaaaaaaaa.','aaaaawaaawaaaa','aaaaaaaaaaaaaa','.aaaabbbbaaaa.','..aaaaaaaaaa..'],
+bat:['a..........a','aa........aa','aaa..aa..aaa','aaaaaaa aaaa','aaaaaaaaaaaa','.aaawwwwaa.','..aawb bwaa..','....aaaa....','.....aa.....'],
+skeleton:['....aaaa....','...aaaaaa...','...abb bba..','...aaaaaa...','....abba....','.....aa.....','..aaaaaaaa..','a..a aa a..a','a..aaaaaa..a','....aaaa....','....a..a....','...aa..aa...'],
+wolf:['.aa......aa.','.aaa....aaa.','..aaaaaaaa..','..aawb bwaa..','...aaaaaa...','....abba....','..aaaaaaaa..','.aaaaaaaaaa.','aaa.aaaa.aaa','..aa....aa..'],
+scorpion:['aa........aa','aaa......aaa','.aa..aa..aa.','..aaaaaaaa..','....aaaa....','..aaaaaaaa..','aa.aaaaaa.aa','a...aaaa...a','...aa..aa...','.....aa.....','......aaa...','.......ba...'],
+orc:['....aaaa....','...aaaaaa...','..aabw wbaa.','...aaaaaa...','...awbbwa...','....aaaa....','..aaaaaaaa..','.aaaaaaaaaa.','aaa aaaa aaa','aa..aaaa..aa','....aaaa....','...aa..aa...','..aaa..aaa..'],
+knight:['....aaaa....','...aaaaaa...','...abbbba...','...aawwaa...','....aaaa....','..cccccccc..','.acccccccca.','aaaccaaaccaa','a..cccccc..a','...cccccc...','....aaaa....','...aa..aa...','..aaa..aaa..'],
+golem:['...aaaaaa...','..aaaaaaaa..','..aabw wbaa.','..aaaabaaa..','...aaaaaa...','.aaaaaaaaaa.','aaaaaaaaaaaa','aaa.aaaa.aaa','aaa.aaaa.aaa','aa..aaaa..aa','....aaaa....','...aa..aa...','..aaa..aaa..'],
+tree:['....aaaa....','..aaaaaaaa..','.aaaaaaaaaa.','aaaawaaawaaa','.aaaaaaaaaa.','..aaaaaaaa..','....cccc....','a..cccccc..a','acccccccccca','....cccc....','....cccc....','..cccccccc..'],
+mage:['.....aa.....','....aaaa....','...aaaaaa...','..aaaaaaaa..','..abbwwbba..','...abbbba...','....aaaa....','..aaaaaaaa..','.aaaaaacaaa.','aa.aaaac.aaa','...aaaac....','..aaaaacaa..','.aaaaaacaaa.'],
+dragon:['aa..........aa','aaa...aa...aaa','aaaa.aaaa.aaaa','aaaaaaaaaaaaaa','.aaawwwwwwaaa.','..aaaaabaaaa..','....aaaaaa....','..aaaaaaaaaa..','.aaaaaaaaaaaa.','aaa.aaaaaa.aaa','aa..aaaaaa..aa','....aaaaaa....','...aaa..aaa...','..aaaa..aaaa..'],
+mimic:['..aaaaaaaaaa..','.aaaaaaaaaaaa.','aaaaaaaaaaaaaa','aaawwaaaawwaaa','aaabbaaaabbaaa','aaaaaaaaaaaaaa','awbwbwbwbwbwba','abbbbbbbbbbbba','aaaaaaaaaaaaaa','.aaaaaaaaaaaa.','..aa......aa..'],
+ghost:['....aaaa....','...aaaaaa...','..aaaaaaaa..','..awwaawwa..','..abwaabwa..','..aaaaaaaa..','..aaabbaaa..','..aaaaaaaa..','.aaaaaaaaaa.','.aaaaaaaaaa.','.aa.aaaa.aa.','.a...aa...a.'],
+snake:['....aaaa....','...aaaaaa...','...awaawa...','...aaaaaa...','....abba....','...aaaaaa...','..aaaaaaaa..','.aaa....aaa.','.aa......aa.','.aaa....aaa.','..aaaaaaaa..','...aaaaaa...'],
+mushroom:['....aaaa....','..aaaaaaaa..','.aawaaaawaa.','aaaaaaaaaaaa','aawaaaaawaaa','.aaaaaaaaaa.','....wwww....','...wbwwbw...','...wwwwww...','...wwwwww...','....ww.ww...']};
+const shade=(c,f)=>{let n=parseInt(c.slice(1),16);return 'rgb('+Math.round((n>>16)*f)+','+Math.round((n>>8&255)*f)+','+Math.round((n&255)*f)+')'};
+patterns.metalslime=['......aa......','.....awwa.....','....aawaaa....','...aaaaaaaa...','..aaaaaaaaaa..','.aaabaaaabaaa.','aaaabaaaabaaaa','aaaaaaaaaaaaaa','.adaaaaaaaadd.','..dddddddddd..'];
+Object.assign(patterns,{"kokuryu": ["..w.w.............d...d.....", "..ww.ww...........dd..dd....", ".waaaaa...........ddd.ddd...", ".aarraaa..........dddddddd..", "aaaaaaaaa.......aadddddddddd", "awawwaaaaa.....aaadddddddddd", "bbbbaaaaaaa...aaaaddddddddd.", ".wwaaaaaaaaaaaaaaaaaddddddd.", "..aaaaaaaaaaaaaaaaaaadddddd.", "...aaaaaaaaaaaaaaaaaaaaddd..", "....aaaaaaaaaaaaaaaaaaaaa...", "....aaaaaaaaaaaaaaaaaaaaaa..", "....dddaaaaaaaaaaaaaaadaaaa.", "....dd.wdd..daaaaadd.....aaa", "....w..w.....w.ww.d.......aa", "....ww.ww....ww.ww.........."], "endragon": ["...w.w..w...................w..w....", "...ww.w.ww.................ww.ww....", "..waaaaaaw.......y..y.....ddd.ddd...", "..aarraaaaw......dd.dd...ddddddddd..", ".aayraaaaaaa....ddd.ddd.dddddddddd..", "aaaaaaaaaaaa....dddddddddddddddddd..", "awawawaaaaaaa..aaddddddddddddddddd..", "bbbbbbaaaaaaaaaaaaddddddddddddddd...", ".wwwwaaaaaaaaaaaaaaadddddddddddd....", "..aaaaaaaaaaaaaaaaaaaadddddddd......", "...aaaaaaaaaaaaaaaaaaaaaaadd........", "....aaaaaaaaaaaaaaaaaaaaaaaaa.......", "....aaaaaaaaaaaaaaaaaaaaaaaaaaa..yy.", "....dddaaaaaaaaaaaaaaaaaaaaadaaaayyy", "....dd.wdd..daaaaaaaaadd.......aaayy", "....w..w.....w.ww.d............aa.y.", "....ww.ww....ww.ww.............a...."], "turtle": ["....aaaaaaaa....", "..aaaabbbbaaaa..", ".aaabaabbaabaaa.", ".aabbaaaaaabbaa.", "aaaabaabbaabaaaa", "aaaaaaaaaaaaaaaa", ".dddaaaaaaaadddd", ".dd..aaaaaa..dd.", "wwa..aa..aa..aww", "wbwd.dd..dd.dwbw", "............wwww"]});
+function sprite(ctx,type,color,cx,cy,scale=3){let rows=patterns[type]||patterns.slime,mw=Math.max(...rows.map(r=>r.length)),mh=rows.length;ctx.save();ctx.translate(Math.round(cx-mw*scale/2),Math.round(cy-mh*scale/2));rows.forEach((r,y)=>[...r].forEach((v,x)=>{if(v==='.'||v===' ')return;ctx.fillStyle=v==='a'?color:v==='w'?'#faf1cc':v==='b'?'#17202e':v==='r'?'#ff4a3a':v==='y'?'#ffd35a':v==='d'?shade(color,.55):'#7a6e78';ctx.fillRect(x*scale,y*scale,scale,scale)}));ctx.restore()}
+const ctx=$('#map').getContext('2d');ctx.imageSmoothingEnabled=false;
+function tile(x,y){let z=zones[zoneAt(x,y)],n=(x*37+y*23)%19;ctx.fillStyle=z.tile;ctx.fillRect(x*T,y*T,T,T);ctx.fillStyle=z.color;ctx.fillRect(x*T+4+(n%7),y*T+8+(n%12),3,3);ctx.fillRect(x*T+20,y*T+6+(n%9),3,2);ctx.fillStyle='#0000000a';ctx.fillRect(x*T,y*T+31,32,1);if((x===7||x===15)){ctx.fillStyle='#e8d6a71a';ctx.fillRect(x*T+30,y*T,2,32)}if(y===7){ctx.fillStyle='#e8d6a71a';ctx.fillRect(x*T,y*T+30,32,2)}if(n===2&&!(x<=5&&y>=11)&&!(x>20&&y<4)){if(zoneAt(x,y)===2){ctx.fillStyle='#284d41';ctx.fillRect(x*T+14,y*T+16,5,12);ctx.fillStyle='#739467';ctx.fillRect(x*T+6,y*T+4,20,16);ctx.fillRect(x*T+10,y*T,12,4)}else if(zoneAt(x,y)>=3){ctx.fillStyle='#ffffff20';ctx.fillRect(x*T+7,y*T+13,18,9);ctx.fillRect(x*T+12,y*T+7,9,6)}}}
+function building(x,y,label,color){let X=x*T,Y=y*T;ctx.fillStyle='#192c32';ctx.fillRect(X+3,Y+10,27,22);ctx.fillStyle=color;ctx.fillRect(X,Y+5,32,8);ctx.fillRect(X+5,Y,22,5);ctx.fillStyle='#dec897';ctx.fillRect(X+7,Y+17,6,6);ctx.fillStyle='#0e1b22';ctx.fillRect(X+20,Y+21,6,11);ctx.font='bold 11px system-ui';ctx.textAlign='center';ctx.fillStyle='#f7edcc';ctx.fillText(label,X+16,Y+44)}
+function hero(){let X=p.x*T,Y=p.y*T;ctx.fillStyle='#12232377';ctx.fillRect(X+7,Y+25,19,4);ctx.fillStyle='#e9c379';ctx.fillRect(X+11,Y+5,12,10);ctx.fillStyle='#e3e8ec';ctx.fillRect(X+8,Y+1,17,6);ctx.fillStyle='#c9675e';ctx.fillRect(X+9,Y+15,15,10);ctx.fillStyle='#82a6bf';ctx.fillRect(X+11,Y+15,10,12);ctx.fillStyle='#252b39';ctx.fillRect(X+10,Y+27,5,4);ctx.fillRect(X+19,Y+27,5,4);ctx.fillStyle='#f2ede0';ctx.fillRect(X+26,Y+12,3,16);ctx.fillStyle='#e3c178';ctx.fillRect(X+24,Y+22,7,3);let [dx,dy]=p.facing||[0,-1];ctx.fillStyle='#ffe5a0';ctx.fillRect(X+14+dx*13,Y+14+dy*13,4,4)}
+function drawMap(){for(let y=0;y<H;y++)for(let x=0;x<W;x++)tile(x,y);drawRoads();ctx.fillStyle='#aa9c72';ctx.fillRect(0,11*T,6*T,5*T);ctx.fillStyle='#b7aa81';ctx.fillRect(0,13*T,6*T,32);ctx.fillRect(3*T,11*T,32,5*T);ctx.strokeStyle='#d3c89c';ctx.strokeRect(1,11*T+1,6*T-2,5*T-2);building(1,12,'宿','#75a7b3');building(4,12,'武器','#b47c5d');building(1,14,'道具','#8f9f66');building(4,14,'防具','#948ab0');
+ctx.fillStyle='#2c263e';ctx.fillRect(20*T,0,4*T,3*T);ctx.fillStyle='#857694';for(let x=20;x<24;x++){ctx.fillRect(x*T+2,6,28,46);ctx.fillRect(x*T+2,0,7,8);ctx.fillRect(x*T+23,0,7,8)}ctx.fillStyle='#cda8bd';ctx.font='bold 11px system-ui';ctx.textAlign='center';ctx.fillText(p.clear?'魔王 討伐済み':'魔王の城',22*T,85);if(!p.clear)sprite(ctx,'dragon','#cd93bc',22*T+16,48,3);
+drawBorders();drawSigns();drawVillager();drawWorld();hero();}
+function nearBoss(){return Math.abs(p.x-22)+Math.abs(p.y-2)<=1}
+function drawRoads(){const path=[[3,13],[3,3],[11,3],[11,12],[20,12],[20,5],[22,5],[22,3]];ctx.lineWidth=12;ctx.strokeStyle='#dbc49c48';ctx.lineJoin='miter';ctx.beginPath();path.forEach(([x,y],i)=>i?ctx.lineTo(x*T+16,y*T+16):ctx.moveTo(x*T+16,y*T+16));ctx.stroke()}
+function drawBorders(){ctx.lineWidth=6;ctx.strokeStyle='#283b35';for(let x of [8,16]){ctx.beginPath();ctx.moveTo(x*T,0);ctx.lineTo(x*T,H*T);ctx.stroke()}ctx.beginPath();ctx.moveTo(0,8*T);ctx.lineTo(W*T,8*T);ctx.stroke();ctx.strokeStyle='#b9aa7c';ctx.lineWidth=4;for(let [x1,y1,x2,y2] of gates){let x=(x1+x2)/2*T+16,y=(y1+y2)/2*T+16;ctx.fillStyle='#a59a75';if(x1===x2){ctx.fillRect(x-14,y-8,28,16);ctx.strokeRect(x-14,y-9,28,18)}else{ctx.fillRect(x-8,y-14,16,28);ctx.strokeRect(x-9,y-14,18,28)}}}
+function drawSigns(){signs.forEach(s=>{let x=s.x*T,y=s.y*T;ctx.fillStyle='#2b292677';ctx.fillRect(x+5,y+27,24,4);ctx.fillStyle='#715136';ctx.fillRect(x+14,y+12,5,17);ctx.fillStyle='#d5b47e';ctx.fillRect(x+3,y+5,27,16);ctx.fillStyle='#72543e';ctx.fillRect(x+6,y+9,20,2);ctx.fillRect(x+6,y+14,14,2)});}
+function drawVillager(){let X=3*T,Y=12*T;ctx.fillStyle='#bd9b6d';ctx.fillRect(X+11,Y+3,12,7);ctx.fillStyle='#e4c59b';ctx.fillRect(X+12,Y+9,10,8);ctx.fillStyle='#cbb18a';ctx.fillRect(X+8,Y+3,6,16);ctx.fillStyle='#cbbd77';ctx.fillRect(X+10,Y+17,14,10);ctx.fillStyle='#635c7a';ctx.fillRect(X+9,Y+25,16,4);ctx.fillStyle='#283746';ctx.fillRect(X+11,Y+29,5,3);ctx.fillRect(X+19,Y+29,5,3);if(!p.questAccepted&&!p.clear){ctx.fillStyle='#f7db85';ctx.font='bold 16px system-ui';ctx.textAlign='center';ctx.fillText('!',X+17,Y-3)}}
+$('#dialogClose').onclick=closeDialogue;
+function canStep(x,y,nx,ny){if(nx<0||nx>=W||ny<0||ny>=H||blockedTile(nx,ny))return false;if(zoneAt(x,y)===zoneAt(nx,ny))return true;return gates.some(([a,b,c,d])=>(x===a&&y===b&&nx===c&&ny===d)||(x===c&&y===d&&nx===a&&ny===b))}
+function stopRoute(){clearInterval(routeTimer);routeTimer=null}
+function routeTo(tx,ty){let queue=[[p.x,p.y]],visited=new Set([p.x+','+p.y]),parents=new Map(),dest=null;while(queue.length){let [x,y]=queue.shift();if((x===tx&&y===ty)||(blockedTile(tx,ty)&&Math.abs(x-tx)+Math.abs(y-ty)===1)){dest=[x,y];break}for(let [dx,dy] of [[0,-1],[1,0],[0,1],[-1,0]]){let nx=x+dx,ny=y+dy,k=nx+','+ny;if(!visited.has(k)&&canStep(x,y,nx,ny)){visited.add(k);parents.set(k,[x,y]);queue.push([nx,ny])}}}if(!dest)return [];let route=[],pos=dest;while(pos[0]!==p.x||pos[1]!==p.y){route.unshift(pos);pos=parents.get(pos.join(','))}return route}
+$('#map').addEventListener('click',e=>{if(enemy||dialogOpen||!$('#shade').classList.contains('hidden'))return;let r=e.currentTarget.getBoundingClientRect(),tx=Math.min(W-1,Math.max(0,Math.floor((e.clientX-r.left)/r.width*W))),ty=Math.min(H-1,Math.max(0,Math.floor((e.clientY-r.top)/r.height*H)));stopRoute();let route=routeTo(tx,ty);if(!route.length&&blockedTile(tx,ty)&&Math.abs(p.x-tx)+Math.abs(p.y-ty)===1){p.facing=[tx-p.x,ty-p.y];update();return}routeTimer=setInterval(()=>{let next=route.shift();if(!next){stopRoute();if(blockedTile(tx,ty)&&Math.abs(p.x-tx)+Math.abs(p.y-ty)===1)p.facing=[tx-p.x,ty-p.y];update();save();return}move(next[0]-p.x,next[1]-p.y);if(!route.length){stopRoute();if(blockedTile(tx,ty)&&Math.abs(p.x-tx)+Math.abs(p.y-ty)===1)p.facing=[tx-p.x,ty-p.y];update();save()}},110)});
+$$('[data-dir]').forEach(b=>b.onclick=()=>{stopRoute();move(...b.dataset.dir.split(',').map(Number))});
+
+
+$$('[data-cmd]').forEach(b=>b.onclick=()=>command(b.dataset.cmd));
+function openModal(html){stopRoute();modalReturn=document.activeElement;$('#modal').innerHTML=html;$('#shade').classList.remove('hidden');$$('[data-close]').forEach(b=>b.onclick=closeModal);$('#modal button')?.focus()}
+function closeModal(){$('#shade').classList.add('hidden');if(modalReturn&&modalReturn.isConnected)modalReturn.focus();update()}
+$('#shade').onclick=e=>{if(e.target===$('#shade'))closeModal()};
+function town(){if(!inTown()||dialogOpen||enemy)return;shopRemote=false;shopTab='weapon';shop()}
+function shop(){openModal('<div class="modalheader"><h2 id="modalTitle">'+(shopRemote?'旅の商人トト':'旅立ちの町')+'</h2><button data-close aria-label="閉じる">×</button></div><p>所持金 <b class="note">'+p.gold.toLocaleString()+' G</b>　購入した武器・防具は自動で装備。持っている装備は道具袋からいつでも付け替えできます（売却はありません）。</p><div class="tabs">'+[['weapon','武器屋'],['armor','防具屋'],['item','道具屋'],['inn','宿屋']].filter(t=>!shopRemote||t[0]==='item').map(([k,t])=>'<button class="'+(shopTab===k?'active':'')+'" data-tab="'+k+'">'+t+'</button>').join('')+'</div><div id="shopItems"></div>');$$('[data-tab]').forEach(b=>b.onclick=()=>{shopTab=b.dataset.tab;shop()});let items=$('#shopItems');if(shopTab==='inn'){items.innerHTML='<p>旅人の休息は、町からの贈り物。HP・MPを全回復します。</p><button id="rest" class="primary">泊まる · 無料</button>';$('#rest').onclick=()=>{restAll();save();update();toast('よく眠った！ HP・MP全回復。')}}else if(shopTab==='item'){items.innerHTML='<div class="shoprow"><div>薬草<small>HPを最大値の55%回復 ／ 所持 '+p.herbs+'</small></div><button data-buyitem="herbs" '+(p.gold<20?'disabled':'')+'>20 G</button></div><div class="shoprow"><div>魔法の水<small>戦闘外でMPを全回復 ／ 所持 '+p.waters+'</small></div><button data-buyitem="waters" '+(p.gold<50?'disabled':'')+'>50 G</button></div>';$$('[data-buyitem]').forEach(b=>b.onclick=()=>{let k=b.dataset.buyitem,c=k==='herbs'?20:50;if(p.gold<c)return;p.gold-=c;p[k]++;save();update();shop();toast('購入しました')})}else{let list=shopTab==='weapon'?weapons:armors,k=shopTab,own=ownList(k),order=list.map((x,i)=>i).sort((x,y)=>list[x][1]-list[y][1]);
+ items.innerHTML=order.map(i=>{let [name,val,cost,ward]=list[i],has=own.includes(i),eq=p[k]===i;return '<div class="shoprow"><div>'+name+'<small>'+(k==='weapon'?'攻撃':'守備')+' +'+val+(ward?' ／ 🛡即死無効':'')+(has?' ／ 所持':'')+'</small></div><button data-buy="'+i+'" '+(eq||(!has&&p.gold<cost)?'disabled':'')+'>'+(eq?'装備中':has?'装備する':cost.toLocaleString()+' G')+'</button></div>'}).join('');
+ $$('[data-buy]').forEach(b=>b.onclick=()=>{let i=+b.dataset.buy,has=own.includes(i);if(!has){let c=list[i][2];if(p.gold<c)return;p.gold-=c;gearOwn(k,i)}p[k]=i;save();update();shop();toast(list[i][0]+'を装備しました')})}}
+
+$('#huntBtn').onclick=()=>{if(!enemy&&!inTown()&&!dialogOpen)encounter()};$('#interactBtn').onclick=action;
+$('#returnBtn').onclick=()=>{if(enemy||dialogOpen)return;stopRoute();trail=[];p.x=3;p.y=13;p.facing=[0,-1];save();update();log('村へ戻った。青い屋根の宿屋で休み、装備を整えよう。')};$('#bagBtn').onclick=()=>{if(!dialogOpen)bag()};$('#skillsBookBtn').onclick=()=>openSkills(!!enemy);$('#guideBtn').onclick=()=>{if(!dialogOpen)guide()};$('#saveBtn').onclick=()=>{if(enemy){toast('戦闘終了後に保存できます');return}save(true)};
+
+document.addEventListener('keydown',e=>{if(!$('#shade').classList.contains('hidden')){if(e.key==='Escape')closeModal();if(e.key==='Tab'){let f=$$('#modal button:not(:disabled)');if(f.length){let first=f[0],last=f[f.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}}return}if(e.code==='Space'){e.preventDefault();if(!e.repeat)action();return}if(dialogOpen){if(e.key==='Escape'||e.key==='Enter'){e.preventDefault();closeDialogue()}return}let dirs={ArrowUp:[0,-1],w:[0,-1],W:[0,-1],ArrowDown:[0,1],s:[0,1],S:[0,1],ArrowLeft:[-1,0],a:[-1,0],A:[-1,0],ArrowRight:[1,0],d:[1,0],D:[1,0]};if(dirs[e.key]){e.preventDefault();stopRoute();move(...dirs[e.key])}if(e.key==='Enter'&&!enemy&&(document.activeElement===document.body||document.activeElement===$('#interactBtn'))){e.preventDefault();action()}});
+
+update();log(p.clear?'村に光が戻った！ リナに報告しよう。':p.questAccepted?'看板を読みながら、道に沿って旅を進めよう。':'まずは目の前の村人リナに話しかけよう。スペースでアクション。');
+</script><script>
+(function(){
+document.addEventListener('gesturestart',function(e){e.preventDefault()});var lastTap=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n-lastTap<350&&!(e.target.closest&&e.target.closest('button,a,input')))e.preventDefault();lastTap=n},{passive:false});
+$$('[data-dir]').forEach(function(b){
+ var d=b.dataset.dir.split(',').map(Number),t1=null,t2=null;
+ var stop=function(){clearTimeout(t1);clearInterval(t2);t1=t2=null};
+ b.onclick=null;
+ b.addEventListener('click',function(e){if(e.detail===0){stopRoute();move(d[0],d[1])}});
+ b.addEventListener('pointerdown',function(e){e.preventDefault();stop();stopRoute();move(d[0],d[1]);t1=setTimeout(function(){t2=setInterval(function(){move(d[0],d[1])},130)},320)});
+ ['pointerup','pointercancel','pointerleave','lostpointercapture'].forEach(function(ev){b.addEventListener(ev,stop)});
+ b.addEventListener('contextmenu',function(e){e.preventDefault()});
+});
+})();
+</script>
+</body></html>
