@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ひとつの王国"><meta name="theme-color" content="#101923"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png"><title>ひとつの王国 v1.77</title><style>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="ひとつの王国"><meta name="theme-color" content="#101923"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="icon-192.png"><title>ひとつの王国 v1.81</title><style>
 :root{color-scheme:dark;--bg:#101923;--panel:#182533;--line:#344758;--text:#eef3ec;--muted:#a8bac5;--gold:#efcb76;--green:#9cd2a2}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,'Noto Sans JP',sans-serif}button{font:inherit;color:inherit;cursor:pointer;background:#233749;border:1px solid #486275;border-radius:5px;min-height:44px;padding:8px 12px;transition:background .15s}button:hover:not(:disabled){background:#345269}button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}button:disabled{opacity:.4;cursor:not-allowed}.primary{background:#e6c478;color:#1b2630;border-color:#e6c478;font-weight:700}.primary:hover:not(:disabled){background:#ffe09a}.small{font-size:14px}.wrap{max-width:960px;margin:auto;padding:20px 24px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:16px}.eyebrow{font-size:12px;letter-spacing:.22em;color:var(--gold)}h1{font-size:25px;letter-spacing:.06em;margin:2px 0}header p{margin:0;color:var(--muted);font-size:14px}.headbuttons{display:flex;gap:8px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:16px}.world{position:relative;border:1px solid #577067;background:#22332d;border-radius:8px;overflow:hidden}.maphead{display:flex;justify-content:space-between;gap:8px;padding:10px 14px;background:#182b2b;font-size:14px}.maphead b{color:#d4e8b2}canvas{display:block;width:100%;image-rendering:pixelated;aspect-ratio:3/2;touch-action:none;cursor:crosshair}.mapfoot{padding:8px 14px;background:#17272b;display:flex;justify-content:space-between;font-size:13px;color:#b9ceba}.panel{align-self:start;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px}.statushead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.statushead strong{font-size:18px}.level{color:var(--gold);font-weight:700}.barlabel{display:flex;justify-content:space-between;font-size:14px;margin:9px 0 5px}.bar{height:7px;background:#0b1620;border-radius:2px;overflow:hidden}.bar i{display:block;height:100%;background:#86c68e}.bar.mp i{background:#81b5de}.bar.exp i{background:var(--gold)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}.stat{background:#101e2b;padding:8px 10px;border-radius:4px;font-size:14px}.stat span{color:var(--muted);display:block;font-size:12px}.stat.gold{color:var(--gold)}.equip{font-size:14px;color:var(--muted);line-height:1.9;border-top:1px solid var(--line);padding-top:10px}.equip b{color:var(--text);font-weight:500}.sideactions{display:grid;gap:8px;margin-top:12px}.below{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}.dpad{display:grid;grid-template-columns:44px 44px 44px;grid-template-rows:44px 44px;gap:4px}.dpad button{padding:0}.dpad .up{grid-column:2}.dpad .left{grid-column:1;grid-row:2}.dpad .down{grid-column:2;grid-row:2}.dpad .right{grid-column:3;grid-row:2}.actions{display:flex;flex-wrap:wrap;gap:8px}.log{margin-top:12px;padding:12px 16px;border-left:3px solid var(--gold);background:#16222e;min-height:60px;font-size:14px}.log p{margin:2px 0}.log p:first-child{color:#ecdfba}.log p:not(:first-child){color:var(--muted)}.hint{font-size:12px;color:var(--muted);margin-top:10px}.battle{position:absolute;inset:41px 0 34px;background:linear-gradient(#152438ee,#17291bf5);display:flex;flex-direction:column;padding:16px;z-index:3}.hidden{display:none!important}.btitle{display:flex;justify-content:space-between;align-items:center;font-size:16px}.btitle span{color:var(--gold);font-size:14px}.enemyarea{flex:1;min-height:70px;display:flex;align-items:center;justify-content:center;position:relative}.enemyarea canvas{width:150px;height:150px;aspect-ratio:1;cursor:default;filter:drop-shadow(0 8px 0 #0004)}.enemyinfo{max-width:340px;width:100%;margin:0 auto 10px;text-align:center;font-size:14px}.enemyinfo .bar{margin-top:6px}.enemyinfo i{background:#df8471}.battlelog{padding:10px 12px;background:#0b1424;border:1px solid #537085;border-radius:4px;min-height:65px;font-size:14px;margin-bottom:10px}.commands{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.commands button{font-size:14px;padding:6px}.shade{position:fixed;inset:0;background:#020b13b8;z-index:10;display:flex;align-items:center;justify-content:center;padding:16px}.modal{max-width:660px;width:100%;max-height:88vh;overflow:auto;background:#192a39;border:1px solid #6c8395;border-radius:8px;padding:24px;box-shadow:0 20px 80px #0008}.modal h2{font-size:22px;margin:0 0 8px}.modal p{color:var(--muted);font-size:14px}.modalheader{display:flex;align-items:center;justify-content:space-between;gap:8px}.tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}.tabs .active{border-color:var(--gold);color:var(--gold)}.shoprow{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}.shoprow small{display:block;color:var(--muted);font-size:13px}.shoprow button{min-width:110px}.success{color:var(--green)!important}.zones{display:grid;grid-template-columns:1fr 1fr;gap:12px}.zonecard{border-left:3px solid var(--green);padding:8px 12px;background:#102130;font-size:14px}.zonecard small{display:block;color:var(--muted);line-height:1.8}.note{color:var(--gold)!important}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#e7ca89;color:#172431;padding:10px 20px;border-radius:6px;z-index:20;pointer-events:none;max-width:90%;text-align:center}@media(max-width:820px){.layout{grid-template-columns:minmax(0,1fr) 220px}.wrap{padding:16px}.panel{padding:12px}.enemyarea canvas{width:115px;height:115px}.battle{padding:10px}.commands button{font-size:13px}}@media(max-width:640px){#map{aspect-ratio:6/5}.wrap{padding:12px}header{align-items:flex-start}h1{font-size:21px}header p{font-size:12px}.headbuttons{gap:4px}.headbuttons button{padding:6px 9px;font-size:13px}.layout{grid-template-columns:1fr;gap:12px}.panel{display:grid;grid-template-columns:1fr 1fr;column-gap:16px}.statushead{grid-column:1/-1;margin-bottom:0}.meters{grid-column:1}.stats{grid-column:2;grid-row:2;margin:8px 0;gap:5px}.equip{grid-column:1/-1}.sideactions{grid-column:1/-1;grid-template-columns:1fr 1fr}.battle{inset:41px 0 34px;padding:8px;overflow:auto}.enemyarea{min-height:55px}.enemyarea canvas{width:85px;height:85px}.btitle{font-size:14px}.enemyinfo{margin-bottom:5px;font-size:12px}.battlelog{min-height:44px;font-size:12px;margin-bottom:6px;padding:5px 8px}.commands{gap:4px}.commands button{font-size:12px;min-height:40px;padding:3px}.mapfoot{font-size:11px;padding:8px}.below{align-items:center}.actions{justify-content:flex-end}.actions button{font-size:13px;padding:6px 10px}.modal{padding:16px}.zones{grid-template-columns:1fr}.shoprow button{min-width:95px;font-size:13px}.hint{font-size:12px}}
 .worldDialog{position:absolute;left:12px;right:12px;bottom:44px;z-index:5;background:#101f30f5;border:2px solid #c4cfcc;border-radius:5px;padding:14px 16px;box-shadow:0 5px 20px #0005}.worldDialog h2{font-size:16px;color:var(--gold);margin:0 0 6px}.worldDialog p{font-size:15px;margin:0;white-space:pre-line;line-height:1.7}.dialogfooter{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:10px}.dialogfooter span{font-size:12px;color:var(--muted)}.dialogfooter button{min-height:44px}.skillrow{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}.skillrow small{display:block;color:var(--muted);font-size:13px}.skillrow button{min-width:110px}.learned{color:var(--green)}.locked{opacity:.6}.sideactions #skillsBookBtn{grid-column:1/-1}.growth{color:#b8d3c1;font-size:12px;margin-top:6px}@media(max-width:640px){.worldDialog{left:8px;right:8px;bottom:40px;padding:12px}.worldDialog p{font-size:14px}.dialogfooter span{max-width:170px}.skillrow button{min-width:94px;font-size:13px}}
 body .headbuttons button{min-height:40px;padding:4px 8px;font-size:13px;white-space:nowrap}body .dpad{grid-template-columns:repeat(3,62px);grid-template-rows:repeat(2,62px);gap:6px}body .dpad button{min-height:62px;font-size:24px}body .actions{gap:8px}body .actions button{min-height:62px;font-size:14px;white-space:nowrap}body .sideactions{grid-template-columns:repeat(3,1fr);gap:6px}body .sideactions button,body .sideactions #skillsBookBtn{min-height:40px;font-size:13px;padding:2px;grid-column:auto}#returnBtn,#recBtn,#dexBtn,#dataBtn{display:none!important}body .commands button{min-height:56px;font-size:15px}body .commands{gap:8px}html{touch-action:manipulation;overscroll-behavior:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}button,canvas{-webkit-user-select:none;user-select:none}.dataBox{width:100%;min-height:84px;background:#101923;color:#eef3ec;border:1px solid #6c8395;border-radius:6px;padding:8px;font:12px/1.4 monospace;-webkit-user-select:text;user-select:text}.dataRow{display:flex;gap:8px;margin:8px 0 16px}.modal{padding-top:0}.stickyTop{position:sticky;top:0;z-index:5;background:#192a39;padding:18px 0 4px;margin-bottom:8px;box-shadow:0 8px 8px -8px #000c}.stickyTop .chips{margin:6px 0 4px}.stickyTop p{margin:6px 0}.menuList{display:grid;gap:10px;margin-top:10px}.menuList button{min-height:54px;font-size:16px}@media(max-width:640px){#map{display:block;margin:0 auto;width:min(100%,calc((100dvh - 490px)*1.5));min-width:min(100%,270px)}}.bcard{background:#101923;border:1px solid #486275;border-radius:8px;padding:10px;margin:8px 0}.bcard.act{border-color:#efcb76}.bcard p{margin:6px 0}.bhead{display:flex;justify-content:space-between;align-items:center;gap:8px}.tag{background:#efcb76;color:#101923;border-radius:4px;padding:1px 6px;font-size:12px;font-weight:700}.bcard .dataRow{margin:8px 0 0}.dexgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.dexcell{background:#101923;border:1px solid #344758;border-radius:8px;padding:6px 2px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}.dexcell img{width:72px;height:60px;image-rendering:pixelated}.dexcell b{font-size:12px}.dexcell small{font-size:10px;color:#a8bac5;line-height:1.35}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chips button{min-height:38px;padding:2px 10px;font-size:12px}.chips button.on{background:#3d5a73;border-color:#efcb76}.chips.tit span{background:#233749;border:1px solid #486275;border-radius:14px;padding:4px 10px;font-size:12px}.recCard{background:linear-gradient(#1d3042,#14212d);border:2px solid #efcb76;border-radius:10px;padding:12px;margin:8px 0}.recTitle{color:#efcb76;font-weight:800;font-size:18px;text-align:center}.recName{text-align:center;color:#a8bac5;font-size:13px;margin:2px 0 10px}.recGrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.recCell{background:#0f1923;border-radius:6px;padding:6px 8px}.recCell span{display:block;font-size:11px;color:#a8bac5}.recCell b{font-size:14px}.skillrow>span.small{flex:none;white-space:nowrap;text-align:right;width:4.6em}.battlelog{box-sizing:border-box;height:136px;min-height:136px;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}.stlv{font-weight:700;margin:6px 0 4px}.stbl{width:100%;border-collapse:collapse;table-layout:fixed;background:#101923;border:1px solid #486275;border-radius:6px;margin:0 0 10px}.stbl th{font-size:11px;color:#a8bac5;font-weight:400;padding:5px 2px 2px;text-align:center}.stbl td{font-size:16px;font-weight:700;padding:0 2px 6px;text-align:center}</style><style>
@@ -82,7 +82,7 @@ h1{font-size:18px;margin:0}
 .headbuttons button{padding:2px 9px}
 }
 </style>
-</head><body><div class="wrap"><header><div><div class="eyebrow">ONE FIELD · RETRO RPG</div><h1>ひとつの王国<span class="ver" style="font-size:11px;font-weight:700;color:#fff;background:#344758;border-radius:4px;padding:2px 6px;letter-spacing:.04em;margin-left:8px;vertical-align:middle">v1.77</span></h1><p>小さな旅路。大きな決戦。</p></div><div class="headbuttons"><button id="guideBtn">遊び方</button><button id="saveBtn">保存</button><button id="soundBtn">♪ON</button></div></header><main class="layout"><section><div class="world"><div class="maphead"><b id="zoneLabel">はじまりの草原</b><span id="zoneLevel">看板を調べて旅を進める</span></div><canvas id="map" width="768" height="512" aria-label="6つの危険度ゾーンと町、北東のボスがあるフィールド。矢印キーまたは移動ボタンで移動。"></canvas><div class="mapfoot"><span>⌂ 南西：町 ／ ♜ 北東：魔王の城</span><span id="coords">安全地帯</span></div><div id="dialogue" class="worldDialog hidden" role="dialog" aria-modal="false" aria-labelledby="dialogTitle"><h2 id="dialogTitle"></h2><p id="dialogText" aria-live="polite"></p><div class="dialogfooter"><span>スペースで閉じる ／ 移動は会話後</span><button id="dialogClose">つづける ▾</button></div></div><div id="battle" class="battle hidden"><div class="btitle"><b id="battleTitle"></b><span id="turnLabel"></span></div><div class="enemyarea" id="enemyRow"></div><div id="enemyFx" class="enemyfx"></div><div id="partyHud" class="partyhud"></div><div class="battlelog" id="battleLog" aria-live="polite"></div><div class="commands"><button data-cmd="last" id="lastCmd" class="hidden">▶ 前回の技</button><button data-cmd="items" id="itemCmd" class="hidden">◆ 特別な道具</button><button data-cmd="attack">⚔ たたかう</button><button data-cmd="skills">✦ 技・魔法</button><button data-cmd="heal" id="healCmd">＋ 回復</button><button data-cmd="herb" id="herbCmd">薬草</button><button data-cmd="guard">◇ ぼうぎょ</button><button data-cmd="flee">↩ にげる</button></div></div></div><div class="below"><div class="dpad" aria-label="移動"><button class="up" data-dir="0,-1" aria-label="北へ">▲</button><button class="left" data-dir="-1,0" aria-label="西へ">◀</button><button class="down" data-dir="0,1" aria-label="南へ">▼</button><button class="right" data-dir="1,0" aria-label="東へ">▶</button></div><div class="actions"><button id="huntBtn" class="primary">この地で敵を探す</button><button id="interactBtn">調べる / Space</button></div></div><div id="log" class="log" aria-live="polite"></div><div class="hint">移動：矢印 / WASD / 地図をタップ　・　アクション：Space / Enter　・　町はランダム遭遇なし</div></section><aside class="panel"><div class="statushead"><strong>旅の勇者</strong><span id="level" class="level">Lv.1</span></div><div class="meters"><div class="barlabel"><span>HP</span><b id="hpText"></b></div><div class="bar"><i id="hpBar"></i></div><div class="barlabel"><span>MP</span><b id="mpText"></b></div><div class="bar mp"><i id="mpBar"></i></div><div class="barlabel"><span>次のレベル</span><b id="xpText"></b></div><div class="bar exp"><i id="xpBar"></i></div></div><div class="stats"><div class="stat gold"><span>ゴールド</span><b id="gold"></b> G</div><div class="stat"><span>戦闘勝利</span><b id="kills"></b></div><div class="stat"><span>攻撃力</span><b id="atk"></b></div><div class="stat"><span>守備力</span><b id="def"></b></div></div><div id="partyRow" class="partyrow hidden"></div><div class="equip">武器　<b id="weapon"></b><br>防具　<b id="armor"></b><br>薬草　<b id="herbs"></b> ／ 魔法の水　<b id="waters"></b></div><div class="sideactions"><button id="bagBtn">道具・装備</button><button id="returnBtn">町へ帰還</button><button id="skillsBookBtn">覚えた技・魔法</button><button id="recBtn">冒険の記録</button><button id="dexBtn">モンスター図鑑</button><button id="dataBtn">データ引継ぎ</button><button id="menuBtn">メニュー</button></div></aside></main></div><div id="shade" class="shade hidden"><section id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"></section></div><div class="toast hidden" id="toast" role="status"></div>
+</head><body><div class="wrap"><header><div><div class="eyebrow">ONE FIELD · RETRO RPG</div><h1>ひとつの王国<span class="ver" style="font-size:11px;font-weight:700;color:#fff;background:#344758;border-radius:4px;padding:2px 6px;letter-spacing:.04em;margin-left:8px;vertical-align:middle">v1.81</span></h1><p>小さな旅路。大きな決戦。</p></div><div class="headbuttons"><button id="guideBtn">遊び方</button><button id="saveBtn">保存</button><button id="soundBtn">♪ON</button></div></header><main class="layout"><section><div class="world"><div class="maphead"><b id="zoneLabel">はじまりの草原</b><span id="zoneLevel">看板を調べて旅を進める</span></div><canvas id="map" width="768" height="512" aria-label="6つの危険度ゾーンと町、北東のボスがあるフィールド。矢印キーまたは移動ボタンで移動。"></canvas><div class="mapfoot"><span>⌂ 南西：町 ／ ♜ 北東：魔王の城</span><span id="coords">安全地帯</span></div><div id="dialogue" class="worldDialog hidden" role="dialog" aria-modal="false" aria-labelledby="dialogTitle"><h2 id="dialogTitle"></h2><p id="dialogText" aria-live="polite"></p><div class="dialogfooter"><span>スペースで閉じる ／ 移動は会話後</span><button id="dialogClose">つづける ▾</button></div></div><div id="battle" class="battle hidden"><div class="btitle"><b id="battleTitle"></b><span id="turnLabel"></span></div><div class="enemyarea" id="enemyRow"></div><div id="enemyFx" class="enemyfx"></div><div id="partyHud" class="partyhud"></div><div class="battlelog" id="battleLog" aria-live="polite"></div><div class="commands"><button data-cmd="last" id="lastCmd" class="hidden">▶ 前回の技</button><button data-cmd="items" id="itemCmd" class="hidden">◆ 特別な道具</button><button data-cmd="attack">⚔ たたかう</button><button data-cmd="skills">✦ 技・魔法</button><button data-cmd="heal" id="healCmd">＋ 回復</button><button data-cmd="herb" id="herbCmd">薬草</button><button data-cmd="guard">◇ ぼうぎょ</button><button data-cmd="flee">↩ にげる</button></div></div></div><div class="below"><div class="dpad" aria-label="移動"><button class="up" data-dir="0,-1" aria-label="北へ">▲</button><button class="left" data-dir="-1,0" aria-label="西へ">◀</button><button class="down" data-dir="0,1" aria-label="南へ">▼</button><button class="right" data-dir="1,0" aria-label="東へ">▶</button></div><div class="actions"><button id="huntBtn" class="primary">この地で敵を探す</button><button id="interactBtn">調べる / Space</button></div></div><div id="log" class="log" aria-live="polite"></div><div class="hint">移動：矢印 / WASD / 地図をタップ　・　アクション：Space / Enter　・　町はランダム遭遇なし</div></section><aside class="panel"><div class="statushead"><strong>旅の勇者</strong><span id="level" class="level">Lv.1</span></div><div class="meters"><div class="barlabel"><span>HP</span><b id="hpText"></b></div><div class="bar"><i id="hpBar"></i></div><div class="barlabel"><span>MP</span><b id="mpText"></b></div><div class="bar mp"><i id="mpBar"></i></div><div class="barlabel"><span>次のレベル</span><b id="xpText"></b></div><div class="bar exp"><i id="xpBar"></i></div></div><div class="stats"><div class="stat gold"><span>ゴールド</span><b id="gold"></b> G</div><div class="stat"><span>戦闘勝利</span><b id="kills"></b></div><div class="stat"><span>攻撃力</span><b id="atk"></b></div><div class="stat"><span>守備力</span><b id="def"></b></div></div><div id="partyRow" class="partyrow hidden"></div><div class="equip">武器　<b id="weapon"></b><br>防具　<b id="armor"></b><br>薬草　<b id="herbs"></b> ／ 魔法の水　<b id="waters"></b></div><div class="sideactions"><button id="bagBtn">道具・装備</button><button id="returnBtn">町へ帰還</button><button id="skillsBookBtn">覚えた技・魔法</button><button id="recBtn">冒険の記録</button><button id="dexBtn">モンスター図鑑</button><button id="dataBtn">データ引継ぎ</button><button id="menuBtn">メニュー</button></div></aside></main></div><div id="shade" class="shade hidden"><section id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"></section></div><div class="toast hidden" id="toast" role="status"></div>
 <script>window.addEventListener('error',function(e){var d=document.createElement('pre');d.style.cssText='position:fixed;left:0;right:0;top:0;z-index:99;background:#b00;color:#fff;font:12px/1.4 monospace;padding:8px;white-space:pre-wrap;margin:0';d.textContent='ERROR: '+e.message+' @'+e.lineno+':'+e.colno;document.body.appendChild(d)})</script>
 <script>
 'use strict';
@@ -306,13 +306,13 @@ function battleRender(){if(!enemy)return;let t=curTarget();
 const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
 function edmg(a,d,e){let r=damage(a,d);if(p.clear||d>=9000)return r;let el=e&&e.lv?e.lv:20,fl=Math.max(.4,.6-el*.012)*Math.max(0,Math.min(1,1-(p.level-el-4)/10));return Math.max(r,Math.round(a*fl*(rand(88,112)/100)))}
 function damage(a,d){if(d>=9000)return Math.random()<.45?0:1;return Math.max(1,Math.round((a-d*.65)*(rand(88,112)/100)))}
-const elMul=(e,el)=>!el?1:e.weak.includes(el)?1.5:e.resist.includes(el)?.5:1;
-const elTag=(e,el)=>!el?'':e.weak.includes(el)?'弱点！ ':e.resist.includes(el)?'いまひとつ… ':'';
-const elMark=(e,el)=>!el?'':e.weak.includes(el)?'↑':e.resist.includes(el)?'↓':'';
+const elMul=(e,el)=>!el?1:el==='tri'?(e.weak.length?1.5:1):el==='prism'?1:e.weak.includes(el)?1.5:e.resist.includes(el)?.5:1;
+const elTag=(e,el)=>!el?'':el==='tri'?(e.weak.length?'弱点！ ':''):el==='prism'?'':e.weak.includes(el)?'弱点！ ':e.resist.includes(el)?'いまひとつ… ':'';
+const elMark=(e,el)=>!el?'':el==='tri'?(e.weak.length?'↑':''):el==='prism'?'':e.weak.includes(el)?'↑':e.resist.includes(el)?'↓':'';
 function dealToEnemy(t,hit,el,six){t.hp=Math.max(0,t.hp-hit);shake(t);
  if(t.hp<=0){t.st=null;say(en(t)+'を倒した！');return}
  if(t.st&&t.st.k==='sleep'&&Math.random()<.5){t.st=null;say(en(t)+'は目を覚ました！')}
- if(el&&!t.st&&!t.resist.includes(el)&&Math.random()<stRate(t,(t.big?.07:.2),six)){let k=el==='fire'?'burn':'paralyze';t.st={k,t:k==='burn'?4:3};t.stn=(t.stn||0)+1;say(en(t)+'は'+ST[k].n+'になった！')}}
+ if(el&&el!=='tri'&&el!=='prism'&&!t.st&&!t.resist.includes(el)&&Math.random()<stRate(t,(t.big?.07:.2),six)){let k=el==='fire'?'burn':'paralyze';t.st={k,t:k==='burn'?4:3};t.stn=(t.stn||0)+1;say(en(t)+'は'+ST[k].n+'になった！')}}
 function shake(t){let c=t&&t.el&&t.el.querySelector('canvas');if(!c)return;c.classList.remove('hitfx');void c.offsetWidth;c.classList.add('hitfx')}
 function pick(){let ids=aliveIds();if(gst.nio&&ids.includes('gald'))return 'gald';let x=pick0(ids);if(gst.cover&&x===gst.cover&&ids.includes('gald'))x='gald';return x}
 function pick0(ids){let w=ids.map(id=>id==='hero'?2:id==='gald'&&gst.front?5:1),r=Math.random()*w.reduce((a,b)=>a+b,0);for(let i=0;i<ids.length;i++){r-=w[i];if(r<=0)return ids[i]}return ids[0]}
@@ -335,6 +335,7 @@ function command(c){if(!enemy||busy)return;if(c==='last'){if(!p.lastSkill)return
   else if(s.kind==='cure'){partyIds().forEach(id=>delete bst[id]);say(s.name+'！ 状態異常が治った。');sfx('heal')}
   else if(s.kind==='revive'){let id=deadAlly();delete down[id];delete bst[id];setHP(id,mHP(id));say(s.name+'！ '+mName(id)+'が最大HPで復活した！');sfx('heal')}
   else if(s.kind==='status'){let t=curTarget();if(!t.st&&Math.random()<stRate(t,(t.big?.3:.75))){t.st={k:s.st,t:3};t.stn=(t.stn||0)+1;say(s.name+'！ '+en(t)+'は眠りについた。')}else say(s.name+'！ …しかし効かなかった。');sfx('status')}
+  else if(s.hits){dwMulti(s)}
   else{let el=s.el||null,targets=s.all?aliveEn():[curTarget()],parts=[];
    let calc=t=>{if(t.def>=9000&&!s.pierce)return damage(1,t.def);let h=s.kind==='magic'?Math.round((s.base+p.level*s.scale)*rand(90,110)/100):damage(atk()*s.power,s.pierce?0:t.def*(s.id==='thunder'?.7:1));return Math.max(1,Math.round(h*elMul(t,el)))};
    if(s.all){let hits=targets.map(t=>[t,calc(t)]);say(s.name+'！ 全体攻撃！ '+hits.map(([t,h])=>(multi?en(t)+' ':'')+(h?h+elMark(t,el):'ミス')).join(' ／ ')+' ダメージ！');hits.forEach(([t,h])=>{if(h>0)dealToEnemy(t,h,el)})}
@@ -407,10 +408,11 @@ function winReal(){let all=enemies.filter(e=>!e.fled);if(!all.length){let n=enem
  dexWin(all).forEach(x=>pages.push(x));bountyWin(main).forEach(x=>pages.push(x));announceTitles().forEach(x=>pages.push(x));
  sfx(levels?'level':'win');endBattle(true,levels>0);
  log((all.length>1?'モンスターたち':main.name)+'を倒した！ '+xp+' EXP / '+gold+' G'+(levels?' ／ Lv.'+p.level+'に！ 全員回復。':''));save();
- if(levels&&!main.final){let ns=skills.filter(s=>s.level>oldLevel&&s.level<=p.level);pages.push(['レベルアップ！ Lv.'+p.level,'最大HP '+maxHP()+'（+'+levels*9+'） ／ 最大MP '+maxMP()+'（+'+levels*3+'）\n全員のHP・MPが全回復した！'+(ns.length?'\n新しい技を覚えた：'+ns.map(s=>s.name).join('、'):'\n力と守備力も上がった。')+(p.mem.sora?SORA_RAIN.filter(r=>r.lv>oldLevel&&r.lv<=p.level).map(r=>'\nソラが「'+r.n+'」を覚えた！（全体回復）').join(''):'')+(p.mem.mina?MINA.filter(m=>m.lv>oldLevel&&m.lv<=p.level).map(m=>'\nミナが「'+m.n+'」を覚えた！'+(m.hits?'（6連続）':m.all?'（全体）':'')).join(''):'')])}
+ if(levels&&!main.final){let ns=skills.filter(s=>s.level>oldLevel&&s.level<=p.level);pages.push(['レベルアップ！ Lv.'+p.level,'最大HP '+maxHP()+'（+'+levels*9+'） ／ 最大MP '+maxMP()+'（+'+levels*3+'）\n全員のHP・MPが全回復した！'+(ns.length?'\n新しい技を覚えた：'+ns.map(s=>s.name).join('、'):'\n力と守備力も上がった。')+(p.mem.sora?SORA_RAIN.filter(r=>r.lv>oldLevel&&r.lv<=p.level).map(r=>'\nソラが「'+r.n+'」を覚えた！（全体回復）').join(''):'')+(p.mem.mina?MINA.filter(m=>m.lv>oldLevel&&m.lv<=p.level).map(m=>'\nミナが「'+m.n+'」を覚えた！'+(m.hits?'（6連続）':m.all?'（全体）':'')).join(''):'')+dwNewSk(oldLevel,p.level)])}
  if(p.clear&&!p.clear2&&!p.dragon&&p.level>40&&!main.final&&!main.ex){p.dragon=true;pages.push(['世界のざわめき','突然、空を引き裂くような咆哮が響き渡った。\n北東の魔王の城の方角から、凄まじい闇の気配が降りてくる…。'],['終焉の龍が降り立った！','魔王の城に、終焉の龍が降り立ったようだ。'+(p.kflee?'\nその気配は、あの日逃げた黒龍に似ている…。':'')+'\n準備ができたら、城のそばで「調べる」から挑める。']);save()}
  if(main.ex&&!p.dw){dwS1(pages,false);p.dw=1;save()}
  if(main.dwb!=null)dwBossWin(main,pages);
+ if(main.dwl)dwlWin(main,pages);
  if(pages.length){let dp=null;if(pages[pages.length-1][0]==='終焉の龍が降り立った！'){dp=pages.pop();window.dragonHide=true}showScene(pages,dp?()=>dragonDescend(()=>showScene([dp])):null)}
  if(main.ex&&0)openModal('<h2 id="modalTitle">真の平和</h2><p class="note">終焉の龍を倒した！ 真のクリア</p><p>'+(p.kflee?'復讐に燃えた黒龍のなれの果ては、光の中へ静かに崩れ落ちた。':'')+'世界を覆っていた最後の闇が消えた。あなたと仲間たちの旅は、王国の伝説になるだろう。</p><div class="stats"><div class="stat">到達 Lv.'+p.level+'</div><div class="stat">勝利 '+p.kills+' 回</div><div class="stat gold">'+p.gold+' G</div><div class="stat">攻撃力 '+atk()+'</div></div><button class="primary" data-close>王国へ戻る</button>');
  if(main.final)openModal('<h2 id="modalTitle">王国に、朝が来た。</h2><p class="note">魔王を倒した！ 冒険クリア</p><p>5つの太陽のかけらが魔王の闇を晴らし、村に光が戻った。'+allyList().map(id=>ALLY[id].name).join('・')+'と共に、リナも村のみんなも、あなたの帰りを待っている。</p><div class="stats"><div class="stat">到達 Lv.'+p.level+'</div><div class="stat">勝利 '+p.kills+' 回</div><div class="stat gold">'+p.gold+' G</div><div class="stat">攻撃力 '+atk()+'</div></div><p>このあとも探索できます。魔王の死とともに各地の魔物が強くなり、北東の城には新たな強敵の気配が…（レベル上限は50）。もう一度遊ぶには「遊び方」から冒険をリセット。</p><button class="primary" data-close>王国を歩く</button>')}
@@ -431,7 +433,7 @@ const gates=[[3,7,3,8],[7,3,8,3],[11,7,11,8],[15,12,16,12],[20,7,20,8],[15,5,16,
 let dialogOpen=false;
 let p=fresh(),enemy=null,turn=1,busy=false,walkSteps=0,logs=[],routeTimer=null,shopTab='weapon',toastTimer,modalReturn=null,saveOK=true;
 const maxHP=()=>Math.round((30+p.level*9)*dwO('hp')),maxMP=()=>Math.round((10+p.level*3)*dwO('mp')),gearA=()=>p.weapon<0?0:weapons[p.weapon][1]+plusBonus('weapon',p.weapon),gearD=()=>p.armor<0?0:armors[p.armor][1]+plusBonus('armor',p.armor),atk=()=>Math.round((6+p.level*2+gearA())*dwO('atk')),def=()=>Math.round((3+Math.round(p.level*1.2)+gearD())*dwO('def')),need=()=>25+5*p.level*p.level;
-const zoneAt=(x=p.x,y=p.y)=>areaOrder[y<8?0:1][Math.floor(x/8)],inTown=()=>p.dw>=2?(p.x>=16&&p.y<=7):(p.x<=5&&p.y>=11);
+const zoneAt=(x=p.x,y=p.y)=>areaOrder[y<8?0:1][Math.floor(x/8)],inTown=()=>p.dw>=2?((p.x>=16&&p.y<=7)||(!!p.dwl&&p.x<=5&&p.y>=11)):(p.x<=5&&p.y>=11);
 function validSave(s){return s&&Number.isInteger(s.level)&&s.level>=1&&s.level<=99&&Number.isInteger(s.x)&&s.x>=0&&s.x<W&&Number.isInteger(s.y)&&s.y>=0&&s.y<H&&[['weapon',weapons.length],['armor',armors.length]].every(([k,n])=>Number.isInteger(s[k])&&s[k]>=-1&&s[k]<n)&&['xp','hp','mp','gold','herbs','waters','kills'].every(k=>Number.isFinite(s[k])&&s[k]>=0&&s[k]<1e8)&&typeof s.clear==='boolean'}
 try{const s=JSON.parse(localStorage.getItem(KEY)||'null');if(validSave(s)){p=s;p.hp=Math.min(p.hp,maxHP());p.mp=Math.min(p.mp,maxMP())}}catch(e){saveOK=false}
 if(!Array.isArray(p.facing)||p.facing.length!==2)p.facing=[0,-1];migrate();if(typeof p.questAccepted!=='boolean')p.questAccepted=false;
@@ -769,19 +771,23 @@ function openAllyBook(id,inBattle){
   if(L>=18)row('前に躍り出る','','仲間が傷ついているとき、そのターンの敵の狙いを自分に集める（約5倍狙われやすい）。そのターンは攻撃しない。');
   if(L>=24)row('立ちふさがる','','HPの減った仲間の前に立ち、その仲間への単体攻撃を代わりに受ける。そのターンは攻撃しない。');
   if(L>=30)row('仁王立ち','','仲間のHPが大きく減ったとき、そのターンの敵の攻撃を全部1人で受け止める（HPは1まで耐える）。次のターンは動けない。');
-  if(L<36)more='ガルドの戦いぶりには、まだ伸びしろがありそうだ。修練を積めば、新たな動きを身につけるかもしれない…';
-  if(L>=36)row('全身全霊の一撃','','いちばんHPが高い敵に、防御を無視した特大ダメージの一撃。次のターンは動けない。メタル系は狙わない。')}
+  if(L<65)more='ガルドの戦いぶりには、まだ伸びしろがありそうだ。修練を積めば、新たな動きを身につけるかもしれない…';
+  if(L>=36)row('全身全霊の一撃','','いちばんHPが高い敵に、防御を無視した特大ダメージの一撃。次のターンは動けない。メタル系は狙わない。');
+  if(L>=55)row('大地割り','【全体】','敵が2体以上のとき35%で出る。敵全体を攻撃（攻撃力×1.1）。');
+  if(L>=65)row('不屈の闘志','','HPが半分以下のとき40%で出る。いちばんHPが高い敵に攻撃力×2.6の一撃を与え、自分のHPを15%回復する。メタル系は狙わない。')}
  else if(id==='mina'){
   if(MINA.some(m=>m.lv>L))more='ミナの魔力には、まだ眠っている力があるようだ。修練を積めば、新たな魔法を覚えるかもしれない…';
-  const TIER={'ファイア':'小','ブリザド':'小','サンダー':'小','ファイアストーム':'中','ブリザドストーム':'中','サンダーストーム':'中','天雷の槍':'大','メテオレイン':'大','六連氷槍':'特大'};
+  const TIER={'ファイア':'小','ブリザド':'小','サンダー':'小','ファイアストーム':'中','ブリザドストーム':'中','サンダーストーム':'中','天雷の槍':'大','メテオレイン':'大','六連氷槍':'特大','三色の魔弾':'大','プリズムカタストロフ':'特大'};
   MINA.filter(m=>m.lv<=L).sort((a,b)=>a.lv-b.lv).forEach(m=>{let el='【'+EL[m.el].i+EL[m.el].n+'】',rg=m.hits?'【'+m.hits+'連続】':m.all?'【全体】':'【単体】',tr=TIER[m.n]||'中';
-   row(m.n,el+rg,'MP '+m.cost+' ／ Lv.'+m.lv+'で習得<br>'+(m.hits?'氷の槍を'+m.hits+'発、ランダムな敵に飛ばす。合計で'+tr+'ダメージ。メタル系には当たらない。':m.all?'敵全体に'+tr+'ダメージ。':'敵1体に'+tr+'ダメージ。'))})}
+   row(m.n,el+rg,'MP '+m.cost+' ／ Lv.'+m.lv+'で習得<br>'+(m.el==='tri'?'敵1体に'+tr+'ダメージ。炎・氷・雷の3色を同時に放つ。弱点がある敵には必ず弱点を突き、耐性は無視する。':m.el==='prism'?'敵全体に'+tr+'ダメージ。無属性なので、耐性を持つ敵にも通じる。':m.hits?'氷の槍を'+m.hits+'発、ランダムな敵に飛ばす。合計で'+tr+'ダメージ。メタル系には当たらない。':m.all?'敵全体に'+tr+'ダメージ。':'敵1体に'+tr+'ダメージ。'))})}
  else if(id==='sora'){
   const hp=healPow('sora');
-  if(SORA_RAIN.some(r=>r.lv>L))more='ソラの祈りには、まだ先がありそうだ。修練を積めば、新たな癒しの力に目覚めるかもしれない…';
+  if(SORA_RAIN.some(r=>r.lv>L)||L<65)more='ソラの祈りには、まだ先がありそうだ。修練を積めば、新たな癒しの力に目覚めるかもしれない…';
   row('ヒール','','MP 5<br>HPが半分未満の仲間のうち、いちばん弱った1人を中回復。');
   row('キュア','','MP 3<br>状態異常（睡眠以外）になった仲間を1人治す。');
-  SORA_RAIN.slice().sort((a,b)=>a.lv-b.lv).filter(r=>L>=r.lv).forEach(r=>row(r.n,'【全体回復】','MP '+r.cost+' ／ Lv.'+r.lv+'で習得<br>仲間2人以上のHPが65%未満のときに使う。全員を'+(r.r>=1?'大':'中')+'回復。'))}
+  SORA_RAIN.slice().sort((a,b)=>a.lv-b.lv).filter(r=>L>=r.lv).forEach(r=>row(r.n,'【全体回復】','MP '+r.cost+' ／ Lv.'+r.lv+'で習得<br>仲間2人以上のHPが65%未満のときに使う。全員を'+(r.r>=1?'大':'中')+'回復。'));
+  if(L>=55)row('天使の祝福','【復活】','MP 60 ／ Lv.55で習得<br>倒れた仲間がいるとき、HP50%で復活させる。');
+  if(L>=65)row('女神の抱擁','【全体回復】','MP 50 ／ Lv.65で習得<br>仲間2人以上のHPが40%未満のとき、1戦闘に1回だけ使う。全員のHPを最大の50%回復し、状態異常も治す。')}
  openModal('<div class="modalheader"><h2 id="modalTitle">技・魔法の書</h2><button data-close aria-label="閉じる">×</button></div>'+bookTabs(id)+statTable(id)+rows.join('')+(more?'<p class="small" style="margin-top:12px;opacity:.85">'+more+'</p>':''));
  bookBind(inBattle)}
 
@@ -998,15 +1004,175 @@ DR['らくがきオルグ']=c=>{shape(c,blob(80,102,46,44),'#a0705a');shape(c,bl
  line(c,[44,96],[20,128],'#2a2420',7);line(c,[116,96],[142,70],'#2a2420',7);
  shape(c,poly([[134,70],[150,62],[156,22],[134,14],[126,46]]),'#6a4a2a');line(c,[130,40],[150,36],'#2a2420',2.5);
  line(c,[62,142],[56,156]);line(c,[98,142],[106,156]);stroke(c,[[60,100],[100,120],[70,128]],'#6a3a30',3,3);scribbleOver(c,'#222',6)};
+function ctx_hl(c,x,y){c.fillStyle='#fff';c.globalAlpha=.8;c.beginPath();c.arc(x-2,y-2,2,0,7);c.fill();c.globalAlpha=1}
+function leaf(cx,cy,len,wid,ang){let ca=Math.cos(ang),sa=Math.sin(ang),P=[[0,0],[len*.3,-wid],[len*.75,-wid*.7],[len,0],[len*.75,wid*.7],[len*.3,wid]];return P.map(([x,y])=>[cx+x*ca-y*sa,cy+x*sa+y*ca])}
+// --- リナのドット絵の体（元ゲームのピクセルスプライトと同じ作り）
+const RHEAD=['.....hhhhhh.....','...hhhhhhhhhh...','..hhhhhhhhhhhh..','..hhhhhhhhhhhh..','.hhhhhhhhhhhhhh.','hhhhsssssssshhhh','hhhssssssssssshh','hhhsswessweSShhh','hhhsseesseesshhh','hhhskssssssksshh','.hhhsssmmsssshh.'];
+const RSTAND=RHEAD.concat(['hhhh..rssr..hhhh','hhh.pppppppp.hhh','hh.pppppppppp.hh','hh.ppppwwpppp.hh','h.spppppppppps.h','..sPPPPPPPPPPs..','..PPPPPPPPPPPP..','.PPPPPPPPPPPPPP.','.wwwwwwwwwwwwww.','.....ss..ss.....','.....ss..ss.....','....rrr..rrr....']);
+const RSIT=RHEAD.concat(['hhhh.pppppp.hhhh','hhh.pppppppp.hhh','hh.ssppppppss.hh','.h.sPPPPPPPPs.h.','...PPPPPPPPPP...','...rrPPPPPPrr...']);
+const RPAL={h:'#7a5ac8',s:'#ffe0c0',e:'#2a2420',w:'#ffffff',k:'#f5a0a0',m:'#c0462a',p:'#f58fb0',P:'#e07a9c',r:'#d9534a',S:'#ffe0c0'};
+function pix(c,rows,ox,oy,sc,pal){pal=Object.assign({},RPAL,pal||{});rows.forEach((r,y)=>{if(r.length!==16)throw new Error('row '+y+' len '+r.length);[...r].forEach((v,x)=>{if(v==='.')return;c.fillStyle=pal[v]||'#f0f';c.fillRect(ox+x*sc,oy+y*sc,sc+.5,sc+.5)})})}
+DR['リナ']=c=>{
+ const cols=['#f58fb0','#ffd24a','#8fd0f5','#9fe07a','#c79bf0'];
+ // うしろの光
+ for(let i=0;i<10;i++){let a=i*.63;stroke(c,[[80,80],[80+Math.cos(a)*60,80+Math.sin(a)*60]],'#ffe9a8',3,1.5)}
+ pix(c,RSTAND,32,6,6);
+ // 光の輪（クレヨン）
+ stroke(c,blob(80,10,24,6,16,.05),'#e8b81c',3.6,1.2);
+ // からだに巻きつく虹のリボン（らくがき）
+ for(let k=0;k<3;k++){let pts=[];for(let t=0;t<=1;t+=.06){pts.push([80+Math.sin(t*8+k*2.1)*34,152-t*66])}stroke(c,pts,cols[k*2%5],2.6,1)}
+ // 巨大クレヨン
+ shape(c,poly([[116,118],[124,112],[150,70],[142,64]]),'#ffd24a');shape(c,poly([[142,64],[150,70],[156,50]]),'#ffd24a','#2a2420',2,99);
+ // ハートとほし
+ [[22,36],[138,30]].forEach(([x,y])=>{c.fillStyle='#f58fb0';c.beginPath();c.moveTo(x,y+4);c.bezierCurveTo(x-10,y-6,x-4,y-12,x,y-5);c.bezierCurveTo(x+4,y-12,x+10,y-6,x,y+4);c.fill()});
+ txt(c,'あそぼ？',96,26,12,'#c0462a',.08,.9)};
+let CS=1;
+function headCanvas(rows,ox,oy,sc,pal){const o=document.createElement('canvas');o.width=o.height=SZ*CS;const x=o.getContext('2d');x.scale(CS,CS);pix(x,rows,ox,oy,sc,pal);return o}
+function pixT(c,rows,ox,oy,sc,pal,tilt,lift){lift=lift||0;
+ const head=rows.slice(0,11),body=rows.slice(11),px=ox+8*sc,py=oy+11*sc;
+ pix(c,body,ox,oy+11*sc,sc,pal);
+ if(lift){c.fillStyle=pal.s||RPAL.s;c.fillRect(px-4,py-lift-2,8,lift+3);stroke(c,[[px-4,py-lift],[px-4,py+1]],'#2a2420',1.8,.4);stroke(c,[[px+4,py-lift],[px+4,py+1]],'#2a2420',1.8,.4)}
+ const o=headCanvas(head,ox,oy,sc,pal);c.save();c.translate(0,-lift);c.translate(px,py);c.rotate(tilt);c.translate(-px,-py);c.drawImage(o,0,0,SZ,SZ);c.restore()}
+function onHead(c,ox,oy,sc,tilt,fn,lift){lift=lift||0;const px=ox+8*sc,py=oy+11*sc;c.save();c.translate(0,-lift);c.translate(px,py);c.rotate(tilt);c.translate(-px,-py);fn();c.restore()}
+function qpt(p0,p1,p2,t){return[(1-t)*(1-t)*p0[0]+2*(1-t)*t*p1[0]+t*t*p2[0],(1-t)*(1-t)*p0[1]+2*(1-t)*t*p1[1]+t*t*p2[1]]}
+function crescent(c,x0,x1,y,dep,th,n){c.fillStyle='#14101a';c.beginPath();c.moveTo(x0,y);c.quadraticCurveTo((x0+x1)/2,y+dep*2,x1,y);c.quadraticCurveTo((x0+x1)/2,y+dep*2-th,x0,y);c.fill();
+ for(let i=1;i<n;i++){let t=i/n,p=qpt([x0,y],[(x0+x1)/2,y+dep*2-th*.5],[x1,y],t),w=Math.max(2.4,(x1-x0)/n*.7);c.fillStyle='#f4ece2';c.fillRect(p[0]-w/2,p[1]-th*.42,w,th*.42)}}
+function smiley(c,x,y,r,col){shape(c,blob(x,y,r,r,12,.05),col,'#2a2420',2.2,3);c.fillStyle='#2a2420';c.beginPath();c.arc(x-r*.35,y-r*.2,r*.12,0,7);c.fill();c.beginPath();c.arc(x+r*.35,y-r*.2,r*.12,0,7);c.fill();stroke(c,[[x-r*.5,y+r*.2],[x,y+r*.62],[x+r*.5,y+r*.2]],'#2a2420',2,.6)}
+function hand(c,x,y,dx,dy,n){n=n||2;for(let k=-n;k<=n;k++){let a=Math.atan2(dy,dx)+k*.35;stroke(c,[[x,y],[x+Math.cos(a)*8,y+Math.sin(a)*8]],'#2a2420',2,.5)}}
+DR['いたずらの神リナE']=c=>{
+ const cols=['#5aa34a','#e5622c','#e8c23a','#7fb8d8','#f08ab0'];
+ const pal={},hp={p:'#e6e2d8',P:'#c4c0b6',w:'#aaa59a',h:'#8f7fc0',r:'#a8a398',s:'#f3eadf',k:'#f3eadf',m:'#f3eadf'};
+ // ニコちゃんの連なり（背骨のように）。最後は下半身につながる
+ const P=[[82,86],[58,96],[42,111],[46,127],[66,134],[88,131]];
+ stroke(c,P.map(p=>p),'#2a2420',2,1.5);
+ P.forEach(([x,y],i)=>smiley(c,x,y,12,cols[i%5]));
+ // 抜け殻の下半身：列の向きに合わせて回転、腰がニコちゃんの列につながる
+ const L=P[P.length-1],Q=P[P.length-2],ang=Math.atan2(L[1]-Q[1],L[0]-Q[0]),sc=3.4;
+ const o=document.createElement('canvas');o.width=o.height=SZ*CS;const ox=o.getContext('2d');ox.scale(CS,CS);pix(ox,RSTAND.slice(14),0,0,sc,pal);
+ const bw=16*sc,bh=9*sc;
+ c.save();c.translate(L[0]+Math.cos(ang)*9,L[1]+Math.sin(ang)*9);c.rotate(ang-Math.PI/2);c.translate(-bw/2,0);
+ // ふち取り（足だとわかるように）
+ const ol=document.createElement('canvas');ol.width=ol.height=SZ*CS;const ox2=ol.getContext('2d');ox2.scale(CS,CS);ox2.drawImage(o,0,0,SZ,SZ);ox2.globalCompositeOperation='source-in';ox2.fillStyle='#2a2420';ox2.fillRect(0,0,SZ,SZ);
+ [[-1.4,0],[1.4,0],[0,-1.4],[0,1.4],[-1,-1],[1,1],[-1,1],[1,-1]].forEach(([dx,dy])=>c.drawImage(ol,dx,dy,SZ,SZ));
+ c.drawImage(o,0,0,SZ,SZ);
+ c.restore();
+ // とても大きな頭（ドット絵）
+ const T=-.25,hs=6,OX=32,OY=2,PX=OX+8*hs,PY=OY+11*hs;
+ const o2=headCanvas(RHEAD,OX,OY,hs,hp);
+ c.save();c.translate(PX,PY);c.rotate(T);c.translate(-PX,-PY);c.drawImage(o2,0,0,SZ,SZ);
+ eye(c,OX+5.5*hs+2,OY+7.5*hs,11,'tiny');eye(c,OX+9.5*hs+2,OY+8*hs,5,'tiny');
+ crescent(c,OX-3,OX+16*hs+3,OY+9.5*hs,15,6,14);
+ c.restore();
+ txt(c,'みーつけた',6,156,10,'#6a665c',-.05,.8)};
+function eyeball(c,ex,ey,rad,k,look){
+ // リアルな目玉：陰のついた白目・虹彩のすじ・ひらいた瞳孔・ハイライト・血管
+ const g=c.createRadialGradient(ex-rad*.2,ey-rad*.25,rad*.1,ex,ey,rad);g.addColorStop(0,'#fff');g.addColorStop(.7,'#e8e8e8');g.addColorStop(1,'#8a8a8a');
+ c.fillStyle=g;c.beginPath();c.arc(ex,ey,rad,0,7);c.fill();
+ const q=RNG(Math.floor(k*53)+7);
+ c.strokeStyle='#444';c.lineWidth=Math.max(.5,rad*.045);
+ for(let j=0;j<11;j++){let a=j*.57+q();let p=[ex+Math.cos(a)*rad*.98,ey+Math.sin(a)*rad*.98],m=[ex+Math.cos(a+.15)*rad*.75,ey+Math.sin(a+.15)*rad*.75],e=[ex+Math.cos(a-.05)*rad*(.5+q()*.2),ey+Math.sin(a-.05)*rad*(.5+q()*.2)];
+  c.beginPath();c.moveTo(p[0],p[1]);c.quadraticCurveTo(m[0],m[1],e[0],e[1]);c.stroke();
+  let b=[m[0]+Math.cos(a+1.2)*rad*.18,m[1]+Math.sin(a+1.2)*rad*.18];c.beginPath();c.moveTo(m[0],m[1]);c.lineTo(b[0],b[1]);c.stroke()}
+ const ix=ex+look[0]*rad*.35,iy=ey+look[1]*rad*.35,ir=rad*.5;
+ const ig=c.createRadialGradient(ix,iy,ir*.2,ix,iy,ir);ig.addColorStop(0,'#555');ig.addColorStop(.6,'#999');ig.addColorStop(1,'#222');
+ c.fillStyle=ig;c.beginPath();c.arc(ix,iy,ir,0,7);c.fill();
+ c.strokeStyle='rgba(0,0,0,.55)';c.lineWidth=Math.max(.4,rad*.03);
+ for(let j=0;j<18;j++){let a=j*.35;c.beginPath();c.moveTo(ix+Math.cos(a)*ir*.45,iy+Math.sin(a)*ir*.45);c.lineTo(ix+Math.cos(a)*ir*.95,iy+Math.sin(a)*ir*.95);c.stroke()}
+ c.strokeStyle='#000';c.lineWidth=Math.max(.8,rad*.07);c.beginPath();c.arc(ix,iy,ir,0,7);c.stroke();
+ c.fillStyle='#000';c.beginPath();c.arc(ix,iy,ir*(.3+q()*.2),0,7);c.fill();
+ c.fillStyle='#fff';c.beginPath();c.arc(ix-ir*.3,iy-ir*.35,Math.max(.8,ir*.18),0,7);c.fill();
+ // まぶた
+ c.strokeStyle='#000';c.lineWidth=Math.max(1.2,rad*.14);c.beginPath();c.arc(ex,ey,rad,0,7);c.stroke();
+ c.lineWidth=Math.max(.8,rad*.08);c.beginPath();c.arc(ex,ey+rad*.2,rad*1.12,.25,2.9);c.stroke();
+}
+function scary3(c,x,y,r,k){
+ const q=RNG(Math.floor(k*97)+13);
+ const rot=(q()-.5)*.35;
+ c.save();c.translate(x,y);c.rotate(rot);
+ const ring=blob(0,0,r,r,16,.04);
+ const fg=c.createRadialGradient(-r*.3,-r*.4,r*.1,0,0,r);fg.addColorStop(0,'#fafafa');fg.addColorStop(1,'#b0b0b0');
+ c.fillStyle=fg;c.beginPath();ring.forEach(([px,py],i)=>i?c.lineTo(px,py):c.moveTo(px,py));c.fill();
+ stroke(c,ring,'#111',2.6,.7);
+ // ニコちゃんの大きな目玉（左右でちがうほう向き）
+ const looks=[[.6,.5],[-.7,.3],[0,.9],[.9,-.2],[-.3,-.8],[.2,.1]];
+ const L=looks[Math.floor(k*3)%6],Rk=looks[(Math.floor(k*3)+2)%6];
+ eyeball(c,-r*.4,-r*.2,r*.44,k,L);eyeball(c,r*.4,-r*.2,r*.44,k+3,Rk);
+ // ニコッと笑う人間の歯
+ const mw=r*.78,my=r*.38;
+ c.fillStyle='#111';c.beginPath();c.moveTo(-mw,my-r*.1);c.quadraticCurveTo(0,my+r*.85,mw,my-r*.1);c.quadraticCurveTo(0,my+r*.1,-mw,my-r*.1);c.fill();
+ c.fillStyle='#fff';const n=7;
+ for(let i=0;i<n;i++){let t=(i+.5)/n,px=-mw+2*mw*t,tp=my-r*.1+Math.sin(t*3.14)*r*.08,e=Math.sin(t*3.14),w=mw*2/n*.9;
+  c.fillRect(px-w/2,tp+.5,w,Math.max(1.5,e*r*.34))}
+ c.strokeStyle='#111';c.lineWidth=.6;for(let i=1;i<n;i++){let t=i/n,px=-mw+2*mw*t,tp=my-r*.1+Math.sin(t*3.14)*r*.08;c.beginPath();c.moveTo(px,tp);c.lineTo(px,tp+r*.3*Math.sin(t*3.14));c.stroke()}
+ c.restore()}
+DR['世界を描くリナG']=c=>{
+ const rr=RNG(123);
+ const P=[[114,100],[84,96],[54,102],[38,122],[56,138],[84,140]];
+ const L=P[P.length-1],Q=P[P.length-2],ang=Math.atan2(L[1]-Q[1],L[0]-Q[0]),sc=2.1;
+ // しおれた下半身（色あせたドレスの残り）
+ const dp={p:'#b9939f',P:'#977483',w:'#6a5a60',s:'#b8a98a',k:'#b8a98a',h:'#5a4a7a',r:'#6a5a60',m:'#b8a98a'};
+ const o=document.createElement('canvas');o.width=o.height=SZ*CS;const ox=o.getContext('2d');ox.scale(CS,CS);pix(ox,RSTAND.slice(14,20),0,0,sc,dp);
+ const bw=16*sc,bh=6*sc;
+ c.save();c.translate(L[0]+Math.cos(ang)*9,L[1]+Math.sin(ang)*9);c.rotate(ang-Math.PI/2);c.translate(-bw/2,0);
+ // 枯れ枝のような足（ほそく、ふしくれて、ありえない方向にまがる）
+ const leg=(x0,sgn)=>{
+  const k1=[x0+sgn*4,bh+7],k2=[x0-sgn*2,bh+14],ft=[x0+sgn*6,bh+20];
+  const pts=[[x0,bh-2],k1,k2,ft];
+  stroke(c,pts,'#2a2420',3,.6);stroke(c,pts,'#b8a98a',1.4,.4);
+  [k1,k2].forEach(k=>{c.fillStyle='#8a7d62';c.beginPath();c.arc(k[0],k[1],1.9,0,7);c.fill();c.strokeStyle='#2a2420';c.lineWidth=1.2;c.stroke()});
+  // ひび割れ
+  for(let i=0;i<4;i++){let t=rr(),p=qpt(pts[0],k1,k2,t);stroke(c,[[p[0]-2,p[1]],[p[0]+2,p[1]+2]],'#2a2420',1,.2)}
+  // ほそい指（つま先）
+  for(let i=-1;i<=1;i++)stroke(c,[ft,[ft[0]+sgn*3+i*1,ft[1]+3+i*2]],'#2a2420',1.4,.4)};
+ leg(5.4*sc,-1);leg(10.4*sc,1);
+ const ol=document.createElement('canvas');ol.width=ol.height=SZ*CS;const o2=ol.getContext('2d');o2.scale(CS,CS);o2.drawImage(o,0,0,SZ,SZ);o2.globalCompositeOperation='source-in';o2.fillStyle='#111';o2.fillRect(0,0,SZ,SZ);
+ [[-1.4,0],[1.4,0],[0,-1.4],[0,1.4],[-1,-1],[1,1],[-1,1],[1,-1]].forEach(([dx,dy])=>c.drawImage(ol,dx,dy,SZ,SZ));
+ c.drawImage(o,0,0,SZ,SZ);
+ // やぶれたすそ・ぬい目
+ for(let i=0;i<7;i++){stroke(c,[[i*bw/7,bh],[i*bw/7+3,bh-4],[i*bw/7+5,bh]],'#2a2420',1.2,.3)}
+ stroke(c,[[bw*.3,2],[bw*.36,bh*.5],[bw*.28,bh*.9]],'#2a2420',1.4,.4);
+ c.restore();
+ // 連なり：ぶきみなニコちゃん（大きさばらばら）、細い手がはえている
+ stroke(c,P,'#111',3,.6);
+ const rs=[14,15,14,15,14,16];
+ P.forEach(([x,y],i)=>{
+  if(i%2===0)for(let k=0;k<2;k++){let a=-1.9+k*1.1+(i?0:-1);stroke(c,[[x+Math.cos(a)*rs[i],y+Math.sin(a)*rs[i]],[x+Math.cos(a+.3)*(rs[i]+9),y+Math.sin(a+.3)*(rs[i]+9)],[x+Math.cos(a)*(rs[i]+16),y+Math.sin(a)*(rs[i]+16)]],'#111',1.8,.6);hand(c,x+Math.cos(a)*(rs[i]+16),y+Math.sin(a)*(rs[i]+16),Math.cos(a),Math.sin(a),2)}});
+ P.forEach(([x,y],i)=>scary3(c,x,y,rs[i],i*.9+1));
+ // 巨大な頭（顔が縦にわれている・色はそのまま）
+ const SC=7,OX=24,OY=-6,PX=80,PY=OY+11*SC,T=.14;
+ const oh=headCanvas(RHEAD,OX,OY,SC,{p:'#ece8e0',P:'#c8c4bc',w:'#2a2420',h:'#5a4a7a',r:'#bdb8b0',s:'#f4ece2',S:'#f4ece2',k:'#e4dcd2',m:'#f4ece2'});
+ c.save();c.translate(PX,PY);c.rotate(T);c.translate(-PX,-PY);c.drawImage(oh,0,0,SZ,SZ);
+ // 髪のひっかき傷
+ for(let i=0;i<9;i++){let x=OX+8+rr()*100,y=OY+4+rr()*34;stroke(c,[[x,y],[x+6+rr()*8,y+10+rr()*10],[x+4,y+22+rr()*6]],'#2a1a50',1.6,.8)}
+ // 顔のひび
+ [[OX+20,OY+4.5*SC],[OX+90,OY+6*SC]].forEach(([x,y],i)=>stroke(c,[[x,y],[x+(i?-9:9),y+8],[x+(i?-4:3),y+16],[x+(i?-12:12),y+24]],'#3a2a30',1.4,.8));
+ // 目（黒くぬりつぶし）と、したたる黒いなみだ
+ [[60,OY+8*SC,9,12],[100,OY+8*SC,9,12]].forEach(([x,y,rx,ry])=>{c.fillStyle='#14101a';c.beginPath();c.ellipse(x,y,rx,ry,0,0,7);c.fill();
+  c.beginPath();c.moveTo(x-3,y+ry-2);c.lineTo(x+3,y+ry-2);c.lineTo(x+1,y+ry+8+rr()*6);c.lineTo(x-1,y+ry+8+rr()*6);c.fill()});
+ // ちいさな目がびっしり（ほお・おでこ）
+ [[46,OY+5*SC],[114,OY+5.4*SC],[70,OY+5.2*SC],[92,OY+5.4*SC],[44,OY+8.8*SC],[116,OY+9*SC],[62,OY+3*SC],[102,OY+3.4*SC]].forEach(([x,y],i)=>{c.fillStyle='#14101a';c.beginPath();c.ellipse(x,y,i<2?4.5:2.6,i<2?5.5:3.2,0,0,7);c.fill();if(i>1){c.fillStyle='#fff';c.fillRect(x-.8,y-1.2,1.4,1.4)}});
+ // 縦のさけめ（歯がびっしり・ひろく）
+ c.fillStyle='#14101a';c.beginPath();c.ellipse(80,OY+6.2*SC,8,50,0,0,7);c.fill();
+ for(let i=0;i<13;i++){let y=OY+1*SC+i*6.6,w=7-Math.abs(i-6)*.35;c.fillStyle='#f4ece2';c.fillRect(80-w-3,y,w*.9+1,3.6);c.fillRect(80+3+w*.1,y+2,w*.9+1,3.6)}
+ c.restore()};
+function limbs(c,x,y,r,col){
+ // 細い手足
+ [[-1,0],[1,0]].forEach(([d])=>{stroke(c,[[x+d*r*.9,y+r*.1],[x+d*(r+14),y+r*.5],[x+d*(r+22),y+r*.1]],'#2a2420',2.4,.8);hand(c,x+d*(r+22),y+r*.1,d,-.3,2);
+  stroke(c,[[x+d*r*.4,y+r*.95],[x+d*(r*.5+4),y+r+16],[x+d*(r*.5+12),y+r+24]],'#2a2420',2.4,.8)})}
+DR['リナのニコちゃん赤']=c=>{limbs(c,80,76,38);smiley(c,80,76,38,'#e5622c');txt(c,'ふふっ',96,150,11,'#6a665c',-.05,.7)};
+DR['リナのニコちゃん緑']=c=>{limbs(c,80,76,38);smiley(c,80,76,38,'#5aa34a');txt(c,'ふふっ',96,150,11,'#6a665c',-.05,.7)};
+DR['リナのぎょろ目ニコちゃん']=c=>{limbs(c,80,74,40);scary3(c,80,74,40,1.3)};
+DR['リナのぎょろ目ニコちゃんB']=c=>{limbs(c,80,74,40);scary3(c,80,74,40,2.6)};
 const TIER={"ぐるぐる木": 2, "笑いきのこ": 2, "わらい棒人間": 2, "はちもどき": 2, "ぐるぐる太陽": 0, "とけロウソク": 0, "ほのお犬": 0, "ひのとり": 0, "あしつき家": 3, "めだまサボテン": 3, "さかさ人間": 3, "みつ首犬": 3, "ゆきだるま怪物": 1, "こおりクレヨン": 1, "ふぶき顔": 1, "つららバード": 1, "黒ぬりの子": 4, "めだらけ草むら": 4, "くちだけ": 4, "ばってん人形": 4, "けしごむ": 0, "らくがきウッドロア": 2, "らくがきヴォルカ": 0, "らくがきゼクス": 3, "らくがきフロスト": 1, "らくがきオルグ": 4};
+const BIG={'いたずらの神リナ':1.5,'世界を描くリナ':1.5,'いたずらの神リナB':1.5,'世界を描くリナB':1.5,'いたずらの神リナC':1.5,'いたずらの神リナD':1.5,'いたずらの神リナE':1.5,'世界を描くリナC':1.5,'世界を描くリナD':1.5,'世界を描くリナE':1.5,'世界を描くリナF':1.5,'世界を描くリナG':1.5,'リナのニコちゃん赤':1.5,'リナのニコちゃん緑':1.5,'リナのぎょろ目ニコちゃん':1.5,'リナのぎょろ目ニコちゃんB':1.5};const DRAWTR={'いたずらの神リナ':1,'世界を描くリナ':2,'いたずらの神リナB':1,'世界を描くリナB':2,'いたずらの神リナC':1,'いたずらの神リナD':1,'いたずらの神リナE':1,'世界を描くリナC':2,'世界を描くリナD':2,'世界を描くリナE':2,'世界を描くリナF':2,'世界を描くリナG':2,'リナのニコちゃん赤':1,'リナのニコちゃん緑':1,'リナのぎょろ目ニコちゃん':2,'リナのぎょろ目ニコちゃんB':2};TIER['リナ']=0;TIER['いたずらの神リナ']=3;TIER['世界を描くリナ']=4;TIER['いたずらの神リナB']=3;TIER['世界を描くリナB']=4;TIER['いたずらの神リナC']=3;TIER['いたずらの神リナD']=3;TIER['いたずらの神リナE']=3;TIER['世界を描くリナC']=4;TIER['世界を描くリナD']=4;TIER['世界を描くリナE']=4;TIER['世界を描くリナF']=4;TIER['世界を描くリナG']=4;TIER['リナのニコちゃん赤']=3;TIER['リナのニコちゃん緑']=3;TIER['リナのぎょろ目ニコちゃん']=4;TIER['リナのぎょろ目ニコちゃんB']=4;
 
 function hashN(n){let h=7;for(const ch of n)h=(h*31+ch.charCodeAt(0))%1000003;return h+1}
 const cache={};
 function render(name,bare){let ck=bare?name+'#b':name;if(cache[ck])return cache[ck];if(!DR[name])return null;
- const cv=document.createElement('canvas');cv.width=cv.height=SZ;const x=cv.getContext('2d');
- TR=TIER[name]||0;R=RNG(hashN(name)*37);
- if(bare){const t=document.createElement('canvas');t.width=t.height=SZ;paper(t.getContext('2d'),TR);DR[name](x)}
- else{paper(x,TR);DR[name](x);deco(x)}
+ CS=BIG[name]||1;const cv=document.createElement('canvas');cv.width=cv.height=SZ*CS;const x=cv.getContext('2d');x.scale(CS,CS);
+ TR=TIER[name]||0;R=RNG(hashN(name)*37);const DT=DRAWTR[name];
+ if(bare){DT!=null&&(TR=DT);DR[name](x)}
+ else{paper(x,TR);DT!=null&&(TR=DT);DR[name](x);if(DT==null)deco(x)}
  cache[ck]=cv;return cv}
 window.DWART={render:render,tier:n=>TIER[n]||0,has:n=>!!DR[n]};
 })();
@@ -1128,7 +1294,7 @@ const DWCAMP=[
 {x:18,y:2,kind:'mon',type:'ghost',color:'#cfe3f0',name:'ゴースト',lines:['「……魔王さまの気配が、まだお城に残っている気がするの。……気のせいかしら」']},
 {x:21,y:6,kind:'ppl',name:'村人',color:'#9aa6d8',hair:'#3b2b20',lines:['「村が、絵の中に消えてしまった……。でも、魔物たちが助けてくれたんだ。もう人も魔物も、関係ないよ」']},
 {x:19,y:3,kind:'ppl',name:'村の子ども',color:'#d6a14a',hair:'#8a5a32',lines:['「まものさん、やさしいよ！ ぼくのこと、背中にのせてくれたの」']}];
-function dwBlock(x,y){return p.dw>=2&&((x<=5&&y>=11)||DWCAMP.some(o=>o.x===x&&o.y===y)||!!dwBossAt(x,y))}
+function dwBlock(x,y){return p.dw>=2&&((x<=5&&y>=11&&!p.dwl)||DWCAMP.some(o=>o.x===x&&o.y===y)||!!dwBossAt(x,y))}
 function dwDrawCamp(){let X0=16*T,Y0=2*T;ctx.save();ctx.fillStyle='#8a7a5a44';ctx.fillRect(X0,Y0,7*T,6*T);ctx.restore();
  DWCAMP.forEach(o=>{let X=o.x*T,Y=o.y*T;
   if(o.kind==='shop'||o.kind==='inn'){ctx.fillStyle='#12232366';ctx.fillRect(X+2,Y+27,28,4);let col=o.kind==='shop'?'#c2884a':'#5f93b0';ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(X+16,Y+2);ctx.lineTo(X+31,Y+27);ctx.lineTo(X+1,Y+27);ctx.closePath();ctx.fill();ctx.fillStyle='#0003';ctx.beginPath();ctx.moveTo(X+16,Y+2);ctx.lineTo(X+31,Y+27);ctx.lineTo(X+16,Y+27);ctx.closePath();ctx.fill();ctx.fillStyle='#1a1410';ctx.beginPath();ctx.moveTo(X+16,Y+13);ctx.lineTo(X+22,Y+27);ctx.lineTo(X+10,Y+27);ctx.closePath();ctx.fill();ctx.fillStyle='#f7edcc';ctx.fillRect(X+15,Y-3,2,6);ctx.fillStyle='#d9534f';ctx.fillRect(X+17,Y-3,6,3);ctx.font='bold 10px system-ui';ctx.textAlign='center';ctx.fillText(o.kind==='shop'?'お店':'宿',X+16,Y+40)}
@@ -1136,16 +1302,16 @@ function dwDrawCamp(){let X0=16*T,Y0=2*T;ctx.save();ctx.fillStyle='#8a7a5a44';ct
   else if(o.kind==='fire'){ctx.fillStyle='#12232366';ctx.fillRect(X+4,Y+27,24,4);ctx.fillStyle='#6b4a2a';ctx.fillRect(X+5,Y+22,22,5);ctx.fillRect(X+9,Y+19,5,8);ctx.fillRect(X+18,Y+19,5,8);ctx.fillStyle='#e8622a';ctx.beginPath();ctx.moveTo(X+16,Y+4);ctx.lineTo(X+24,Y+20);ctx.lineTo(X+8,Y+20);ctx.closePath();ctx.fill();ctx.fillStyle='#ffc94a';ctx.beginPath();ctx.moveTo(X+16,Y+11);ctx.lineTo(X+21,Y+20);ctx.lineTo(X+11,Y+20);ctx.closePath();ctx.fill()}
   else if(o.kind==='mon'){ctx.fillStyle='#12232366';ctx.fillRect(X+5,Y+26,22,4);_dwSprite(ctx,o.type,o.color,X+16,Y+16,2)}
   else if(o.kind==='ppl'){person(o.x,o.y,o.color,o.hair,null)}})}
-function dwDrawVillage(){let X=0,Y=11*T,Wd=6*T,Hd=5*T,r=dwRng(7);ctx.save();ctx.beginPath();ctx.rect(X,Y,Wd,Hd);ctx.clip();ctx.fillStyle='#17090c';ctx.fillRect(X,Y,Wd,Hd);
+function dwDrawVillage(){if(p.dwl)return;let X=0,Y=11*T,Wd=6*T,Hd=5*T,r=dwRng(7);ctx.save();ctx.beginPath();ctx.rect(X,Y,Wd,Hd);ctx.clip();ctx.fillStyle='#17090c';ctx.fillRect(X,Y,Wd,Hd);
  const cs=['#050505','#8a1018','#050505','#a02030','#2a0a0e'];ctx.lineCap=ctx.lineJoin='round';
  for(let i=0;i<48;i++){ctx.strokeStyle=cs[i%5];ctx.lineWidth=2+r()*5;ctx.beginPath();let x=r()*Wd,y=Y+r()*Hd;ctx.moveTo(x,y);for(let q=0;q<6;q++){x+=(r()-.5)*90;y+=(r()-.5)*90;ctx.lineTo(x,y)}ctx.stroke()}
  ctx.font='bold 13px system-ui';ctx.textAlign='center';ctx.fillStyle='#c01820';ctx.save();ctx.translate(3*T,13.4*T);ctx.rotate(-.1);ctx.fillText('かえして',0,0);ctx.restore();ctx.restore()}
 const _dwDW=drawWorld;drawWorld=function(){if(p.dw>=2)dwDrawCamp();_dwDW()};
 const _dwDM=drawMap;drawMap=function(){_dwDM();if(p.dw>=2){dwDrawVillage();ctx.save();ctx.fillStyle='#2c263e';ctx.fillRect(20*T,75,4*T,13);ctx.font='bold 11px system-ui';ctx.textAlign='center';ctx.fillStyle='#cda8bd';ctx.fillText('魔王の城',22*T,85);ctx.restore();hero()}};
-const _dwShop=shop;shop=function(){_dwShop();if(p.dw>=2&&!shopRemote){let t=$('#modalTitle');if(t)t.textContent='野営地のお店'}};
+const _dwShop=shop;shop=function(){_dwShop();if(p.dw>=2&&!shopRemote&&p.x>=16){let t=$('#modalTitle');if(t)t.textContent='野営地のお店'}};
 function dwTalk(title,lines){showScene(lines.map(t=>[title,t]))}
 function dwInteract(x,y){
- if(x<=5&&y>=11&&x>=0){showDialogue('村のあった場所','黒い落書きが、ぐしゃぐしゃに渦を巻いている。\n今はまだ、近づくこともできない…。');return true}
+ if(x<=5&&y>=11&&x>=0&&!p.dwl){showDialogue('村のあった場所','黒い落書きが、ぐしゃぐしゃに渦を巻いている。\n今はまだ、近づくこともできない…。');return true}
  let o=DWCAMP.find(o=>o.x===x&&o.y===y);
  if(o){shopRemote=false;
   if(o.kind==='shop'){shopTab='weapon';shop();return true}
@@ -1159,9 +1325,9 @@ function dwInteract(x,y){
  if(x===5&&y===2){showScene([['老賢者ヨーム','「リナが神だったとはのう……。わしの目も、ふしあなじゃった。」'],['老賢者ヨーム','「落書きの化け物は、村に近づくほど荒々しくなる。あの娘の本心が、そこに溢れておるのじゃろう。」']]);return true}
  return false}
 const _dwIA=interactAt;interactAt=function(x,y){if(p.dw>=2&&dwInteract(x,y))return true;return _dwIA(x,y)};
-const _dwBump=bump;bump=function(x,y){if(p.dw>=2&&x<=5&&y>=11&&x>=0&&y<H){showDialogue('村のあった場所','黒い落書きが、ぐしゃぐしゃに渦を巻いている。\n今はまだ、近づくこともできない…。');return}_dwBump(x,y)};
+const _dwBump=bump;bump=function(x,y){if(p.dw>=2&&!p.dwl&&x<=5&&y>=11&&x>=0&&y<H){showDialogue('村のあった場所','黒い落書きが、ぐしゃぐしゃに渦を巻いている。\n今はまだ、近づくこともできない…。');return}_dwBump(x,y)};
 const _dwBP=bossPrompt;bossPrompt=function(){if(p.dw>=2){showDialogue('魔王の城','城の扉は固く閉ざされている。\n……中から、かすかに、誰かの気配がする。');return}_dwBP()};
-const _dwUp=update;update=function(){_dwUp();if(p.dw>=1&&p.clear2){let camp=p.dw>=2&&inTown(),z=zoneAt();
+const _dwUp=update;update=function(){_dwUp();if(p.dw>=1&&p.clear2){let camp=p.dw>=2&&inTown()&&p.x>=16,z=zoneAt();
  if(p.dw>=2){$('#zoneLabel').textContent=camp?'魔王の野営地':zones[z].name;$('#zoneLevel').textContent=camp?'安全地帯 / 無料の宿':(DWR[z]?'らくがきの魔物 Lv.'+dwRange(z):'');$('#coords').textContent=camp?'お店・宿屋・手配書':'らくがきの世界'}
  else $('#coords').textContent='村へ戻ろう'}};
 function dwGuide(){return p.dw>=2?'<p><b>らくがきの世界：</b>終焉の龍を倒したあと、世界は大きく変わります。村は消え、魔王の領域に「野営地」ができました（お店・宿屋・手配書）。魔物は「らくがきの魔物」だけになり、野営地から遠ざかるほど強く不気味になります。進む順番は、火山 → 高原 → 森 → 荒野 → 村のあった草原。敵からもらえる経験値は多めです。レベル上限は70。</p>':''}
@@ -1191,35 +1357,35 @@ const DWB=[
  blurb:'森の奥に、少女のクレヨン画のような大木が立っている。ぐるぐるの目が、こちらをじっと見ている。',
  fl:['らくがきウッドロアの枝が ざわざわと 揺れている。','らくがきウッドロアは ぐるぐるの目で こちらを見ている。'],
  pre:[['らくがきウッドロア','「ザワ…ザワ…。ここは リナさまが 描いてくれた 森…」'],['らくがきウッドロア','「かわいい木でしょう？ ……わたし、むかし おまえたちに 倒された。そのこと、ちゃんと 覚えてるの」']],
- post:[['らくがきウッドロア','「…ザワ…。リナさまは、いつも ひとりで 絵を描いていた。わたしを描いたときだけ、すこし 笑っていたの」'],['らくがきウッドロア','「これを 持っていって。リナさまが ぬりつぶした 世界の色。…わたしたちが、こっそり 隠していたの」']]},
+ post:[['らくがきウッドロア','「…ザワ…。リナさまは、いつも 笑いながら 絵を描いていた。気に入れば ほめて、気に入らなければ ぐしゃぐしゃ。……ぜんぶ、あそびなの」'],['らくがきウッドロア','「これを 持っていって。リナさまが ぬりつぶした 世界の色。…わたしたちが、こっそり 隠していたの」']]},
 {k:'atk',zone:4,x:19,y:13,name:'らくがきヴォルカ',lv:57,col:'#e5622c',weak:['ice'],res:['fire'],hk:3.8,ak:1.3,dk:1.1,rec:54,glow:'#ff8a3a',
  st:['burn',.35],sp:{name:'ぐるぐる業火',pow:1,aoe:true,st:['burn',.5]},ao:['ほのおの爪',.5,.3],
  g:{enrage:{msg:'ヴォルカは けしごむで 自分をぬりなおした！ 傷が消えていく…',heal:.2,atk:1.1}},
  blurb:'火山の火口で、赤いクレヨンの竜が ふふっと笑っている。ところどころ、消しゴムで消された跡がある。',
  fl:['らくがきヴォルカは ほのおを ぐるぐると吐いている。','らくがきヴォルカの体の線が 少しだけ にじんだ。'],
  pre:[['らくがきヴォルカ','「グルルル…ふふっ。ほのお、ほのお、もえろ、もえろ！」'],['らくがきヴォルカ','「あのひとは 気に入らない絵を、けしごむで 消すんだ。おれも 何度も 消されて 描きなおされた」']],
- post:[['らくがきヴォルカ','「……見ただろ。消えた線が、また線になるところ。痛くはない。ただ、さみしいだけだ」'],['らくがきヴォルカ','「あのひとの手は いつも ふるえていた。……持っていけ。赤い色だ。おれの炎の、ほんとうの色」']]},
+ post:[['らくがきヴォルカ','「……見ただろ。消えた線が、また線になるところ。痛くはない。ただ、あのひとは それを 笑って見てるんだ」'],['らくがきヴォルカ','「あのひとの手は いつも 楽しそうに 動いてた。……持っていけ。赤い色だ。おれの炎の、ほんとうの色」']]},
 {k:'def',zone:1,x:4,y:5,name:'らくがきゼクス',lv:67,col:'#6a6a80',weak:['thunder'],res:[],hk:3.8,ak:1.2,dk:1.2,rec:64,glow:'#b0b0c8',
  st:['paralyze',.25],death:{one:[.05,.5,'ばってん斬り']},
  g:{tele:{every:4,msg:'ゼクスは 剣を ×の形に ふりかぶっている…！',sp:{name:'ばってん斬り',pow:1.1,aoe:true,st:['paralyze',.3],death:.1}},enrage:{msg:'ゼクスの兜の ×印が 赤く燃え上がった！',atk:1.15,tele:3}},
  blurb:'荒野の真ん中で、ぐしゃぐしゃに塗られた騎士が剣を構えている。兜の ×印が、こちらを睨んでいる。',
  fl:['らくがきゼクスは 微動だにしない。','らくがきゼクスの兜の奥から 低い声が聞こえた。'],
  pre:[['らくがきゼクス','「……止まれ。ここから先へは、行かせん」'],['らくがきゼクス','「我は 命じられるまま、おまえたちを斬った。それが、描かれた 我の役目だ」']],
- post:[['らくがきゼクス','「見事だ……。斬られるたびに、あの方は 泣きそうな顔をしていた。……なぜだ。望んだのは、あの方のはずなのに」'],['らくがきゼクス','「黄色の宝珠だ。持っていけ。……あの方を、頼む」']]},
+ post:[['らくがきゼクス','「見事だ……。我が おまえたちを斬るたびに、あの方は 手を叩いて 笑っていた。……あれは、遊びだったのだ。我らの命は、おもちゃだった」'],['らくがきゼクス','「黄色の宝珠だ。持っていけ。……あの方の 遊びを、終わらせてくれ」']]},
 {k:'mp',zone:3,x:12,y:13,name:'らくがきフロスト',lv:61,col:'#7fb8d8',weak:['fire'],res:['ice'],hk:3.8,ak:1.18,dk:1.15,rec:58,glow:'#aee8ff',
  st:['paralyze',.35],sp:{name:'アイスストーム',pow:.9,aoe:true,st:['paralyze',.5]},ao:['ふぶき',.6,.35,'paralyze'],
  g:{enrage:{msg:'ふぶきが 吹き荒れる！ らくがきの線が 凍りついていく…',atk:1.1,ao:['ふぶき',.7,.6,'paralyze']}},
  blurb:'高原に、帽子をかぶった雪色の魔導士が立っている。顔は、白く塗りつぶされている。',
  fl:['らくがきフロストの杖から 冷たい線が こぼれた。','らくがきフロストは 小さな声で 歌っている…。'],
- pre:[['らくがきフロスト','「さむい、さむい…ねえ、いっしょに あそぼ？」'],['らくがきフロスト','「あのひとね、神さまの世界に 友だちが ひとりも いなかったの。だから、世界ごと つくろうとしたのよ」']],
- post:[['らくがきフロスト','「…ふふ、負けちゃった。あのひとの 描く絵はね、みんな、だれかの 笑った顔なの」'],['らくがきフロスト','「青い宝珠。凍えた心を、ほんの少し 溶かす色よ。…村の方へ行くなら、気をつけて。あそこは あのひとの、いちばん 深い場所」']]},
+ pre:[['らくがきフロスト','「さむい、さむい…ねえ、いっしょに あそぼ？」'],['らくがきフロスト','「あのひとね、神さまの世界が 退屈で 退屈で、たまらなかったの。だから、世界ごと つくって あそぶことにしたのよ」']],
+ post:[['らくがきフロスト','「…ふふ、負けちゃった。あのひとの 描く絵はね、どれも 楽しそうな顔を してるの。……描かれた わたしたちは、ぜんぜん 楽しくないのに」'],['らくがきフロスト','「青い宝珠。凍えた心を、ほんの少し 溶かす色よ。…村の方へ行くなら、気をつけて。あそこは あのひとの、いちばんの お気に入りの あそび場よ」']]},
 {k:'heal',zone:0,x:4,y:9,name:'らくがきオルグ',lv:70,col:'#a0705a',weak:['thunder'],res:[],hk:3.4,ak:0.9,dk:1.15,rec:68,glow:'#c01820',
  st:['paralyze',.3],sp:{name:'大ぶりの一撃',pow:1.1,aoe:true},
  g:{enrage:{msg:'オルグの目が ぐしゃぐしゃに塗りつぶされた！ 二度ずつ殴ってくる！',atk:1.1,twice:1}},
  blurb:'村のそばの草むらに、黒くぬりつぶされたオルグが立ちふさがっている。「みんな きらい」と、赤い文字が揺れている。',
  fl:['らくがきオルグは 棍棒を ひきずっている。','らくがきオルグの口から 赤い線が ぽたりと落ちた。'],
- pre:[['らくがきオルグ','「グオオ…！ ここは…むらの、入口…とおさない…！」'],['らくがきオルグ','「村は あの方の いちばん 好きな場所だった。……だから、塗りつぶしたんじゃない。閉じこめたんだ」']],
- post:[['らくがきオルグ','「…あの方は 村で ずっと、待っている。だれかが 迎えに 来るのを」'],['らくがきオルグ','「桃色の宝珠だ。村のぬくもりが、まだ 少しだけ 残っている。……行ってやってくれ」']]}
+ pre:[['らくがきオルグ','「グオオ…！ ここは…むらの、入口…とおさない…！」'],['らくがきオルグ','「村は あの方の いちばんの お気に入りの あそび場だった。……だから、塗りつぶしたんじゃない。ひとりじめしたんだ」']],
+ post:[['らくがきオルグ','「…あの方は 村で ずっと、待っている。あたらしい あそび相手が 来るのを」'],['らくがきオルグ','「桃色の宝珠だ。村のぬくもりが、まだ 少しだけ 残っている。……あの遊びを、終わらせてやってくれ」']]}
 ];
 DWB.forEach(b=>{FX[b.name]={weak:b.weak,resist:b.res,xpm:1,goldm:1};DWF[b.name]=b.fl});
 const dwBossDone=b=>!!(p.dwb&&p.dwb[b.k]);
@@ -1269,11 +1435,11 @@ const _dwBP3=bossPrompt;bossPrompt=function(){
   showScene([['魔王の城','5つの宝珠が、ひとりでに光りはじめる。\n閉ざされていた城の扉が、ゆっくりと開いていく。'],
    ['魔王の残穢','「……来たか、勇者よ」\n暗い広間の奥に、あの夜の魔王の面影が、薄く揺れている。'],
    ['魔王の残穢','「我は、もうこの世にいない。ここにあるのは、ただの残り香だ。リナに命じられるまま、おまえたちの敵を演じた、な」'],
-   ['魔王の残穢','「リナは、孤独な子だ。神々の国で、誰にも愛されなかった。だから、我らを描いた。友を、家族を……世界を」'],
+   ['魔王の残穢','「リナは、退屈した神だ。神々の国で、あまりに長く、ひとりで遊びすぎた。だから、我らを描いた。勇者を、魔王を……世界を。すべて、あの子の遊び道具だ」'],
    ['魔王の残穢','「だが、遊びは、いつか終わらせねばならん。5つの色をひとつに——我の力を、おまえたちに託そう」'],
    ['共鳴','5つの宝珠が、ひとつの光に溶けていく。\n「共鳴」の力を手に入れた！'],
    ['共鳴のしくみ','戦闘中に「共鳴ゲージ」が溜まっていく。\n・毎ターン少しずつ溜まる\n・敵の攻撃を受けるほど、早く溜まる\nゲージが満タンになると「共鳴」が使える。全員の力を合わせた、守備を無視する全体攻撃だ。\n（ゲージは戦闘ごとにリセット）'],
-   ['魔王の残穢','「リナを……あの子を、止めてやってくれ。……頼む」\n残り香が、光の粒になって消えていく。']],
+   ['魔王の残穢','「リナを……あの子の遊びを、終わらせてやってくれ。……頼む」\n残り香が、光の粒になって消えていく。']],
    ()=>{p.dwr=1;restAll();save();update();log('「共鳴」の力を手に入れた！')});
   return}
  if(p.dw>=2&&p.dwr){showDialogue('魔王の城','静まり返った広間に、魔王の残り香が、かすかに漂っている。\n宝珠が、あたたかく光っている。');return}
@@ -1315,6 +1481,213 @@ const _dwCmd3=command;command=function(c){
 const _dwBag3=bag;bag=function(){if(enemy)return;_dwBag3();if(p.dw>=2&&p.dwr){let m=$('#modal');if(m)m.insertAdjacentHTML('beforeend','<div class="shoprow"><div>✦ 共鳴<small>戦闘中にゲージが満タンになると使える。全員の力を合わせた、守備無視の全体攻撃。</small></div></div>')}};
 const _dwGuide3=dwGuide;dwGuide=function(){let s=_dwGuide3();return s?s+'<p><b>共鳴：</b>5つの宝珠をそろえてお城の扉へ行くと、魔王の残り香から「共鳴」の力を授かります。戦闘中に共鳴ゲージが溜まり（毎ターン少しずつ・攻撃を受けるほど早く）、満タンで全員の力を合わせた守備無視の全体攻撃を放てます。ゲージは戦闘ごとにリセット。強敵には、HPの4割が上限です。</p>':''};
 (function(){let st=document.createElement('style');st.textContent=`.dwg{display:flex;align-items:center;gap:8px;margin:2px 0 6px;font-size:12px;font-weight:700;color:#ffe27a}.dwgbar{flex:1;height:8px;border-radius:5px;background:#0008;box-shadow:0 0 0 1px #ffffff33 inset;overflow:hidden}.dwgbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#5cc46a,#4a8ad8,#f08ab0,#e8c23a,#e0553a);transition:width .4s}.dwg b{min-width:36px;text-align:right}.dwg.full b{color:#fff;text-shadow:0 0 6px #ffe27a}.dwg.full .dwgbar{animation:dwgp 1s ease-in-out infinite}@keyframes dwgp{0%,100%{box-shadow:0 0 0 1px #ffffff55 inset,0 0 4px #ffe27a}50%{box-shadow:0 0 0 1px #fff inset,0 0 14px #ffe27a}}#dwResCmd{grid-column:1/-1;background:linear-gradient(90deg,#3a5a3a,#3a4a7a,#7a3a5a,#7a6a2a,#7a3a2a);border-color:#ffe27a;color:#fff;font-weight:700;animation:dwgp 1s ease-in-out infinite}#dwResCmd.hidden{display:none}`;document.head.appendChild(st)})();
+
+/* ===== v1.78: 新技（Lv55 / Lv65） ===== */
+const SKH={hug:0};
+// --- 勇者
+skills.push(
+{id:'goshiki',name:'五色斬り',level:55,cost:28,kind:'strike',hits:5,power:.85,description:'攻撃力×0.85の斬撃を、ランダムな敵に5連続で浴びせる。敵が多いほど強い。'},
+{id:'ouken',name:'王国剣・ひとつの光',level:65,cost:48,kind:'strike',pierce:true,power:4,description:'攻撃力×4.0の大剣技。守備力を完全に無視する（メタル系にも通じる）。'});
+function dwMulti(s){
+ let al=aliveEn(),sim=new Map(al.map(e=>[e,e.hp])),seq=[],bn=bst.hero&&bst.hero.k==='burn'?.8:1;
+ for(let i=0;i<s.hits;i++){let tg=al.filter(x=>sim.get(x)>0);if(!tg.length)break;let x=tg[Math.floor(Math.random()*tg.length)],h=Math.max(1,Math.round(damage(atk()*s.power,x.def)*bn));sim.set(x,Math.max(0,sim.get(x)-h));seq.push([x,h])}
+ say(s.name+'！ 五色の剣閃が走る！ '+seq.map(([x,h])=>(enemies.length>1?en(x)+' ':'')+h).join(' ／ ')+' ダメージ！');
+ seq.forEach(([x,h])=>{if(x.hp>0)dealToEnemy(x,h)});sfx('crit')}
+// --- ガルド
+const _gs4=galdSpecial;
+galdSpecial=function(lv,al,t,burn){
+ if(lv>=55&&!(gst.rest>0)&&al.length){
+  let nm='ガルド',gR=getHP('gald')/mHP('gald'),pre=()=>{gst.nio=0;gst.front=0;gst.cover=0;if(gst.cd>0)gst.cd--};
+  if(lv>=65&&gR<=.5){let tg=al.filter(e=>e.def<9000).sort((a,b)=>b.hp-a.hp)[0];
+   if(tg&&Math.random()<.4){pre();let cr=Math.random()<.25,hit=Math.max(1,Math.round(damage(mAtk('gald')*2.6,tg.def)*burn*(cr?1.8:1))),amt=Math.min(mHP('gald')-getHP('gald'),Math.round(mHP('gald')*.15));
+    say(nm+'は歯を食いしばり、不屈の闘志で斬りかかった！ '+(cr?'会心！ ':'')+(enemies.length>1?en(tg)+'に ':'')+hit+' ダメージ！');dealToEnemy(tg,hit);setHP('gald',getHP('gald')+amt);say(nm+'のHPが '+amt+' 回復。');sfx('crit');return true}}
+  if(al.length>=2&&Math.random()<.35){pre();let hits=al.map(x=>{let c=Math.random()<.25;return [x,Math.max(1,Math.round(damage(mAtk('gald')*1.1,c&&x.def>=9000?0:x.def)*burn*(c?1.8:1))),c]});
+   say(nm+'の大地割り！ 全体攻撃！ '+hits.map(([x,h,c])=>en(x)+' '+(c?'会心！ ':'')+h).join(' ／ ')+' ダメージ！');hits.forEach(([x,h])=>dealToEnemy(x,h));sfx('hit');return true}}
+ return _gs4(lv,al,t,burn)};
+// --- ミナ
+EL.tri={n:'三色',i:'🌈'};EL.prism={n:'無',i:'✨'};
+MINA.push({n:'三色の魔弾',el:'tri',lv:55,cost:18,base:46,sc:8.2},{n:'プリズムカタストロフ',el:'prism',lv:65,cost:42,base:60,sc:7.2,all:true});
+// --- ソラ
+function soraNew(){
+ let nm='ソラ',lv=p.level,mp=getMP('sora'),ids=aliveIds();
+ if(lv>=65&&!SKH.hug&&mp>=50&&ids.filter(i=>getHP(i)/mHP(i)<.4).length>=2){
+  setMP('sora',mp-50);SKH.hug=1;let tot=[];
+  ids.forEach(i=>{let amt=Math.min(mHP(i)-getHP(i),Math.round(mHP(i)*.5));if(amt>0){setHP(i,getHP(i)+amt);tot.push(mName(i)+' '+amt)}delete bst[i]});
+  say(nm+'の女神の抱擁！ やさしい光が全員を包み込む… '+tot.join(' ／ ')+' 回復。状態異常も治った！');sfx('heal');return true}
+ if(lv>=55&&mp>=60){let d=deadAlly();if(d){setMP('sora',mp-60);delete down[d];delete bst[d];setHP(d,Math.round(mHP(d)*.5));
+  say(nm+'の天使の祝福！ 天から光が降りそそぎ、'+mName(d)+'がHP50%で復活した！');sfx('heal');return true}}
+ return false}
+const _aa4=allyAct;allyAct=function(id){
+ if(id==='sora'&&p.level>=55&&getHP('sora')>0&&!DWH.res){let s=bst.sora;if(!(s&&(s.k==='sleep'||s.k==='paralyze'))&&soraNew())return true}
+ return _aa4(id)};
+const _eb4=endBattle;endBattle=function(...a){SKH.hug=0;return _eb4(...a)};
+const _enc4=encounter;encounter=function(o){if(!(dialogOpen||enemy))SKH.hug=0;return _enc4(o)};
+// --- レベルアップ表示
+function dwNewSk(o,n){let r='';const A=(id,lv,t)=>{if(p.mem[id]&&o<lv&&n>=lv)r+='\n'+t};
+ A('gald',55,'ガルドが「大地割り」を覚えた！（全体）');A('gald',65,'ガルドが「不屈の闘志」を覚えた！');
+ A('sora',55,'ソラが「天使の祝福」を覚えた！（復活）');A('sora',65,'ソラが「女神の抱擁」を覚えた！（全体回復）');return r}
+
+/* ===== v1.81: 真のラスボス「リナ」戦（段階4） ===== */
+const DWL={form:0,cd:0,noOrb:0,on:false};
+['リナ','いたずらの神リナ','世界を描くリナ','赤ニコちゃん','緑ニコちゃん','ぎょろ目ニコちゃん'].forEach(n=>{FX[n]={weak:[],resist:[],xpm:1,goldm:1}});
+const DWLF=[0,
+ {nm:'リナ',art:'リナ',col:'#c79bf0',glow:'#ffd2e8',hk:2.0,ak:.85,dk:1,tier:0,sz:215},
+ {nm:'いたずらの神リナ',art:'いたずらの神リナE',col:'#9aa6b8',glow:'#cfd6dc',hk:3.0,ak:.95,dk:1.05,tier:3,sz:165},
+ {nm:'世界を描くリナ',art:'世界を描くリナG',col:'#d8d0e8',glow:'#ffffff',hk:4.0,ak:1.0,dk:1.1,tier:4,sz:175}];
+const DWLC={2:[{nm:'赤ニコちゃん',art:'リナのニコちゃん赤',col:'#e5622c',k:'r',hp:.1,ak:.85},{nm:'緑ニコちゃん',art:'リナのニコちゃん緑',col:'#5aa34a',k:'g',hp:.1,ak:.7}],
+ 3:[{nm:'ぎょろ目ニコちゃん',art:'リナのぎょろ目ニコちゃん',col:'#cfcfcf',k:'e',hp:.07,ak:.8},{nm:'ぎょろ目ニコちゃん',art:'リナのぎょろ目ニコちゃんB',col:'#cfcfcf',k:'e',hp:.07,ak:.8}]};
+// 宝珠の反応が消えるいたずら（攻撃・守備・回復のみ）
+const _dwlO=dwO;dwO=function(k){return(DWL.noOrb&&(k==='atk'||k==='def'||k==='heal'))?1:_dwlO(k)};
+function dwlBuild(f){let F=DWLF[f],n=allyList().length;
+ let m=mkEnemy([F.nm,70,'dl:'+F.art,F.col],1+.35*n,0,DWPM[0]);
+ m.hp=Math.round(m.hp*F.hk);m.max=m.hp;m.atk=Math.round(m.atk*F.ak);m.def=m.def*F.dk;m.big=true;m.glow=F.glow;m.flee=0;m.st=null;m.dwl=f;m.dwlmain=1;m.xp=0;m.gold=f===3?10000:0;m.sz=F.sz;
+ if(f===2)m.multi=[2,3];
+ let list=[m];
+ (DWLC[f]||[]).forEach((c,i)=>{let e=mkEnemy([c.nm,66,'dl:'+c.art,c.col],1,0,DWPM[0]);e.hp=Math.max(1,Math.round(m.max*c.hp));e.max=e.hp;e.atk=Math.round(m.atk*c.ak);e.def=m.def*.6;e.flee=0;e.st=null;e.dwl=f;e.dwk=c.k;e.xp=0;e.gold=0;e.sz=78;if(f===3)e.label=c.nm+'AB'[i];list.push(e)});
+ return list}
+const _dwlBE=buildEnemies;buildEnemies=function(o){if(o&&o.dwl)return dwlBuild(DWL.form);return _dwlBE(o)};
+const _dwlSp=sprite;sprite=function(c,type,color,cx,cy,scale){
+ if(typeof type==='string'&&type.startsWith('dl:')){let cv=window.DWART&&DWART.render(type.slice(3),true);if(cv){let sz=Math.min(c.canvas.height-10,148);c.drawImage(cv,cx-sz/2,cy-sz/2,sz,sz)}return}
+ return _dwlSp(c,type,color,cx,cy,scale)};
+function dwlLayout(){let b=$('#battle');['0','1','2','3','4'].forEach(k=>b.classList.remove('dwt'+k));b.classList.add('dwt'+DWLF[DWL.form].tier,'dwl');
+ enemies.forEach((e,i)=>{if(!e.el)return;e.el.style.setProperty('--es',(e.sz||100)+'px');e.el.style.order=e.dwlmain?1:(i===1?0:2);
+  let cv=e.el.querySelector('canvas'),art=window.DWART&&DWART.render(e.type.slice(3),true);if(cv&&art){cv.width=cv.height=240;let x=cv.getContext('2d');x.clearRect(0,0,240,240);x.drawImage(art,0,0,240,240)}})}
+const _dwlEnc=encounter;encounter=function(o){
+ if(!(o&&o.dwl)){DWL.on=false;let bb=$('#battle');if(bb)bb.classList.remove('dwl');return _dwlEnc(o)}
+ if(dialogOpen||enemy)return;
+ DWL.on=true;DWL.cd=0;DWL.noOrb=0;_dwlEnc(o);if(!enemy)return;
+ dwlLayout();if(DWL.form===3)DWH.g=Math.max(DWH.g|0,60);
+ bl=[enemies.length>1?DWLF[DWL.form].nm+'と お供が あらわれた！':DWLF[DWL.form].nm+'が あらわれた！'];battleRender();dwGaugeUpdate()};
+const _dwlEB=endBattle;endBattle=function(w,f){DWL.on=false;DWL.noOrb=0;DWL.cd=0;$('#dialogue').style.zIndex='';let d=$('#dwlCd');if(d)d.remove();return _dwlEB(w,f)};
+// ===== 行動 =====
+function dwlSingle(e,g,pow,label,st){let id=pick(),gd=g&&id==='hero',hit=hurt(id,edmg(e.atk*pow,mDef(id),e),gd);say(en(e)+'の'+label+'！ '+mName(id)+'に '+hit+' ダメージ。');if(st)statusTry(id,st,gd);sfx('hurt');return true}
+function dwlAoe(e,g,pow,label,st){say(en(e)+'の'+label+'！ 全体攻撃！');let parts=[];aliveIds().forEach(id=>{let gd=g&&id==='hero',hit=hurt(id,edmg(e.atk*pow,mDef(id),e),gd);parts.push(mName(id)+' '+hit);if(st)statusTry(id,st,gd)});say(parts.join(' ／ ')+' ダメージ！');sfx('hurt');return true}
+function dwlPrank(e,g){let ids=aliveIds(),k=Math.floor(Math.random()*5);if(k===0&&ids.length<2)k=1;
+ if(k===0){let a=ids.splice(Math.floor(Math.random()*ids.length),1)[0],b=ids[Math.floor(Math.random()*ids.length)],ra=getHP(a)/mHP(a),rb=getHP(b)/mHP(b);setHP(a,Math.max(1,Math.round(rb*mHP(a))));setHP(b,Math.max(1,Math.round(ra*mHP(b))));say('リナ「いれかえっこ〜！」 '+mName(a)+'と'+mName(b)+'の HPが ぐるんと 入れかわった！')}
+ else if(k===1){let id=pick(),m=Math.round(mMP(id)*.25);setMP(id,Math.max(0,getMP(id)-m));say('リナ「ニコちゃんシール、ぺたっ！」 '+mName(id)+'の MPが '+m+' 吸い取られた！')}
+ else if(k===2){DWL.noOrb=1;say('リナ「宝珠、ちょっと 借りるね〜」 宝珠の力が 次のターンまで 消えてしまった！')}
+ else if(k===3){let id=pick();say('リナ「ニコちゃんに な〜れ！」 '+mName(id)+'の顔が ぐにゃりと 笑った…');statusTry(id,['paralyze',1])}
+ else dwlAoe(e,g,.5,'ジェットコースター')}
+function dwlWipe(){say('世界が、まっしろに 消えてしまった——');partyIds().forEach(id=>setHP(id,0));sfx('lose');return true}
+function dwlMain(e,g){let f=e.dwl,first=e.dwlt!==turn;e.dwlt=turn;
+ if(f===1){
+  if(!e.dwer&&e.hp<=e.max*.5){e.dwer=1;let h=Math.round(e.max*.15);e.hp=Math.min(e.max,e.hp+h);say('リナは 大きな けしごむで 自分の傷を ごしごし消した！「えへへ、なかったことに〜」（HP +'+h+'）');return true}
+  let r=Math.random();
+  if(r<.2){say('リナ「ねえ、あそぼ？」');return dwlSingle(e,g,.5,'ぐるぐるクレヨン',['paralyze',.85])}
+  if(r<.45)return dwlAoe(e,g,.5,'ぐるぐるお絵かき');
+  return dwlSingle(e,g,1.1,'クレヨンらくがき')}
+ if(f===2){if(first){DWL.noOrb=0;dwlPrank(e,g)}return dwlSingle(e,g,.7,'細い腕のいたずら')}
+ if(first){
+  if(!DWL.cd&&e.hp<=e.max*.25){DWL.cd=5;say('リナ「ぜんぶ、けしごむで 消しちゃおーっと！」');say('世界が 端から まっしろに 消えはじめた…！（あと5ターンで 世界が消える）')}
+  else if(DWL.cd){DWL.cd--;if(DWL.cd<=0)return dwlWipe();say('けしごむが せまってくる…（あと'+DWL.cd+'ターン）')}
+  if(e.dwtel){e.dwtel=0;return dwHeavy(e,g,{name:'ぬりつぶし',pow:1.5,st:['paralyze',.3]})}
+  if(turn%4===0){e.dwtel=1;say('リナは 世界を まっくろに ぬりつぶそうとしている…！ 防御して 備えよう！');return true}}
+ let r=Math.random();
+ if(r<.45)return dwlSingle(e,g,1.15,'らくがきの手');
+ if(r<.75)return dwlAoe(e,g,.55,'ぐるぐる塗り');
+ say('リナ「みーつけた、みーつけた、みーつけた」 全員の MPが ぞわぞわと 減っていく…');aliveIds().forEach(id=>setMP(id,Math.max(0,getMP(id)-Math.round(mMP(id)*.08))));return dwlSingle(e,g,.5,'つめたい視線')}
+function dwlComp(e,g){let f=e.dwl,main=enemies[0];
+ if(f===2){
+  if(e.dwk==='g'&&main.hp>0&&main.hp<main.max&&(e.dwn=(e.dwn|0)+1)%3!==0){let h=Math.round(main.max*.05);main.hp=Math.min(main.max,main.hp+h);say(en(e)+'の かいふくのうた♪ リナのHPが '+h+' 回復！');return true}
+  return dwlSingle(e,g,e.dwk==='r'?.9:.6,'ずつき')}
+ if(Math.random()<.4){let id=pick(),m=Math.round(mMP(id)*.1);setMP(id,Math.max(0,getMP(id)-m));say(en(e)+'は じーっと こちらを見つめている… '+mName(id)+'の MPが '+m+' 減った！');return true}
+ return dwlSingle(e,g,.8,'ぎょろり',['paralyze',.2])}
+const _dwlEA=enemyAct;enemyAct=function(e,g){
+ if(!e.dwl||e.hp<=0)return _dwlEA(e,g);
+ if(e.dwlmain){e.st=null;return dwlMain(e,g)}
+ let s=e.st;if(s&&s.k==='sleep'){say(en(e)+'は眠っている…');return true}
+ if(s&&s.k==='paralyze'&&Math.random()<.5){say(en(e)+'は しびれて動けない！');return true}
+ return dwlComp(e,g)};
+// 本体が倒れたらお供も消える
+function dwlKillComp(){if(!DWL.on)return;let m=enemies[0];if(m&&m.dwlmain&&m.hp<=0&&enemies.some(e=>e!==m&&e.hp>0)){enemies.forEach(e=>{if(e!==m&&e.hp>0){e.hp=0;e.st=null}});say('お供の ニコちゃんたちが ふっと 消えた。')}}
+const _dwlDE=dealToEnemy;dealToEnemy=function(t,hit,el,six){_dwlDE(t,hit,el,six);dwlKillComp()};
+const _dwlKO=koCheck;koCheck=function(){dwlKillComp();return _dwlKO()};
+// ===== 変身 =====
+const DWL_TR={
+ 1:[['リナ','「えー、もう？ ……ちぇっ、おもしろくない！」'],['リナ','「じゃあ 本気、出しちゃうよ？ ……せーのっ」'],['…','リナの首が、ぐにゃりと 伸びていく。\n足もとから、ニコちゃんが ぽろぽろと こぼれ落ちた——'],['いたずらの神リナ','「みーつけた！ あはは、ここからが 本番だよ！」']],
+ 2:[['いたずらの神リナ','「あっ……ちょっと、つよい……。やだ、まけたくない！」'],['いたずらの神リナ','「ねえ、見て？ この世界、ぜーんぶ わたしが 描いたんだよ？ ぜんぶ、わたしの おもちゃなの！」'],['…','足が、ぽとりと 落ちた。\nニコちゃんたちの 目玉が、いっせいに こちらを向く。'],['世界を描くリナ','「あそぼ。あそぼ。あそぼ。あそぼ。あそぼ。」']]};
+function dwlNext(){busy=true;let f=DWL.form;try{battleRender()}catch(e){}$('#dialogue').style.zIndex=12;
+ showScene(DWL_TR[f],()=>{$('#dialogue').style.zIndex='';DWL.form=f+1;p.dwlf=DWL.form;DWL.noOrb=0;DWL.cd=0;
+  partyIds().forEach(id=>{let m=mHP(id);setHP(id,getHP(id)<=0?Math.round(m*.35):Math.min(m,getHP(id)+Math.round(m*.35)));setMP(id,Math.min(mMP(id),getMP(id)+Math.round(mMP(id)*.35)))});
+  down={};bst={};gst={};enemies=dwlBuild(DWL.form);enemy=enemies[0];tgt=0;buildSlots();dwlLayout();
+  if(DWL.form===3)DWH.g=Math.max(DWH.g|0,60);
+  bl=['味方は 少し 力を取りもどした！','— '+DWLF[DWL.form].nm+' が あらわれた！ —'];turn++;DWH.hits=0;sfx('enc');save();update();beginTurn();battleRender();dwlGaugeSafe()})}
+function dwlGaugeSafe(){try{dwGaugeUpdate()}catch(e){}}
+const _dwlWin=win;win=function(){if(DWL.on&&enemy&&enemies[0]&&enemies[0].dwlmain&&DWL.form<3){dwlNext();return}_dwlWin()};
+function dwlWin(main,pages){p.dwl=1;p.dwlf=0;
+ pages.unshift(['世界を描くリナ','「…………えー、もう終わり？ つまんない！」'],['リナ','（ぐにゃぐにゃの線が ほどけて、小さな女の子の姿に もどる）\n「ずるいー！ 勇者のくせにー！ ……ちぇっ」'],['リナ','「……でも、けっこう 楽しかったよ。ほんとうに」\n「また あそんでね。つぎは、ぜったい わたしが 勝つから！」'],['…','リナは、光の粒になって、らくがきの空に ほどけていった。'],['リナを倒した！','落書きの渦が、すうっと 消えていく。']);
+ restAll();save();update()}
+// ===== 村跡の入口 =====
+const dwlAt=(x,y)=>p.dw>=2&&p.dwr&&!p.dwl&&x<=5&&x>=0&&y>=11&&y<H;
+const DWL_PRE=[['村のあった場所','黒い落書きの渦が、すうっと 道を開けた。'],['リナ','「やっと来たー！ ねえねえ、待ちくたびれちゃった！」'],['リナ','「この世界はね、わたしが 退屈しのぎに 描いたの。勇者も、魔王も、みーんな わたしの おもちゃ！」'],['リナ','「でも、あなたたちが いちばん おもしろかった。……ねえ、もっと あそぼ？ ゲームの つづき！」']];
+function dwlPrompt(){
+ if(p.dwl){showDialogue('村のあった場所','渦の中は、しんと静まりかえっている。\nリナの笑い声は、もう聞こえない。');return}
+ let f=1;p.dwlf=0;
+ openModal('<h2 id="modalTitle">リナ · Lv.70</h2><p>黒い落書きの渦の真ん中で、小さな女の子が クレヨンを振っている。\n「ねえ、あそぼ？」</p><p class="note">3つの姿との連戦。HPは形態ごとに別で、変身のたびに味方は少し回復する。全滅したら、最初の姿からやり直し。MPのやりくりが鍵。</p><p class="note">おすすめ Lv.70前後 ／ 宝珠5つ ／ 共鳴ゲージを使いこなそう'+(f>1?'<br>前回は第'+f+'形態までたどりついた。':'')+'</p><p>現在 Lv.'+p.level+' ／ 仲間 '+allyList().length+' 人 ／ HP '+p.hp+' / '+maxHP()+'。</p><div class="tabs"><button id="rinaStart" class="primary">挑む</button><button data-close>まだ準備する</button></div>');
+ $('#rinaStart').onclick=()=>{closeModal();showScene(f===1?DWL_PRE:[DWL_PRE[1]],()=>{DWL.form=f;encounter({dwl:1})})}}
+const _dwlIA=interactAt;interactAt=function(x,y){if(dwlAt(x,y)){dwlPrompt();return true}return _dwlIA(x,y)};
+const _dwlBump=bump;bump=function(x,y){if(dwlAt(x,y)){dwlPrompt();return}_dwlBump(x,y)};
+function dwlDraw(){let cv=window.DWART&&DWART.render('リナ');if(!cv)return;let t=Date.now()/600,X=4*T,Y=12*T,bob=Math.sin(t)*1.5;
+ ctx.save();ctx.shadowColor='#ffd2e8';ctx.shadowBlur=12+Math.sin(t*1.3)*5;ctx.translate(X+16,Y+8+bob);ctx.rotate(Math.sin(t*.7)*.04);ctx.drawImage(cv,-26,-26,52,52);ctx.restore()}
+const _dwlDM=drawMap;drawMap=function(){_dwlDM();if(p.dw>=2&&p.dwr&&!p.dwl)dwlDraw()};
+// 消しゴムのカウント表示
+const _dwlBR=battleRender;battleRender=function(){_dwlBR();let d=$('#dwlCd');
+ if(DWL.on&&enemy&&DWL.cd>0){if(!d){d=document.createElement('div');d.id='dwlCd';d.className='dwlcd';let g=$('#dwGauge');if(g)g.insertAdjacentElement('afterend',d);else return}d.textContent='⚠ けしごむ あと '+DWL.cd+' ターンで 世界が消える！'}
+ else if(d)d.remove()};
+(function(){let st=document.createElement('style');st.textContent=`.battle.dwl.dwt3 .enemyarea::after{content:'みーつけた';right:14px;bottom:6px;left:auto;top:auto;font-size:17px;color:#6a665c;transform:rotate(-3deg)}.battle.dwl.dwt4 .enemyarea::after{content:'あそぼ。あそぼ。あそぼ。';left:12px;top:6px;font-size:15px;color:#e8e8e8;transform:rotate(-4deg);opacity:.85}.dwlcd{margin:2px 0 6px;padding:3px 10px;border-radius:10px;border:1px solid #ff6a6a;background:#300c;color:#ff8a8a;font-size:12px;font-weight:700;text-align:center;animation:dwgp 1s ease-in-out infinite}`;document.head.appendChild(st)})();
+
+/* ===== v1.81: エンディング・称号・村跡解禁・図鑑（段階4後半） ===== */
+// --- 称号
+const _dw6T=titlesEarned;titlesEarned=function(){let T=_dw6T();if(p.dwl)T.push(['いたずらの神に勝った者','真のラスボス「リナ」を討伐']);return T};
+// --- 記録
+const _dw6R=recData;recData=function(){let d=_dw6R();if(p.dw>=2)d.rows.push(['リナ',p.dwl?'撃破 ✔':'まだ']);return d};
+// --- 図鑑
+const _dw6D=DWH.dex;DWH.dex=function(add,G){_dw6D(add,G);add('rina','リナ','いたずらの神リナ','神さまのあそび相手',10000,[
+ {n:'リナ',lv:70,t:'dd:リナ',c:'#c79bf0',w:[],r:[]},{n:'いたずらの神リナ',lv:70,t:'dd:いたずらの神リナE',c:'#9aa6b8',w:[],r:[]},{n:'世界を描くリナ',lv:70,t:'dd:世界を描くリナG',c:'#d8d0e8',w:[],r:[]}]);G[G.length-1].late=true};
+// --- ガイド
+const _dw6G=dwGuide;dwGuide=function(){let s=_dw6G();return s?s+'<p><b>真のラスボス：</b>5つの宝珠を集めたらお城へ行き、「共鳴」の力を解放しよう。そのあと、村のあった場所（左下）に近づくと、最後の戦いに挑める。3つの姿との連戦で、全滅したら最初からやり直し。共鳴ゲージの使いどころが勝負を分ける。</p>':''};
+// --- 村人リナ（エンディング後）
+const DW6L=['「あっ、勇者さん！ ……なーんてね。もう 正体、バレてるんだった」','「負けちゃったけど、すっごく 楽しかったよ！ ぜったい、また あそぼうね」','「つぎのゲーム？ ふふっ、ひみつ。ちゃーんと 考えてるから、まっててね！」'];
+const _dw6IA=interactAt;interactAt=function(x,y){
+ if(p.dwl&&p.dw>=2&&x===3&&y===12&&inTown()){p.dw6t=((p.dw6t|0)+1)%3;showDialogue('村人リナ',DW6L[p.dw6t]);return true}
+ return _dw6IA(x,y)};
+// --- 村跡の表示
+const _dw6U=update;update=function(){_dw6U();if(p.dwl&&p.dw>=2&&inTown()&&p.x<=5){$('#zoneLabel').textContent='旅立ちの町';$('#zoneLevel').textContent='安全地帯 / 無料の宿';$('#coords').textContent='村が、帰ってきた'}};
+// --- 勝利 → エピローグ → クレジット
+const _dw6W=dwlWin;dwlWin=function(main,pages){_dw6W(main,pages);announceTitles().forEach(x=>pages.push(x));
+ let A=(id)=>!!p.mem[id];
+ [['…','リナが消えた空に、ぽっかりと 穴があいた。\nその向こうに、本物の 青空が のぞいている。'],
+  ['らくがきの番人たち','赤、青、黄、緑、桃。\n5つの宝珠が ふわりと浮かんで、空へ のぼっていく。'],
+  ['らくがきウッドロア','「ザワ…ザワ…。ありがとう。やっと ふつうの木に なれる」'],
+  ['らくがきヴォルカ','「消えるのは 慣れてる。……でも今度は、ちゃんと 眠れそうだ」'],
+  ['らくがきゼクス','「……任務、完了だ。この剣も、ようやく 休める」'],
+  ['らくがきフロスト','「ふふ。つめたい雪も、ほんとうは きらいじゃなかったのよ」'],
+  ['らくがきオルグ','「村へ いってこい。……みんな、もう 待っている」'],
+  ['魔王の残穢','「……遊びは、終わりだ。ご苦労だったな、勇者よ」\n魔王の面影が、朝の光に 溶けていく。'],
+  ['世界','落書きの線が、ひとつ、またひとつ ほどけていく。\n空は青く、草は緑に。世界が、もとの色に もどっていく。'],
+  ['村のあった場所','黒い渦の消えた場所に、なつかしい屋根が 見える。\n……村が、帰ってきた。']].forEach(x=>pages.push(x));
+ if(A('gald'))pages.push(['ガルド','「……やれやれ。長い旅だったぜ。とりあえず、腹が減った」']);
+ if(A('mina'))pages.push(['ミナ','「ふふっ。リナちゃんったら、最後まで 負けず嫌いなんだから」']);
+ if(A('sora'))pages.push(['ソラ','「あのこの『つぎ』……ちょっとだけ、たのしみ、かも」']);
+ pages.push(['どこかの空','「……ねえ、聞こえてる？」\n「つぎの ゲーム、考えとくから！ ぜったい、また あそぼーね！」']);
+ p.end=1;window.dwlEnd=1;save()};
+const _dw6S=showScene;showScene=function(pages,end){
+ if(window.dwlEnd&&pages.some(x=>x[0]==='リナを倒した！')){window.dwlEnd=0;let e0=end;end=()=>{dwCredits(()=>{if(e0)e0()})}}
+ return _dw6S(pages,end)};
+function dwCredits(done){
+ let names=allyList().map(id=>ALLY[id].name),top=titlesEarned().slice(-1)[0][0],o=document.createElement('div');o.id='dwcr';
+ const sec=(h,b)=>'<div class="s"><h3>'+h+'</h3>'+b+'</div>';
+ o.innerHTML='<div class="in"><div class="gap"></div><h1>ひとつの王国</h1><div class="sub">― おわり ―</div>'+
+  sec('','<p>退屈した神さまが、遊びで描いた世界。</p><p>けれど、そこで出会った仲間も、<br>戦った敵も、笑った日々も、<br>ぜんぶ 本物だった。</p>')+
+  sec('出演','<p>勇者'+(names.length?'・'+names.join('・'):'')+'</p><p>夜の魔王 ／ 終焉の龍</p><p>らくがきの番人たち</p><p>ニコちゃんたち</p><p>そして、リナ</p>')+
+  sec('冒険の記録','<p>Lv.'+p.level+'</p><p>プレイ時間　'+fmtT(p.sec)+'</p><p>歩いた歩数　'+p.steps.toLocaleString()+' 歩</p><p>戦闘勝利　'+p.kills.toLocaleString()+' 回</p><p>全滅　'+p.deaths+' 回</p><p>称号　「'+top+'」</p>')+
+  sec('Special Thanks','<p>ここまで遊んでくれた、あなた</p>')+
+  '<div class="s"><h2>Thank you for playing</h2><p class="mu">……つづきは、また こんど。</p><button id="dwcrOk">世界にもどる</button></div><div class="gap2"></div></div><button id="dwcrSkip">とばす ▶▶</button>';
+ document.body.appendChild(o);let pause=0,iv=setInterval(()=>{if(pause>0){pause--;return}o.scrollTop+=1},18);
+ o.addEventListener('touchstart',()=>{pause=120},{passive:true});
+ $('#dwcrSkip').onclick=()=>{o.scrollTo({top:o.scrollHeight,behavior:'smooth'});pause=60};
+ $('#dwcrOk').onclick=()=>{clearInterval(iv);o.remove();save();update();log('村が、帰ってきた。左下の村へ行ってみよう。');if(done)done()}}
+(function(){let st=document.createElement('style');st.textContent=`#dwcr{position:fixed;inset:0;z-index:60;background:radial-gradient(#1b2340,#05060c);color:#f3ecd8;overflow-y:auto;text-align:center;-webkit-overflow-scrolling:touch}#dwcr .gap{height:100vh}#dwcr .gap2{height:38vh}#dwcr h1{font-size:34px;letter-spacing:.12em;margin:0;color:#ffe9a8;text-shadow:0 0 18px #ffd2e8}#dwcr .sub{margin:10px 0 60px;color:#b9c4e8;font-size:15px}#dwcr .s{margin:0 0 64px;padding:0 24px;line-height:1.9;font-size:15px}#dwcr h3{margin:0 0 10px;color:#9ad0ff;font-size:13px;letter-spacing:.2em}#dwcr h2{margin:0 0 14px;font-size:22px;color:#ffd2e8}#dwcr p{margin:0 0 8px}#dwcr .mu{color:#b9c4e8;margin-bottom:28px}#dwcr button#dwcrOk{padding:12px 26px;border-radius:12px;border:2px solid #ffd2e8;background:#2a2340;color:#fff;font-size:16px;font-weight:700}#dwcrSkip{position:fixed;top:calc(10px + env(safe-area-inset-top));right:12px;z-index:61;background:#0008;color:#ddd;border:1px solid #fff5;border-radius:10px;padding:6px 10px;font-size:12px}`;document.head.appendChild(st)})();
 
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 
